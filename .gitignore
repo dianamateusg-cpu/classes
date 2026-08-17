@@ -1,0 +1,6 @@
+# Local preview config for the http.server used during editing.
+# Machine-specific tooling, not part of the site.
+.claude/launch.json
+
+# macOS
+.DS_Store
