@@ -1,0 +1,246 @@
+/* ============================================================
+   classes.seanberrie.com — shared stylesheet
+   Linked from every page as <link href="/styles.css">
+   The leading slash means "from the site root", so this one
+   file works no matter how deep the page sits.
+   ============================================================ */
+
+:root {
+  --paper:      #eff1ee;
+  --paper-warm: #f7f8f6;
+  --ink:        #16232b;
+  --muted:      #5e6e73;
+  --rule:       #d4dad5;
+
+  /* Each language gets its own accent so students can tell at a
+     glance which side of the site they're on. Set on <body>. */
+  --en: #2d5c8f;
+  --es: #b4601f;
+  --accent: var(--en);
+
+  --measure: 34rem;
+}
+
+body[data-lang="es"] { --accent: var(--es); }
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  padding: 3rem 1.5rem 6rem;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "IBM Plex Sans", -apple-system, BlinkMacSystemFont,
+               "Segoe UI", Roboto, sans-serif;
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap {
+  max-width: var(--measure);
+  margin: 0 auto;
+}
+
+/* ---------- breadcrumb / URL trail ------------------------- */
+/* Shown in mono because it IS the URL — students dictate these
+   out loud, so the path is functional content, not decoration. */
+
+.trail {
+  font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular,
+               Menlo, Consolas, monospace;
+  font-size: 0.8125rem;
+  letter-spacing: 0.01em;
+  color: var(--muted);
+  margin: 0 0 2.5rem;
+  word-break: break-word;
+}
+
+.trail a { color: var(--muted); text-decoration-color: var(--rule); }
+.trail a:hover { color: var(--accent); }
+.trail .sep { opacity: 0.5; padding: 0 0.15em; }
+
+/* ---------- headings --------------------------------------- */
+
+.eyebrow {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0 0 0.6rem;
+}
+
+h1 {
+  font-family: Fraunces, Georgia, "Times New Roman", serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-size: clamp(2.1rem, 7vw, 3rem);
+  line-height: 1.08;
+  letter-spacing: -0.015em;
+  margin: 0 0 0.75rem;
+}
+
+h2 {
+  font-family: Fraunces, Georgia, serif;
+  font-weight: 600;
+  font-size: 1.4rem;
+  line-height: 1.2;
+  margin: 3rem 0 1rem;
+}
+
+.standfirst {
+  font-size: 1.125rem;
+  color: var(--muted);
+  margin: 0 0 3rem;
+  max-width: 30rem;
+}
+
+/* ---------- the entry list (signature element) -------------- */
+/* Modelled on a bilingual dictionary: headword, then the path
+   where the reader will find it, then the gloss. */
+
+.entries { list-style: none; margin: 0; padding: 0; }
+
+.entries li { border-top: 1px solid var(--rule); }
+.entries li:last-child { border-bottom: 1px solid var(--rule); }
+
+.entry {
+  display: block;
+  padding: 1.35rem 0 1.4rem 1.1rem;
+  border-left: 3px solid transparent;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.15s ease, padding-left 0.15s ease,
+              background-color 0.15s ease;
+}
+
+.entry:hover,
+.entry:focus-visible {
+  border-left-color: var(--accent);
+  padding-left: 1.5rem;
+  background: var(--paper-warm);
+}
+
+.entry:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.headword {
+  font-family: Fraunces, Georgia, serif;
+  font-weight: 600;
+  font-size: 1.3rem;
+  line-height: 1.25;
+  display: block;
+}
+
+.headword .tag {
+  font-family: "IBM Plex Sans", sans-serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 0.875rem;
+  color: var(--muted);
+  margin-left: 0.5rem;
+  letter-spacing: 0;
+}
+
+.path {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.8125rem;
+  color: var(--accent);
+  margin: 0.35rem 0 0;
+  word-break: break-word;
+}
+
+.gloss {
+  margin: 0.45rem 0 0;
+  color: var(--muted);
+  font-size: 0.9375rem;
+  line-height: 1.5;
+}
+
+/* ---------- lesson body content ---------------------------- */
+
+.lesson p { max-width: var(--measure); }
+
+.lesson ul, .lesson ol { padding-left: 1.2rem; }
+.lesson li { margin-bottom: 0.5rem; }
+
+.lesson a { color: var(--accent); text-underline-offset: 0.15em; }
+
+.lesson img,
+.lesson video { max-width: 100%; height: auto; display: block; }
+
+.lesson audio { width: 100%; margin: 0.75rem 0 1.5rem; }
+
+/* Vocabulary pairs — term on the left, meaning on the right */
+.vocab {
+  margin: 1.5rem 0 2rem;
+  border-top: 1px solid var(--rule);
+}
+
+.vocab div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 1rem;
+  padding: 0.7rem 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.vocab dt {
+  font-weight: 600;
+  flex: 0 0 11rem;
+  margin: 0;
+}
+
+.vocab dd { margin: 0; color: var(--muted); flex: 1 1 12rem; }
+
+blockquote {
+  margin: 1.5rem 0;
+  padding: 0.25rem 0 0.25rem 1.1rem;
+  border-left: 3px solid var(--accent);
+  font-family: Fraunces, Georgia, serif;
+  font-size: 1.1rem;
+}
+
+.note {
+  background: var(--paper-warm);
+  border: 1px solid var(--rule);
+  padding: 1rem 1.2rem;
+  margin: 2rem 0;
+  font-size: 0.9375rem;
+}
+
+.note strong { display: block; margin-bottom: 0.25rem; }
+
+/* ---------- footer ----------------------------------------- */
+
+.foot {
+  margin-top: 4.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--rule);
+  font-size: 0.875rem;
+  color: var(--muted);
+}
+
+.foot a { color: var(--muted); }
+
+/* ---------- responsive + accessibility --------------------- */
+
+@media (max-width: 30rem) {
+  body { padding-top: 2rem; }
+  .vocab dt { flex: 1 1 100%; }
+  .vocab dd { flex: 1 1 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}
+
+@media print {
+  body { background: #fff; padding: 0; }
+  .trail, .foot { display: none; }
+}

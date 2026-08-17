@@ -1,0 +1,5 @@
+# Ask search engines not to crawl this site.
+# The <meta name="robots" content="noindex"> tag in each page is what
+# actually keeps pages out of results — this file just asks politely.
+User-agent: *
+Disallow: /
