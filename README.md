@@ -1,4 +1,4 @@
-# classes.seanberrie.com
+# diana-teaches.com
 
 Class materials for Spanish and English lessons. Plain HTML — no build
 step, no framework, nothing to install.
@@ -11,7 +11,7 @@ The folders ARE the URLs. This:
 
 is served at:
 
-    classes.seanberrie.com/english/unit1/vocabulary
+    diana-teaches.com/english/unit1/vocabulary
 
 Every folder has an `index.html`, so students can delete the last part of
 any address to go back up a level.
