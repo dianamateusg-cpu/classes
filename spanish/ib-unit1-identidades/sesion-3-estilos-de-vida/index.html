@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>IB Spanish B SL · Estilos de vida · Sesión 3 — Class materials</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --sage-dark:   #3A6B4A;
+    --sage-mid:    #5A9E6E;
+    --sage-light:  #EAF4ED;
+    --sage-border: #A8D8B6;
+
+    --ochre-dark:  #7A5020;
+    --ochre-mid:   #B87A3A;
+    --ochre-light: #FBF0E0;
+    --ochre-border:#E8C48A;
+
+    --plum-dark:   #5C2D6E;
+    --plum-mid:    #8E4FAE;
+    --plum-light:  #F5EDFB;
+    --plum-border: #CFA8E2;
+
+    --steel-dark:  #2A4A6A;
+    --steel-mid:   #4A7AAE;
+    --steel-light: #EAF1FA;
+    --steel-border:#A8C8E8;
+
+    --clay-dark:   #7A3A28;
+    --clay-mid:    #C05A3A;
+    --clay-light:  #FAEEE8;
+    --clay-border: #E8B0A0;
+
+    --gray-bg:     #F7F6F3;
+    --gray-border: #E0DED8;
+    --text-main:   #2C2C2A;
+    --text-muted:  #5F5E5A;
+    --text-hint:   #888780;
+    --font: 'Nunito', sans-serif;
+    --radius: 12px;
+    --radius-sm: 8px;
+  }
+
+  body { font-family: var(--font); background: var(--gray-bg); color: var(--text-main); min-height: 100vh; }
+
+  /* ── HEADER ── */
+  .back-nav {
+    display: block;
+    font-size: 12px;
+    color: rgba(255,255,255,0.8);
+    text-decoration: none;
+    margin-bottom: 10px;
+  }
+  .back-nav:hover { color: #fff; text-decoration: underline; }
+
+  .site-header { background: var(--sage-dark); color: #fff; padding: 2rem 2.5rem 1.5rem; }
+  .eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.75; margin-bottom: 6px; }
+  .site-header h1 { font-size: 26px; font-weight: 700; line-height: 1.25; }
+  .site-header .subtitle { font-size: 14px; opacity: 0.8; margin-top: 6px; }
+  .meta-pills { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 14px; }
+  .pill { font-size: 12px; font-weight: 600; padding: 4px 12px; border-radius: 99px; background: rgba(255,255,255,0.15); color: #fff; border: 1px solid rgba(255,255,255,0.25); }
+
+  /* ── TIMER BAR ── */
+  .timer-bar { background: #fff; border-bottom: 1px solid var(--gray-border); padding: 10px 2.5rem; display: flex; align-items: center; gap: 16px; position: sticky; top: 0; z-index: 100; box-shadow: 0 1px 6px rgba(0,0,0,0.06); flex-wrap: wrap; }
+  .timer-label { font-size: 13px; color: var(--text-muted); font-weight: 600; }
+  .timer-display { font-size: 22px; font-weight: 700; font-variant-numeric: tabular-nums; color: var(--sage-dark); min-width: 60px; }
+  .timer-display.warning { color: var(--ochre-mid); }
+  .timer-display.danger  { color: var(--clay-mid); }
+  .timer-btn { font-family: var(--font); font-size: 13px; font-weight: 600; padding: 6px 16px; border-radius: 99px; border: none; cursor: pointer; transition: opacity 0.15s; }
+  .timer-btn:hover { opacity: 0.85; }
+  .btn-start { background: var(--sage-dark); color: #fff; }
+  .btn-pause { background: var(--ochre-mid); color: #fff; }
+  .btn-reset { background: transparent; color: var(--text-muted); border: 1px solid var(--gray-border); }
+  .timer-phase { font-size: 12px; color: var(--text-hint); }
+
+  /* ── LAYOUT ── */
+  .main { display: flex; min-height: calc(100vh - 57px); }
+
+  /* ── SIDEBAR ── */
+  .sidebar { width: 220px; flex-shrink: 0; background: #fff; border-right: 1px solid var(--gray-border); padding: 1.5rem 0; position: sticky; top: 57px; height: calc(100vh - 57px); overflow-y: auto; }
+  .sidebar-label { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-hint); padding: 0 1.25rem 8px; }
+  .nav-item { display: flex; align-items: center; gap: 10px; padding: 10px 1.25rem; cursor: pointer; font-size: 13px; font-weight: 600; color: var(--text-muted); border-left: 3px solid transparent; transition: all 0.15s; user-select: none; }
+  .nav-item:hover { background: var(--gray-bg); color: var(--text-main); }
+  .nav-dot { width: 28px; height: 28px; border-radius: 50%; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .nav-time { font-size: 10px; color: var(--text-hint); font-weight: 400; display: block; margin-top: 1px; }
+
+  /* sidebar dot colors */
+  .nav-item[data-tab="repaso"]   .nav-dot { background: var(--ochre-light); color: var(--ochre-dark); }
+  .nav-item[data-tab="entrada"]  .nav-dot { background: var(--sage-light);  color: var(--sage-dark);  }
+  .nav-item[data-tab="vocab"]    .nav-dot { background: var(--plum-light);  color: var(--plum-dark);  }
+  .nav-item[data-tab="oral"]     .nav-dot { background: var(--steel-light); color: var(--steel-dark); }
+  .nav-item[data-tab="cierre"]   .nav-dot { background: var(--clay-light);  color: var(--clay-dark);  }
+
+  /* sidebar active colors */
+  .nav-item[data-tab="repaso"].active  { color: var(--ochre-dark); border-left-color: var(--ochre-dark); background: var(--ochre-light); }
+  .nav-item[data-tab="entrada"].active { color: var(--sage-dark);  border-left-color: var(--sage-dark);  background: var(--sage-light);  }
+  .nav-item[data-tab="vocab"].active   { color: var(--plum-dark);  border-left-color: var(--plum-dark);  background: var(--plum-light);  }
+  .nav-item[data-tab="oral"].active    { color: var(--steel-dark); border-left-color: var(--steel-dark); background: var(--steel-light); }
+  .nav-item[data-tab="cierre"].active  { color: var(--clay-dark);  border-left-color: var(--clay-dark);  background: var(--clay-light);  }
+
+  /* ── CONTENT ── */
+  .content { flex: 1; padding: 2rem 2.5rem; max-width: 820px; }
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  /* ── SECTION HEADING ── */
+  .section-heading { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 1.75rem; padding-bottom: 1.25rem; border-bottom: 2px solid; }
+  .section-num { width: 40px; height: 40px; border-radius: 50%; font-size: 16px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .section-heading h2 { font-size: 20px; font-weight: 700; line-height: 1.2; }
+  .section-heading .sub { font-size: 13px; margin-top: 3px; }
+  .time-badge { margin-left: auto; font-size: 11px; font-weight: 700; padding: 4px 12px; border-radius: 99px; white-space: nowrap; align-self: flex-start; margin-top: 2px; }
+
+  /* ── SHARED CARD ── */
+  .card { background: #fff; border: 1px solid var(--gray-border); border-radius: var(--radius); padding: 1.25rem 1.5rem; margin-bottom: 1rem; }
+  .card h3 { font-size: 14px; font-weight: 700; margin-bottom: 10px; color: var(--text-main); }
+  .card p  { font-size: 14px; line-height: 1.75; color: var(--text-muted); }
+  .card p + p { margin-top: 8px; }
+  .card ul { list-style: none; padding: 0; }
+  .card ul li { font-size: 14px; line-height: 1.7; color: var(--text-muted); padding: 5px 0 5px 22px; position: relative; }
+  .card ul li::before { content: "→"; position: absolute; left: 0; font-size: 13px; }
+
+  /* ── PHASE TAG ── */
+  .phase-tag { display: inline-block; font-size: 11px; font-weight: 700; border-radius: 99px; padding: 3px 11px; margin-bottom: 8px; }
+
+  /* ── HIGHLIGHT BAR ── */
+  .highlight { border-left: 3px solid; border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 10px 14px; font-size: 13px; font-weight: 600; margin-top: 10px; }
+
+  /* ── REVEAL BLOCKS (shared) ── */
+  .reveal-block { background: #fff; border: 1px solid var(--gray-border); border-radius: var(--radius); margin-bottom: 10px; overflow: hidden; }
+  .reveal-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; padding: 1rem 1.25rem; cursor: pointer; user-select: none; }
+  .reveal-num { width: 26px; height: 26px; border-radius: 50%; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
+  .reveal-text { font-size: 14px; font-weight: 700; color: var(--text-main); flex: 1; line-height: 1.45; }
+  .reveal-btn { font-size: 12px; font-weight: 700; border-radius: 99px; padding: 4px 12px; cursor: pointer; white-space: nowrap; flex-shrink: 0; font-family: var(--font); border: 1px solid; transition: opacity 0.15s; }
+  .reveal-btn:hover { opacity: 0.75; }
+  .reveal-body { display: none; padding: 0 1.25rem 1rem 3.75rem; }
+  .reveal-body.open { display: block; }
+  .reveal-body p { font-size: 14px; color: var(--text-muted); line-height: 1.7; }
+  .answer-label { font-size: 10px; font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase; margin-bottom: 5px; }
+  .level-tag { font-size: 10px; font-weight: 700; border-radius: 99px; padding: 2px 8px; margin-left: 6px; vertical-align: middle; }
+
+  /* ── FOOT NAV ── */
+  .foot-nav { display: flex; justify-content: space-between; margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--gray-border); gap: 10px; }
+  .foot-btn { font-family: var(--font); font-size: 13px; font-weight: 700; padding: 9px 20px; border-radius: 99px; border: 1px solid var(--gray-border); background: #fff; cursor: pointer; color: var(--text-muted); transition: all 0.15s; }
+  .foot-btn:hover:not(:disabled) { background: var(--gray-bg); color: var(--text-main); }
+  .foot-btn:disabled { opacity: 0.3; cursor: default; }
+  .foot-btn.primary { color: #fff; }
+  .foot-btn.primary:hover { opacity: 0.9; }
+
+  /* ══════════════════════════════════
+     TAB 1 — REPASO  (ochre)
+  ══════════════════════════════════ */
+  #tab-repaso .section-heading   { border-color: var(--ochre-border); }
+  #tab-repaso .section-num       { background: var(--ochre-light); color: var(--ochre-dark); }
+  #tab-repaso .section-heading h2 { color: var(--ochre-dark); }
+  #tab-repaso .section-heading .sub { color: var(--ochre-mid); }
+  #tab-repaso .time-badge        { background: var(--ochre-light); color: var(--ochre-dark); border: 1px solid var(--ochre-border); }
+  #tab-repaso .phase-tag         { background: var(--ochre-light); color: var(--ochre-dark); }
+  #tab-repaso .card ul li::before { color: var(--ochre-mid); }
+  #tab-repaso .highlight         { background: var(--ochre-light); border-color: var(--ochre-mid); color: var(--ochre-dark); }
+  #tab-repaso .reveal-num        { background: var(--ochre-light); color: var(--ochre-dark); }
+  #tab-repaso .reveal-btn        { background: var(--ochre-light); color: var(--ochre-dark); border-color: var(--ochre-border); }
+  #tab-repaso .answer-label      { color: var(--ochre-mid); }
+  #tab-repaso .level-tag         { background: var(--ochre-light); color: var(--ochre-dark); }
+  #tab-repaso .foot-btn.primary  { background: var(--ochre-dark); border-color: var(--ochre-dark); }
+
+  .palabras-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(155px, 1fr)); gap: 8px; margin-bottom: 1rem; }
+  .palabra-chip { background: #fff; border: 1.5px solid var(--ochre-border); border-radius: var(--radius-sm); padding: 10px 12px; cursor: pointer; transition: all 0.2s; position: relative; }
+  .palabra-chip:hover { border-color: var(--ochre-mid); }
+  .palabra-chip.revealed { background: var(--ochre-light); border-color: var(--ochre-mid); }
+  .palabra-es { font-size: 14px; font-weight: 700; color: var(--ochre-dark); }
+  .palabra-def { font-size: 12px; color: var(--text-hint); font-style: italic; margin-top: 3px; display: none; line-height: 1.4; }
+  .palabra-chip.revealed .palabra-def { display: block; }
+  .palabra-hint { font-size: 10px; color: var(--ochre-mid); font-weight: 600; margin-top: 4px; }
+  .palabra-chip.revealed .palabra-hint { display: none; }
+
+  /* ══════════════════════════════════
+     TAB 2 — ENTRADA  (sage)
+  ══════════════════════════════════ */
+  #tab-entrada .section-heading   { border-color: var(--sage-border); }
+  #tab-entrada .section-num       { background: var(--sage-light); color: var(--sage-dark); }
+  #tab-entrada .section-heading h2 { color: var(--sage-dark); }
+  #tab-entrada .section-heading .sub { color: var(--sage-mid); }
+  #tab-entrada .time-badge        { background: var(--sage-light); color: var(--sage-dark); border: 1px solid var(--sage-border); }
+  #tab-entrada .phase-tag         { background: var(--sage-light); color: var(--sage-dark); }
+  #tab-entrada .card ul li::before { color: var(--sage-mid); }
+  #tab-entrada .highlight         { background: var(--sage-light); border-color: var(--sage-mid); color: var(--sage-dark); }
+  #tab-entrada .foot-btn.primary  { background: var(--sage-dark); border-color: var(--sage-dark); }
+
+  .contraste-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 1rem; }
+  .contraste-card { border-radius: var(--radius); padding: 1.25rem; border: 1px solid; }
+  .contraste-card.a { background: var(--sage-light); border-color: var(--sage-border); }
+  .contraste-card.b { background: var(--ochre-light); border-color: var(--ochre-border); }
+  .contraste-card h4 { font-size: 13px; font-weight: 700; margin-bottom: 10px; }
+  .contraste-card.a h4 { color: var(--sage-dark); }
+  .contraste-card.b h4 { color: var(--ochre-dark); }
+  .contraste-card ul { list-style: none; padding: 0; }
+  .contraste-card ul li { font-size: 13px; color: var(--text-muted); padding: 3px 0 3px 16px; position: relative; line-height: 1.5; }
+  .contraste-card.a ul li::before { content: "·"; position: absolute; left: 4px; color: var(--sage-mid); font-weight: 700; }
+  .contraste-card.b ul li::before { content: "·"; position: absolute; left: 4px; color: var(--ochre-mid); font-weight: 700; }
+
+  .reading-box { background: var(--sage-light); border: 1px solid var(--sage-border); border-radius: var(--radius); padding: 1.5rem; margin-bottom: 1rem; }
+  .reading-label { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--sage-mid); margin-bottom: 10px; }
+  .reading-box p { font-size: 15px; color: var(--sage-dark); line-height: 1.8; }
+  .reading-box p + p { margin-top: 10px; }
+
+  /* ══════════════════════════════════
+     TAB 3 — VOCAB  (plum)
+  ══════════════════════════════════ */
+  #tab-vocab .section-heading   { border-color: var(--plum-border); }
+  #tab-vocab .section-num       { background: var(--plum-light); color: var(--plum-dark); }
+  #tab-vocab .section-heading h2 { color: var(--plum-dark); }
+  #tab-vocab .section-heading .sub { color: var(--plum-mid); }
+  #tab-vocab .time-badge        { background: var(--plum-light); color: var(--plum-dark); border: 1px solid var(--plum-border); }
+  #tab-vocab .card ul li::before { color: var(--plum-mid); }
+  #tab-vocab .foot-btn.primary  { background: var(--plum-dark); border-color: var(--plum-dark); }
+
+  .vocab-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; margin-bottom: 1rem; }
+  .vocab-card { background: #fff; border: 1px solid var(--gray-border); border-radius: var(--radius-sm); padding: 12px 14px; transition: border-color 0.15s, box-shadow 0.15s; }
+  .vocab-card:hover { border-color: var(--plum-border); box-shadow: 0 0 0 3px var(--plum-light); }
+  .vocab-es   { font-size: 15px; font-weight: 700; color: var(--plum-dark); }
+  .vocab-type { font-size: 11px; color: var(--plum-mid); font-weight: 600; margin-top: 2px; }
+  .vocab-ex   { font-size: 12px; color: var(--text-hint); font-style: italic; margin-top: 5px; line-height: 1.5; }
+
+  .phrases-box { background: var(--plum-light); border: 1px solid var(--plum-border); border-radius: var(--radius); padding: 1.25rem 1.5rem; }
+  .phrases-box h3 { font-size: 14px; font-weight: 700; color: var(--plum-dark); margin-bottom: 10px; }
+  .phrase-item { font-size: 14px; color: var(--plum-dark); padding: 6px 0; border-bottom: 1px solid var(--plum-border); line-height: 1.55; }
+  .phrase-item:last-child { border-bottom: none; }
+
+  /* ══════════════════════════════════
+     TAB 4 — ORAL  (steel)
+  ══════════════════════════════════ */
+  #tab-oral .section-heading   { border-color: var(--steel-border); }
+  #tab-oral .section-num       { background: var(--steel-light); color: var(--steel-dark); }
+  #tab-oral .section-heading h2 { color: var(--steel-dark); }
+  #tab-oral .section-heading .sub { color: var(--steel-mid); }
+  #tab-oral .time-badge        { background: var(--steel-light); color: var(--steel-dark); border: 1px solid var(--steel-border); }
+  #tab-oral .card ul li::before { color: var(--steel-mid); }
+  #tab-oral .highlight         { background: var(--steel-light); border-color: var(--steel-mid); color: var(--steel-dark); }
+  #tab-oral .reveal-num        { background: var(--steel-light); color: var(--steel-dark); }
+  #tab-oral .reveal-btn        { background: var(--steel-light); color: var(--steel-dark); border-color: var(--steel-border); }
+  #tab-oral .answer-label      { color: var(--steel-mid); }
+  #tab-oral .level-tag         { background: var(--steel-light); color: var(--steel-dark); }
+  #tab-oral .foot-btn.primary  { background: var(--steel-dark); border-color: var(--steel-dark); }
+
+  .reflexion-box { background: var(--steel-light); border: 1px solid var(--steel-border); border-radius: var(--radius); padding: 1.5rem; margin-bottom: 1rem; }
+  .reflexion-box .r-label { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--steel-mid); margin-bottom: 8px; }
+  .reflexion-box .r-q { font-size: 17px; font-weight: 700; color: var(--steel-dark); line-height: 1.45; margin-bottom: 10px; }
+  .reflexion-box .r-instr { font-size: 14px; color: var(--steel-dark); line-height: 1.6; }
+  .format-chips { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
+  .format-chip { font-size: 12px; font-weight: 700; background: #fff; color: var(--steel-dark); border: 1px solid var(--steel-border); border-radius: 99px; padding: 4px 12px; }
+
+  /* ══════════════════════════════════
+     TAB 5 — CIERRE  (clay)
+  ══════════════════════════════════ */
+  #tab-cierre .section-heading   { border-color: var(--clay-border); }
+  #tab-cierre .section-num       { background: var(--clay-light); color: var(--clay-dark); }
+  #tab-cierre .section-heading h2 { color: var(--clay-dark); }
+  #tab-cierre .section-heading .sub { color: var(--clay-mid); }
+  #tab-cierre .time-badge        { background: var(--clay-light); color: var(--clay-dark); border: 1px solid var(--clay-border); }
+  #tab-cierre .card ul li::before { color: var(--clay-mid); }
+  #tab-cierre .foot-btn.primary  { background: var(--clay-dark); border-color: var(--clay-dark); }
+
+  .prompt-box { background: var(--clay-light); border: 1px solid var(--clay-border); border-radius: var(--radius); padding: 1.5rem; margin-bottom: 1rem; }
+  .prompt-label { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--clay-mid); margin-bottom: 8px; }
+  .prompt-q { font-size: 17px; font-weight: 700; color: var(--clay-dark); line-height: 1.45; margin-bottom: 10px; }
+  .prompt-instr { font-size: 14px; color: var(--clay-dark); line-height: 1.6; }
+  .prompt-meta { display: flex; gap: 10px; margin-top: 12px; flex-wrap: wrap; }
+  .prompt-chip { font-size: 12px; font-weight: 700; background: #fff; color: var(--clay-dark); border: 1px solid var(--clay-border); border-radius: 99px; padding: 4px 12px; }
+
+  .criteria-list { list-style: none; padding: 0; }
+  .criteria-list li { display: flex; gap: 10px; align-items: flex-start; padding: 8px 0; border-bottom: 1px solid var(--gray-border); font-size: 14px; color: var(--text-muted); line-height: 1.6; }
+  .criteria-list li:last-child { border-bottom: none; }
+  .criteria-list li::before { content: "✓"; color: var(--clay-mid); font-weight: 700; flex-shrink: 0; }
+
+  .next-box { background: var(--sage-light); border: 1px solid var(--sage-border); border-radius: var(--radius); padding: 1.25rem 1.5rem; }
+  .next-box h3 { font-size: 14px; font-weight: 700; color: var(--sage-dark); margin-bottom: 10px; }
+  .subtema-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 8px; }
+  .subtema-chip { background: #fff; border: 1px solid var(--sage-border); border-radius: var(--radius-sm); padding: 10px 14px; font-size: 13px; font-weight: 700; color: var(--sage-dark); text-align: center; cursor: pointer; transition: background 0.15s; }
+  .subtema-chip:hover { background: var(--sage-light); }
+
+  @media print {
+    .timer-bar, .sidebar, .foot-nav { display: none; }
+    .main { display: block; }
+    .content { padding: 1rem; max-width: 100%; }
+    .tab-panel { display: block !important; margin-bottom: 2rem; }
+    .contraste-grid { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 700px) {
+    .main { display: block; }
+    .sidebar { width: 100%; position: static; height: auto; border-right: none; border-bottom: 1px solid var(--gray-border); }
+    .content { padding: 1.25rem; max-width: 100%; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+<a class="back-nav" href="/spanish/ib-unit1-identidades/">&larr; IB Unidad 1 &middot; Identidades</a>
+  <p class="eyebrow">IB Spanish B SL · Tema 1: Identidades · Sesión 3</p>
+  <h1>Estilos de vida</h1>
+  <p class="subtitle">¿Cómo reflejan nuestros hábitos y rutinas quiénes somos? · 50 minutos · Retorno tras pausa</p>
+  <div class="meta-pills">
+    <span class="pill">B1–B2</span>
+    <span class="pill">Repaso + tema nuevo</span>
+    <span class="pill">Enfoque cultural</span>
+  </div>
+</header>
+
+<div class="timer-bar">
+  <span class="timer-label">Temporizador</span>
+  <span class="timer-display" id="timer-display">12:00</span>
+  <button class="timer-btn btn-start" id="btn-start" onclick="startTimer()">▶ Iniciar</button>
+  <button class="timer-btn btn-pause" id="btn-pause" onclick="pauseTimer()" style="display:none">⏸ Pausar</button>
+  <button class="timer-btn btn-reset" onclick="resetTimer()">↺ Reiniciar</button>
+  <span class="timer-phase" id="timer-phase">Repaso activador</span>
+</div>
+
+<div class="main">
+  <nav class="sidebar">
+    <p class="sidebar-label">Actividades</p>
+    <div class="nav-item active" data-tab="repaso" onclick="showTab('repaso')">
+      <div class="nav-dot">1</div>
+      <div>Repaso activador<span class="nav-time">0–12 min</span></div>
+    </div>
+    <div class="nav-item" data-tab="entrada" onclick="showTab('entrada')">
+      <div class="nav-dot">2</div>
+      <div>Entrada al tema<span class="nav-time">12–22 min</span></div>
+    </div>
+    <div class="nav-item" data-tab="vocab" onclick="showTab('vocab')">
+      <div class="nav-dot">3</div>
+      <div>Vocabulario<span class="nav-time">22–35 min</span></div>
+    </div>
+    <div class="nav-item" data-tab="oral" onclick="showTab('oral')">
+      <div class="nav-dot">4</div>
+      <div>Producción oral<span class="nav-time">35–45 min</span></div>
+    </div>
+    <div class="nav-item" data-tab="cierre" onclick="showTab('cierre')">
+      <div class="nav-dot">5</div>
+      <div>Cierre escrito<span class="nav-time">45–50 min</span></div>
+    </div>
+  </nav>
+
+  <main class="content">
+
+    <!-- ══ TAB 1: REPASO ══ -->
+    <div id="tab-repaso" class="tab-panel active">
+      <div class="section-heading">
+        <div class="section-num">1</div>
+        <div>
+          <h2>Repaso activador</h2>
+          <p class="sub">Reactivación sin presión · Tono cálido de bienvenida</p>
+        </div>
+        <span class="time-badge">0–12 min</span>
+      </div>
+
+      <div class="card">
+        <span class="phase-tag">Apertura · 3 min</span>
+        <h3>Bienvenida de retorno</h3>
+        <ul>
+          <li>Pregunta abierta y personal: <em>"¿Cómo ha estado tu mes? ¿Algo interesante que quieras contar?"</em> — en español, sin corrección inmediata.</li>
+          <li>Objetivo: romper el hielo lingüístico, activar producción oral espontánea antes del repaso formal.</li>
+          <li>Si mezclas inglés y español, está bien — es señal de que la confianza está volviendo.</li>
+        </ul>
+        <div class="highlight">💡 El tono de los primeros minutos define toda la sesión — habla, aunque no sea perfecto.</div>
+      </div>
+
+      <div class="card">
+        <span class="phase-tag">Repaso de vocabulario · 9 min</span>
+        <h3>¿Qué recuerdas? — Tarjetas de activación</h3>
+        <p style="font-size:13px; color: var(--text-hint); margin-bottom: 12px;">Haz clic en cada palabra para revelar su definición contextual. Antes de revelarla, construye tu propia oración con ella.</p>
+        <div class="palabras-grid" id="palabras-grid"></div>
+        <div class="highlight">💡 No es un examen — si no recuerdas una palabra, no te preocupes y sigue. El objetivo es reactivar, no evaluar.</div>
+      </div>
+
+      <div class="card">
+        <span class="phase-tag">Conexión · 2 min</span>
+        <h3>Puente hacia el tema nuevo</h3>
+        <ul>
+          <li>Pregunta de transición: <em>"Ya hablamos de qué forma nuestra identidad y cómo el idioma nos define. Hoy vamos a explorar algo más cotidiano: ¿crees que tu forma de vivir — tus rutinas, tus hábitos — también dice algo sobre quién eres?"</em></li>
+          <li>Responde brevemente — tus ideas serán el punto de partida de la siguiente actividad.</li>
+        </ul>
+      </div>
+
+      <div class="foot-nav">
+        <button class="foot-btn" disabled>← Anterior</button>
+        <button class="foot-btn primary" onclick="showTab('entrada'); setTimer(10, 'Entrada al tema')">Siguiente: Entrada al tema →</button>
+      </div>
+    </div>
+
+    <!-- ══ TAB 2: ENTRADA ══ -->
+    <div id="tab-entrada" class="tab-panel">
+      <div class="section-heading">
+        <div class="section-num">2</div>
+        <div>
+          <h2>Entrada al tema</h2>
+          <p class="sub">Contraste de estilos de vida + texto input</p>
+        </div>
+        <span class="time-badge">12–22 min</span>
+      </div>
+
+      <div class="card">
+        <span class="phase-tag">Actividad visual · 5 min</span>
+        <h3>Dos mundos, dos ritmos</h3>
+        <p style="margin-bottom:12px;">Observa los dos contextos y describe lo que imaginas. Luego conéctalo con tu experiencia personal en Hong Kong.</p>
+        <div class="contraste-grid">
+          <div class="contraste-card a">
+            <h4>🏙 Hong Kong / Ciudad asiática</h4>
+            <ul>
+              <li>Ritmo acelerado, alta productividad</li>
+              <li>Largas jornadas laborales o de estudio</li>
+              <li>Transporte público, densidad urbana</li>
+              <li>Tecnología integrada en todo</li>
+              <li>Éxito medido en logros y eficiencia</li>
+            </ul>
+          </div>
+          <div class="contraste-card b">
+            <h4>🌿 Ciudad latinoamericana</h4>
+            <ul>
+              <li>Más énfasis en el tiempo social</li>
+              <li>La comida como ritual familiar</li>
+              <li>Equilibrio trabajo–vida personal</li>
+              <li>El concepto de <em>calidad de vida</em></li>
+              <li>Éxito medido en bienestar y relaciones</li>
+            </ul>
+          </div>
+        </div>
+        <p style="font-size:13px; color:var(--text-hint); margin-top: 4px;">Pregunta guía: <em>"¿Con cuál de estos dos ritmos te identificas más? ¿Por qué?"</em></p>
+      </div>
+
+      <div class="reading-box">
+        <p class="reading-label">Texto adaptado · Nivel B1–B2</p>
+        <p>En muchas ciudades asiáticas, el éxito personal se mide por la productividad: cuánto trabajas, cuánto estudias, cuánto logras. El tiempo libre, paradójicamente, a veces se convierte en otra forma de productividad — los hobbies deben ser útiles, las vacaciones deben ser "aprovechadas". Esta cultura del rendimiento forma parte de la identidad de millones de personas.</p>
+        <p>En cambio, en muchos países de América Latina existe una tradición de valorar el tiempo compartido como un fin en sí mismo. Una sobremesa larga después de comer, una conversación sin agenda, una tarde sin compromisos — estos momentos no se consideran pérdidas de tiempo, sino parte esencial de una vida bien vivida.</p>
+        <p>Ninguno de estos enfoques es superior al otro. Ambos reflejan sistemas de valores profundos sobre qué significa vivir bien, qué significa ser una buena persona y cómo queremos relacionarnos con los demás. Nuestro estilo de vida, en definitiva, es una declaración silenciosa de nuestras prioridades.</p>
+      </div>
+
+      <div class="card">
+        <h3>Preguntas de comprensión rápida</h3>
+        <ul>
+          <li><em>"¿Cuál es la diferencia principal entre los dos estilos de vida que describe el texto?"</em></li>
+          <li><em>"¿Qué significa que el estilo de vida es 'una declaración silenciosa'?"</em></li>
+          <li><em>"¿Te reconoces en alguna de las dos descripciones?"</em></li>
+        </ul>
+      </div>
+
+      <div class="foot-nav">
+        <button class="foot-btn" onclick="showTab('repaso'); setTimer(12, 'Repaso activador')">← Repaso</button>
+        <button class="foot-btn primary" onclick="showTab('vocab'); setTimer(13, 'Vocabulario')">Siguiente: Vocabulario →</button>
+      </div>
+    </div>
+
+    <!-- ══ TAB 3: VOCAB ══ -->
+    <div id="tab-vocab" class="tab-panel">
+      <div class="section-heading">
+        <div class="section-num">3</div>
+        <div>
+          <h2>Vocabulario clave</h2>
+          <p class="sub">Léxico de estilos de vida · Integrado en conversación</p>
+        </div>
+        <span class="time-badge">22–35 min</span>
+      </div>
+
+      <div class="card">
+        <h3>Dinámica sugerida</h3>
+        <ul>
+          <li>Cada palabra viene con su ejemplo. Antes de pasar a la siguiente, construye una oración sobre tu propia vida en Hong Kong.</li>
+          <li>Si surge conversación espontánea al hilo de una palabra — déjala fluir. Esos momentos consolidan el vocabulario mejor que cualquier ejercicio.</li>
+        </ul>
+      </div>
+
+      <div class="vocab-grid">
+        <div class="vocab-card">
+          <div class="vocab-es">el estilo de vida</div>
+          <div class="vocab-type">sustantivo</div>
+          <div class="vocab-ex">"Mi estilo de vida cambió mucho al entrar al IB."</div>
+        </div>
+        <div class="vocab-card">
+          <div class="vocab-es">los hábitos</div>
+          <div class="vocab-type">sustantivo (plural)</div>
+          <div class="vocab-ex">"Tengo el hábito de estudiar por la noche."</div>
+        </div>
+        <div class="vocab-card">
+          <div class="vocab-es">la rutina diaria</div>
+          <div class="vocab-type">expresión</div>
+          <div class="vocab-ex">"Mi rutina diaria empieza muy temprano."</div>
+        </div>
+        <div class="vocab-card">
+          <div class="vocab-es">el bienestar</div>
+          <div class="vocab-type">sustantivo</div>
+          <div class="vocab-ex">"El bienestar no solo es físico, también es mental."</div>
+        </div>
+        <div class="vocab-card">
+          <div class="vocab-es">el equilibrio</div>
+          <div class="vocab-type">sustantivo</div>
+          <div class="vocab-ex">"Es difícil encontrar equilibrio entre el estudio y el descanso."</div>
+        </div>
+        <div class="vocab-card">
+          <div class="vocab-es">las prioridades</div>
+          <div class="vocab-type">sustantivo (plural)</div>
+          <div class="vocab-ex">"Mis prioridades son el estudio y la familia."</div>
+        </div>
+        <div class="vocab-card">
+          <div class="vocab-es">el consumo</div>
+          <div class="vocab-type">sustantivo</div>
+          <div class="vocab-ex">"El consumo excesivo afecta el medio ambiente."</div>
+        </div>
+        <div class="vocab-card">
+          <div class="vocab-es">sostenible</div>
+          <div class="vocab-type">adjetivo</div>
+          <div class="vocab-ex">"Intento llevar un estilo de vida más sostenible."</div>
+        </div>
+        <div class="vocab-card">
+          <div class="vocab-es">el ritmo de vida</div>
+          <div class="vocab-type">expresión</div>
+          <div class="vocab-ex">"El ritmo de vida en Hong Kong es muy intenso."</div>
+        </div>
+        <div class="vocab-card">
+          <div class="vocab-es">reflexionar sobre</div>
+          <div class="vocab-type">verbo</div>
+          <div class="vocab-ex">"Es importante reflexionar sobre nuestros hábitos."</div>
+        </div>
+        <div class="vocab-card">
+          <div class="vocab-es">la calidad de vida</div>
+          <div class="vocab-type">expresión</div>
+          <div class="vocab-ex">"La calidad de vida va más allá del dinero."</div>
+        </div>
+        <div class="vocab-card">
+          <div class="vocab-es">el rendimiento</div>
+          <div class="vocab-type">sustantivo</div>
+          <div class="vocab-ex">"La cultura del rendimiento puede generar mucho estrés."</div>
+        </div>
+      </div>
+
+      <div class="phrases-box">
+        <h3>Frases modelo para producción oral</h3>
+        <div class="phrase-item">"Mi rutina diaria refleja mis prioridades porque..."</div>
+        <div class="phrase-item">"El ritmo de vida en Hong Kong es... comparado con..."</div>
+        <div class="phrase-item">"Para mí, el bienestar significa... porque..."</div>
+        <div class="phrase-item">"Creo que el equilibrio entre... es importante cuando..."</div>
+        <div class="phrase-item">"Si pudiera cambiar algo de mi estilo de vida, cambiaría..."</div>
+        <div class="phrase-item">"La cultura del rendimiento me afecta porque..."</div>
+      </div>
+
+      <div class="foot-nav">
+        <button class="foot-btn" onclick="showTab('entrada'); setTimer(10, 'Entrada al tema')">← Entrada al tema</button>
+        <button class="foot-btn primary" onclick="showTab('oral'); setTimer(10, 'Producción oral')">Siguiente: Producción oral →</button>
+      </div>
+    </div>
+
+    <!-- ══ TAB 4: ORAL ══ -->
+    <div id="tab-oral" class="tab-panel">
+      <div class="section-heading">
+        <div class="section-num">4</div>
+        <div>
+          <h2>Producción oral</h2>
+          <p class="sub">Reflexión estructurada · Haz clic en "Ver respuesta" para revelar el modelo</p>
+        </div>
+        <span class="time-badge">35–45 min</span>
+      </div>
+
+      <div class="reflexion-box">
+        <p class="r-label">Pregunta central</p>
+        <p class="r-q">"¿Tu estilo de vida actual refleja realmente tus valores?"</p>
+        <p class="r-instr">Organiza tu respuesta siguiendo este formato. Tienes tiempo para pensar 1 minuto antes de empezar a hablar.</p>
+        <div class="format-chips">
+          <span class="format-chip">1. Tu posición</span>
+          <span class="format-chip">2. Argumento A</span>
+          <span class="format-chip">3. Argumento B</span>
+          <span class="format-chip">4. Ejemplo concreto</span>
+        </div>
+      </div>
+
+      <div class="reveal-block">
+        <div class="reveal-header" onclick="toggleReveal(this)">
+          <div class="reveal-num">1</div>
+          <p class="reveal-text">¿Cómo es tu rutina diaria típica? ¿Qué parte del día es tuya? <span class="level-tag">Personal</span></p>
+          <button class="reveal-btn">Ver respuesta</button>
+        </div>
+        <div class="reveal-body">
+          <p class="answer-label">Respuesta modelo</p>
+          <p>"Me despierto muy temprano para estudiar. Por la tarde tengo clases y actividades. Casi no tengo tiempo libre entre semana. A veces los fines de semana puedo descansar un poco, pero tampoco mucho. Mi rutina es bastante intensa."</p>
+        </div>
+      </div>
+
+      <div class="reveal-block">
+        <div class="reveal-header" onclick="toggleReveal(this)">
+          <div class="reveal-num">2</div>
+          <p class="reveal-text">¿Hay algo en tu estilo de vida que te gustaría cambiar? ¿Por qué no lo has cambiado? <span class="level-tag">Reflexiva</span></p>
+          <button class="reveal-btn">Ver respuesta</button>
+        </div>
+        <div class="reveal-body">
+          <p class="answer-label">Respuesta modelo</p>
+          <p>"Me gustaría tener más tiempo para hacer ejercicio y leer por placer. Pero la presión del IB y las expectativas familiares hacen que sea difícil cambiar mis prioridades ahora mismo. Sé que no es sostenible a largo plazo."</p>
+        </div>
+      </div>
+
+      <div class="reveal-block">
+        <div class="reveal-header" onclick="toggleReveal(this)">
+          <div class="reveal-num">3</div>
+          <p class="reveal-text">¿Crees que la cultura de Hong Kong influye en cómo vives tu vida? ¿De qué manera? <span class="level-tag">Cultural</span></p>
+          <button class="reveal-btn">Ver respuesta</button>
+        </div>
+        <div class="reveal-body">
+          <p class="answer-label">Respuesta modelo</p>
+          <p>"Sí, definitivamente. En Hong Kong hay una presión enorme por el rendimiento académico y profesional. Desde pequeña aprendí que el trabajo duro es un valor central. Pero también me pregunto si eso me hace más feliz o simplemente más productiva."</p>
+        </div>
+      </div>
+
+      <div class="reveal-block">
+        <div class="reveal-header" onclick="toggleReveal(this)">
+          <div class="reveal-num">4</div>
+          <p class="reveal-text">Si vivieras en un país hispanohablante, ¿crees que tu estilo de vida cambiaría? ¿Lo querrías cambiar? <span class="level-tag">Especulativa</span></p>
+          <button class="reveal-btn">Ver respuesta</button>
+        </div>
+        <div class="reveal-body">
+          <p class="answer-label">Respuesta modelo</p>
+          <p>"Creo que sí cambiaría. Quizás tendría más tiempo para las relaciones y menos presión por los resultados. No sé si me adaptaría fácilmente — estoy muy acostumbrada a este ritmo — pero creo que parte de mí lo desearía."</p>
+        </div>
+      </div>
+
+      <div class="highlight">💡 Esta es la primera vez que el tema especulativo conecta el IB con una posible experiencia de vida real. Tómate tu tiempo para pensar — las respuestas más ricas vienen cuando no hay prisa.</div>
+
+      <div class="foot-nav">
+        <button class="foot-btn" onclick="showTab('vocab'); setTimer(13, 'Vocabulario')">← Vocabulario</button>
+        <button class="foot-btn primary" onclick="showTab('cierre'); setTimer(5, 'Cierre escrito')">Siguiente: Cierre escrito →</button>
+      </div>
+    </div>
+
+    <!-- ══ TAB 5: CIERRE ══ -->
+    <div id="tab-cierre" class="tab-panel">
+      <div class="section-heading">
+        <div class="section-num">5</div>
+        <div>
+          <h2>Cierre escrito</h2>
+          <p class="sub">Reflexión final · 60–80 palabras · 5 minutos</p>
+        </div>
+        <span class="time-badge">45–50 min</span>
+      </div>
+
+      <div class="prompt-box">
+        <p class="prompt-label">Prompt de escritura</p>
+        <p class="prompt-q">"¿Cómo refleja tu estilo de vida quién eres y qué valoras?"</p>
+        <p class="prompt-instr">Usa al menos 4 palabras del vocabulario de hoy. Habla de tu rutina real, de tus prioridades y de lo que te gustaría cambiar. Escribe en primera persona.</p>
+        <div class="prompt-meta">
+          <span class="prompt-chip">60–80 palabras</span>
+          <span class="prompt-chip">⏱ 5 minutos</span>
+          <span class="prompt-chip">Primera persona</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Criterios de observación</h3>
+        <ul class="criteria-list">
+          <li>¿Integra vocabulario nuevo de forma natural, no forzada?</li>
+          <li>¿Conecta el estilo de vida con los valores de forma explícita?</li>
+          <li>¿Usa conectores de contraste y consecuencia (sin embargo, aunque, por eso, a pesar de)?</li>
+          <li>¿Hay progreso en los errores sistemáticos notados en sesiones anteriores?</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>Retroalimentación oral al cierre</h3>
+        <ul>
+          <li><strong>2 errores sistemáticos</strong> observados durante la sesión — elegir los más recurrentes.</li>
+          <li><strong>1 acierto específico y concreto</strong> — no genérico ("muy bien"), sino nombrar exactamente qué hizo bien.</li>
+          <li><strong>Nota de retorno:</strong> reconocer el esfuerzo de volver después de un mes — la fluidez se recupera rápido.</li>
+        </ul>
+      </div>
+
+      <div class="next-box">
+        <h3>Próxima sesión · Elige el siguiente subtema</h3>
+        <div class="subtema-grid">
+          <div class="subtema-chip">Creencias y valores</div>
+          <div class="subtema-chip">Subculturas</div>
+          <div class="subtema-chip">Salud y bienestar</div>
+          <div class="subtema-chip">Rites of passage</div>
+        </div>
+      </div>
+
+      <div class="foot-nav">
+        <button class="foot-btn" onclick="showTab('oral'); setTimer(10, 'Producción oral')">← Producción oral</button>
+        <button class="foot-btn primary" onclick="showTab('repaso')">↑ Volver al inicio</button>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<script>
+  /* ── VOCAB DE REPASO ── */
+  const palabras = [
+    { es: "la identidad",       def: "Lo que nos define como personas — nuestra esencia." },
+    { es: "los valores",        def: "Los principios que guían nuestras decisiones." },
+    { es: "las raíces",         def: "La conexión profunda con nuestra cultura y origen." },
+    { es: "pertenecer",         def: "Sentirse parte de un grupo, lugar o cultura." },
+    { es: "el bilingüismo",     def: "La capacidad de hablar dos idiomas con fluidez." },
+    { es: "moldar",             def: "Dar forma a algo — como el idioma moldea el pensamiento." },
+    { es: "identificarse con",  def: "Sentir que algo o alguien representa quiénes somos." },
+    { es: "el matiz",           def: "Una diferencia sutil de significado o tono." },
+    { es: "cambiar de registro",def: "Adaptar el idioma o tono según el contexto social." },
+    { es: "la lengua materna",  def: "El primer idioma que aprendemos de niños." },
+  ];
+
+  const grid = document.getElementById('palabras-grid');
+  palabras.forEach((p, i) => {
+    const chip = document.createElement('div');
+    chip.className = 'palabra-chip';
+    chip.innerHTML = `
+      <div class="palabra-es">${p.es}</div>
+      <div class="palabra-hint">Toca para revelar</div>
+      <div class="palabra-def">${p.def}</div>
+    `;
+    chip.addEventListener('click', () => chip.classList.toggle('revealed'));
+    grid.appendChild(chip);
+  });
+
+  /* ── TABS ── */
+  const tabPhases = {
+    repaso:  { time: 720,  label: 'Repaso activador' },
+    entrada: { time: 600,  label: 'Entrada al tema' },
+    vocab:   { time: 780,  label: 'Vocabulario' },
+    oral:    { time: 600,  label: 'Producción oral' },
+    cierre:  { time: 300,  label: 'Cierre escrito' },
+  };
+
+  let currentTab = 'repaso';
+  let timerSeconds = 720;
+  let timerInterval = null;
+  let timerRunning = false;
+
+  function showTab(id) {
+    document.querySelectorAll('.tab-panel').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+    document.getElementById('tab-' + id).classList.add('active');
+    document.querySelector('[data-tab="' + id + '"]').classList.add('active');
+    currentTab = id;
+    if (!timerRunning) setTimer(tabPhases[id].time / 60, tabPhases[id].label);
+  }
+
+  function setTimer(minutes, label) {
+    if (timerRunning) return;
+    timerSeconds = Math.round(minutes * 60);
+    document.getElementById('timer-display').textContent = formatTime(timerSeconds);
+    document.getElementById('timer-display').className = 'timer-display';
+    if (label) document.getElementById('timer-phase').textContent = label;
+  }
+
+  function formatTime(s) {
+    const m = Math.floor(s / 60), sec = s % 60;
+    return String(m).padStart(2,'0') + ':' + String(sec).padStart(2,'0');
+  }
+
+  function startTimer() {
+    if (timerRunning) return;
+    timerRunning = true;
+    document.getElementById('btn-start').style.display = 'none';
+    document.getElementById('btn-pause').style.display = 'inline-block';
+    timerInterval = setInterval(() => {
+      timerSeconds--;
+      const disp = document.getElementById('timer-display');
+      disp.textContent = formatTime(timerSeconds);
+      if (timerSeconds <= 60)       disp.className = 'timer-display danger';
+      else if (timerSeconds <= 120) disp.className = 'timer-display warning';
+      if (timerSeconds <= 0) {
+        clearInterval(timerInterval); timerRunning = false;
+        disp.textContent = '00:00';
+        document.getElementById('btn-start').style.display = 'inline-block';
+        document.getElementById('btn-pause').style.display = 'none';
+      }
+    }, 1000);
+  }
+
+  function pauseTimer() {
+    clearInterval(timerInterval); timerRunning = false;
+    document.getElementById('btn-start').style.display = 'inline-block';
+    document.getElementById('btn-pause').style.display = 'none';
+  }
+
+  function resetTimer() {
+    clearInterval(timerInterval); timerRunning = false;
+    const phase = tabPhases[currentTab];
+    timerSeconds = phase.time;
+    document.getElementById('timer-display').textContent = formatTime(timerSeconds);
+    document.getElementById('timer-display').className = 'timer-display';
+    document.getElementById('timer-phase').textContent = phase.label;
+    document.getElementById('btn-start').style.display = 'inline-block';
+    document.getElementById('btn-pause').style.display = 'none';
+  }
+
+  function toggleReveal(header) {
+    const body = header.nextElementSibling;
+    const btn  = header.querySelector('.reveal-btn');
+    const open = body.classList.toggle('open');
+    btn.textContent = open ? 'Ocultar' : 'Ver respuesta';
+  }
+</script>
+</body>
+</html>
