@@ -45,8 +45,10 @@ body {
 }
 
 /* ---------- breadcrumb / URL trail ------------------------- */
-/* Shown in mono because it IS the URL — students dictate these
-   out loud, so the path is functional content, not decoration. */
+/* Display names, not raw folder names: "English / Unit 1", matching
+   the headword the student clicked. The typeable lowercase address
+   lives in .path on the parent page — URLs are case-sensitive, so the
+   trail is for orientation and .path is for dictating out loud. */
 
 .trail {
   font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular,

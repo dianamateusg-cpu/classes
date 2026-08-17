@@ -77,10 +77,13 @@ Accented characters are fine there; every page declares UTF-8.
 2. Edit `index.html`: `<title>`, `.eyebrow`, `<h1>`, `.standfirst`, then
    the body content.
 3. Fix the `.trail` breadcrumb at the top — it is hand-written on every
-   page and must match the actual path.
+   page. Use display names matching the headword each level is reached
+   by (`Home / English / Unit 1`), not the raw folder names.
 4. **Add an `<li>` entry to the parent unit's `index.html`.** Copy an
    existing one and change `href`, headword, `.path` and `.gloss`. A
-   lesson that isn't linked is invisible.
+   lesson that isn't linked is invisible. `.path` is the address
+   students type, so it must match `href` exactly — lowercase, and no
+   trailing slash.
 5. Keep `<meta name="robots" content="noindex, nofollow">` in the head.
 
 Assets go in the lesson's own folder, referenced relatively:
@@ -104,7 +107,7 @@ The visual language is a bilingual dictionary entry. Available classes:
 
 | Class | Use |
 |---|---|
-| `.trail` | Breadcrumb showing the URL path, in mono |
+| `.trail` | Breadcrumb of display names, in mono |
 | `.eyebrow` | Small uppercase label above the heading |
 | `.standfirst` | Intro sentence under the `<h1>` |
 | `.entries` / `.entry` | Link list; each has `.headword`, `.tag`, `.path`, `.gloss` |
@@ -141,7 +144,7 @@ is expected and not a bug to fix.
 
 - Every new folder has an `index.html`
 - The parent index links to the new lesson
-- The `.trail` matches the real path
+- The `.trail` uses display names; `.path` matches `href` exactly
 - Folder names are lowercase-hyphen-ASCII
 - `noindex` meta tag present
 - No student personal data
