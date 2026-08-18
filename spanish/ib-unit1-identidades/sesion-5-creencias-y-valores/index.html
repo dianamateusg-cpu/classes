@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>IB Español B · Creencias y valores · Sesión 5 — Class materials</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    /* ── DOS COLORES: índigo + ámbar ── */
+    --ink:        #16203F;
+    --indigo:     #2E3F73;
+    --indigo-mid: #5A6CA4;
+    --indigo-soft:#ECEFF9;
+    --indigo-line:#C2CAE6;
+
+    --amber:      #B57A17;
+    --amber-mid:  #DFA53A;
+    --amber-soft: #FCF4E3;
+    --amber-line: #EBD199;
+
+    --paper:      #FAF9F6;
+    --line:       #E3E1DA;
+    --text:       #22242E;
+    --muted:      #4C4F5D;
+    --hint:       #7B7F8D;
+
+    --font: 'Nunito', sans-serif;
+    --r:  14px;
+    --rs: 9px;
+  }
+
+  body { font-family: var(--font); background: var(--paper); color: var(--text); }
+  :focus-visible { outline: 3px solid var(--amber-mid); outline-offset: 2px; border-radius: 4px; }
+
+  /* ── CABECERA ── */
+  .back-nav {
+    display: block;
+    font-size: 12px;
+    color: rgba(255,255,255,0.75);
+    text-decoration: none;
+    margin-bottom: 10px;
+  }
+  .back-nav:hover { color: #fff; text-decoration: underline; }
+
+  .head { background: var(--ink); color: #fff; padding: 2.2rem 2rem 2rem; }
+  .head-in { max-width: 900px; margin: 0 auto; }
+  .kicker { font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--amber-mid); margin-bottom: 8px; }
+  .head h1 { font-size: 32px; font-weight: 800; line-height: 1.15; letter-spacing: -0.01em; }
+  .head .q { font-size: 16px; margin-top: 10px; color: #C6CDE4; line-height: 1.5; }
+  .tags { display: flex; gap: 7px; flex-wrap: wrap; margin-top: 16px; }
+  .tag { font-size: 12px; font-weight: 700; padding: 4px 12px; border-radius: 99px; border: 1px solid rgba(255,255,255,0.22); color: #DDE2F2; }
+  .tag.hl { background: var(--amber-mid); border-color: var(--amber-mid); color: var(--ink); }
+
+  /* ── RAIL DE PASOS ── */
+  .rail-wrap { background: #fff; border-bottom: 1px solid var(--line); position: sticky; top: 0; z-index: 50; }
+  .rail { max-width: 900px; margin: 0 auto; display: flex; padding: 0 2rem; overflow-x: auto; scrollbar-width: none; }
+  .rail::-webkit-scrollbar { display: none; }
+  .step { flex: 1; min-width: 128px; background: none; border: none; font-family: var(--font); cursor: pointer; padding: 14px 6px 12px; text-align: left; border-bottom: 3px solid transparent; transition: border-color .15s, color .15s; }
+  .step-n { display: inline-flex; align-items: center; justify-content: center; width: 22px; height: 22px; border-radius: 50%; font-size: 11px; font-weight: 800; background: var(--indigo-soft); color: var(--indigo); margin-bottom: 5px; }
+  .step-t { display: block; font-size: 13px; font-weight: 700; color: var(--hint); line-height: 1.3; }
+  .step-m { display: block; font-size: 10.5px; font-weight: 600; color: var(--hint); opacity: .75; margin-top: 2px; }
+  .step:hover .step-t { color: var(--indigo); }
+  .step.on { border-bottom-color: var(--amber-mid); }
+  .step.on .step-n { background: var(--amber-mid); color: var(--ink); }
+  .step.on .step-t { color: var(--ink); }
+
+  /* ── LIENZO ── */
+  .wrap { max-width: 900px; margin: 0 auto; padding: 2rem 2rem 1rem; }
+  .panel { display: none; }
+  .panel.on { display: block; animation: in .22s ease; }
+  @keyframes in { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: none; } }
+
+  .lead { margin-bottom: 1.6rem; }
+  .lead h2 { font-size: 25px; font-weight: 800; color: var(--ink); line-height: 1.2; }
+  .lead .sub { font-size: 15px; color: var(--muted); margin-top: 6px; line-height: 1.6; }
+  .rule { height: 3px; width: 52px; background: var(--amber-mid); border-radius: 2px; margin-top: 14px; }
+
+  .box { background: #fff; border: 1px solid var(--line); border-radius: var(--r); padding: 1.3rem 1.5rem; margin-bottom: 1rem; }
+  .box h3 { font-size: 16px; font-weight: 800; color: var(--ink); margin-bottom: 9px; }
+  .box p { font-size: 15px; line-height: 1.75; color: var(--muted); }
+  .box p + p { margin-top: 9px; }
+  .small { font-size: 13.5px; color: var(--hint); line-height: 1.6; }
+
+  .qlist { list-style: none; }
+  .qlist li { font-size: 15px; line-height: 1.7; color: var(--muted); padding: 7px 0 7px 26px; position: relative; }
+  .qlist li::before { content: "?"; position: absolute; left: 0; top: 7px; width: 18px; height: 18px; border-radius: 50%; background: var(--indigo-soft); color: var(--indigo); font-size: 11px; font-weight: 800; display: flex; align-items: center; justify-content: center; }
+
+  .callout { background: var(--amber-soft); border-left: 3px solid var(--amber-mid); border-radius: 0 var(--rs) var(--rs) 0; padding: 12px 16px; font-size: 14.5px; font-weight: 600; color: #6E4A0C; line-height: 1.65; margin-top: 12px; }
+
+  .srcline { font-size: 12px; color: var(--hint); margin-top: 10px; line-height: 1.6; }
+  .srcline a { color: var(--indigo); font-weight: 700; text-decoration: none; border-bottom: 1px solid var(--indigo-line); }
+  .srcline a:hover { border-bottom-color: var(--indigo); }
+
+  /* ── 1 · VALORES ── */
+  .val-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(146px, 1fr)); gap: 9px; margin: 1rem 0; }
+  .val { position: relative; background: #fff; border: 1.5px solid var(--line); border-radius: var(--rs); padding: 13px 12px; font-size: 14.5px; font-weight: 700; color: var(--muted); cursor: pointer; text-align: left; font-family: var(--font); transition: border-color .15s, background .15s, color .15s; }
+  .val:hover { border-color: var(--indigo-line); }
+  .val.pick { background: var(--indigo); border-color: var(--indigo); color: #fff; }
+  .val .rank { position: absolute; top: -8px; right: -8px; width: 24px; height: 24px; border-radius: 50%; background: var(--amber-mid); color: var(--ink); font-size: 12px; font-weight: 800; display: none; align-items: center; justify-content: center; border: 2px solid #fff; }
+  .val.pick .rank { display: flex; }
+  .counter { font-size: 13.5px; font-weight: 700; color: var(--indigo); margin-bottom: 4px; }
+  .ghost { font-family: var(--font); font-size: 12.5px; font-weight: 700; background: none; border: 1px solid var(--line); color: var(--hint); border-radius: 99px; padding: 6px 14px; cursor: pointer; }
+  .ghost:hover { border-color: var(--indigo-line); color: var(--indigo); }
+
+  /* ── 2 · REFRANES ── */
+  .match { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 1rem 0 .5rem; }
+  .col-lab { font-size: 10.5px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--hint); margin-bottom: 8px; }
+  .m-item { display: block; width: 100%; text-align: left; font-family: var(--font); background: #fff; border: 1.5px solid var(--line); border-radius: var(--rs); padding: 12px 14px; margin-bottom: 8px; cursor: pointer; font-size: 14px; line-height: 1.55; color: var(--muted); transition: border-color .15s, background .15s; }
+  .m-item.ref { font-weight: 700; color: var(--ink); font-style: italic; }
+  .m-item:hover:not(.done) { border-color: var(--indigo-line); }
+  .m-item.sel { border-color: var(--indigo); background: var(--indigo-soft); }
+  .m-item.done { background: var(--amber-soft); border-color: var(--amber-line); color: #6E4A0C; cursor: default; }
+  .m-item.miss { animation: shake .3s; border-color: var(--indigo); }
+  @keyframes shake { 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
+  .m-badge { display: none; font-size: 10.5px; font-weight: 800; color: var(--amber); margin-top: 5px; letter-spacing: .06em; }
+  .m-item.done .m-badge { display: block; }
+  .match-bar { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 1rem; }
+  .score { font-size: 13.5px; font-weight: 700; color: var(--indigo); }
+
+  /* ── 3 · DATOS ── */
+  .chart { background: #fff; border: 1px solid var(--line); border-radius: var(--r); padding: 1.3rem 1.5rem; margin-bottom: 1rem; }
+  .chart h3 { font-size: 16px; font-weight: 800; color: var(--ink); }
+  .chart .cap { font-size: 12.5px; color: var(--hint); margin: 4px 0 16px; }
+  .bar-row { margin-bottom: 13px; }
+  .bar-lab { display: flex; justify-content: space-between; font-size: 13.5px; font-weight: 700; color: var(--muted); margin-bottom: 5px; }
+  .bar-track { height: 15px; background: var(--indigo-soft); border-radius: 99px; overflow: hidden; }
+  .bar-fill { height: 100%; background: var(--indigo); border-radius: 99px; }
+  .bar-row.mark .bar-fill { background: var(--amber-mid); }
+  .bar-row.mark .bar-lab { color: var(--amber); }
+
+  .read { background: var(--indigo-soft); border: 1px solid var(--indigo-line); border-radius: var(--r); padding: 1.5rem 1.7rem; margin-bottom: 1rem; }
+  .read .rl { font-size: 10.5px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--indigo-mid); margin-bottom: 11px; }
+  .read p { font-size: 16px; line-height: 1.85; color: #23305C; }
+  .read p + p { margin-top: 11px; }
+
+  .chips { display: flex; gap: 8px; flex-wrap: wrap; }
+  .chip { font-size: 13px; font-weight: 700; background: #fff; color: var(--indigo); border: 1px solid var(--indigo-line); border-radius: 99px; padding: 6px 14px; }
+
+  /* ── 4 · DEBATE ── */
+  .dil-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 11px; margin: 1rem 0; }
+  .dil { text-align: left; font-family: var(--font); background: #fff; border: 1.5px solid var(--line); border-radius: var(--r); padding: 1.1rem 1.25rem; cursor: pointer; transition: border-color .15s, box-shadow .15s; }
+  .dil:hover { border-color: var(--indigo-line); }
+  .dil.on { border-color: var(--amber-mid); box-shadow: 0 0 0 3px var(--amber-soft); }
+  .dil-n { font-size: 10.5px; font-weight: 800; letter-spacing: .09em; text-transform: uppercase; color: var(--amber); }
+  .dil-q { font-size: 16px; font-weight: 800; color: var(--ink); line-height: 1.4; margin: 6px 0 7px; }
+  .dil-v { font-size: 13px; color: var(--hint); line-height: 1.5; }
+
+  .move { display: flex; gap: 13px; background: #fff; border: 1px solid var(--line); border-radius: var(--rs); padding: 13px 15px; margin-bottom: 8px; }
+  .move-n { flex-shrink: 0; width: 25px; height: 25px; border-radius: 50%; background: var(--indigo); color: #fff; font-size: 12px; font-weight: 800; display: flex; align-items: center; justify-content: center; }
+  .move-t { font-size: 15px; font-weight: 800; color: var(--ink); }
+  .move-d { font-size: 14px; color: var(--muted); line-height: 1.6; margin-top: 3px; }
+  .move-d em { color: var(--indigo); font-style: italic; font-weight: 600; }
+
+  .rev { background: #fff; border: 1px solid var(--line); border-radius: var(--r); margin-bottom: 9px; overflow: hidden; }
+  .rev-h { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; padding: .95rem 1.25rem; cursor: pointer; }
+  .rev-t { font-size: 15px; font-weight: 700; color: var(--ink); line-height: 1.5; flex: 1; }
+  .rev-b { font-family: var(--font); font-size: 12px; font-weight: 800; background: var(--indigo-soft); color: var(--indigo); border: 1px solid var(--indigo-line); border-radius: 99px; padding: 5px 13px; cursor: pointer; white-space: nowrap; flex-shrink: 0; }
+  .rev-body { display: none; padding: 0 1.25rem 1.1rem; }
+  .rev-body.open { display: block; }
+  .rev-body p { font-size: 15px; line-height: 1.8; color: var(--muted); }
+  .rev-body .lbl { font-size: 10px; font-weight: 800; letter-spacing: .09em; text-transform: uppercase; color: var(--amber); margin-bottom: 5px; }
+  .rev-body mark { background: var(--amber-soft); color: inherit; font-weight: 700; padding: 0 2px; border-radius: 3px; }
+
+  /* ── 5 · ESCRITURA ── */
+  .task { background: var(--ink); border-radius: var(--r); padding: 1.6rem 1.75rem; margin-bottom: 1rem; color: #fff; }
+  .task .tl { font-size: 10.5px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--amber-mid); margin-bottom: 9px; }
+  .task h3 { font-size: 19px; font-weight: 800; line-height: 1.4; margin-bottom: 10px; }
+  .task p { font-size: 15px; line-height: 1.75; color: #C9CFE6; }
+  .task .meta { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 15px; }
+  .task .meta span { font-size: 12.5px; font-weight: 700; border: 1px solid rgba(255,255,255,.25); border-radius: 99px; padding: 5px 13px; color: #DDE2F2; }
+
+  .check { list-style: none; }
+  .check li { display: flex; gap: 10px; font-size: 15px; line-height: 1.65; color: var(--muted); padding: 9px 0; border-bottom: 1px solid var(--line); }
+  .check li:last-child { border-bottom: none; }
+  .check li::before { content: "□"; color: var(--amber-mid); font-weight: 800; font-size: 16px; flex-shrink: 0; }
+
+  /* ── PIE ── */
+  .foot-nav { display: flex; justify-content: space-between; gap: 10px; margin-top: 1.8rem; padding-top: 1.4rem; border-top: 1px solid var(--line); }
+  .fb { font-family: var(--font); font-size: 13.5px; font-weight: 800; padding: 10px 20px; border-radius: 99px; border: 1px solid var(--line); background: #fff; color: var(--muted); cursor: pointer; }
+  .fb:hover:not(:disabled) { border-color: var(--indigo-line); color: var(--indigo); }
+  .fb:disabled { opacity: .3; cursor: default; }
+  .fb.go { background: var(--indigo); border-color: var(--indigo); color: #fff; }
+  .fb.go:hover { background: var(--ink); border-color: var(--ink); color: #fff; }
+
+  .sources { background: #fff; border-top: 1px solid var(--line); margin-top: 2rem; padding: 2rem; }
+  .sources-in { max-width: 900px; margin: 0 auto; }
+  .sources h3 { font-size: 16px; font-weight: 800; color: var(--ink); margin-bottom: 4px; }
+  .sources .intro { font-size: 14px; color: var(--muted); line-height: 1.65; margin-bottom: 16px; }
+  .src { display: block; border-left: 2px solid var(--amber-line); padding: 3px 0 3px 14px; margin-bottom: 14px; text-decoration: none; }
+  .src:hover { border-left-color: var(--amber-mid); }
+  .src .n { font-size: 14.5px; font-weight: 800; color: var(--indigo); line-height: 1.4; }
+  .src .d { font-size: 13.5px; color: var(--muted); line-height: 1.6; margin-top: 3px; }
+  .src .u { font-size: 11.5px; color: var(--hint); margin-top: 3px; word-break: break-all; }
+
+  @media (max-width: 820px) {
+    .head { padding: 1.6rem 1.2rem; }
+    .head h1 { font-size: 25px; }
+    .rail { padding: 0 1.2rem; }
+    .wrap { padding: 1.5rem 1.2rem 1rem; }
+    .sources { padding: 1.5rem 1.2rem; }
+    .match, .dil-grid { grid-template-columns: 1fr; }
+    .lead h2 { font-size: 22px; }
+  }
+  @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
+</style>
+</head>
+<body>
+
+<header class="head">
+  <div class="head-in">
+    <a class="back-nav" href="/spanish/ib-unit1-identidades/">&larr; IB Unidad 1 &middot; Identidades</a>
+    <p class="kicker">Español B · Tema 1: Identidades · Sesión 5</p>
+    <h1>Creencias y valores</h1>
+    <p class="q">¿De dónde vienen las cosas en las que crees — y cuánto de eso elegiste tú?</p>
+    <div class="tags">
+      <span class="tag hl">B1–B2</span>
+      <span class="tag">50 minutos</span>
+      <span class="tag">Debate y argumentación</span>
+      <span class="tag">Columna de opinión</span>
+    </div>
+  </div>
+</header>
+
+<div class="rail-wrap">
+  <nav class="rail" aria-label="Partes de la sesión">
+    <button class="step on" data-p="mapa"><span class="step-n">1</span><span class="step-t">Tu mapa de valores</span><span class="step-m">0–8 min</span></button>
+    <button class="step" data-p="refranes"><span class="step-n">2</span><span class="step-t">Refranes</span><span class="step-m">8–18 min</span></button>
+    <button class="step" data-p="datos"><span class="step-n">3</span><span class="step-t">Datos y lectura</span><span class="step-m">18–28 min</span></button>
+    <button class="step" data-p="debate"><span class="step-n">4</span><span class="step-t">Toma una postura</span><span class="step-m">28–42 min</span></button>
+    <button class="step" data-p="columna"><span class="step-n">5</span><span class="step-t">Columna de opinión</span><span class="step-m">42–50 min</span></button>
+  </nav>
+</div>
+
+<div class="wrap">
+
+  <!-- ══ 1 ══ -->
+  <section id="p-mapa" class="panel on">
+    <div class="lead">
+      <h2>Tu mapa de valores</h2>
+      <p class="sub">Antes de hablar de creencias en abstracto, empecemos por las tuyas.</p>
+      <div class="rule"></div>
+    </div>
+
+    <div class="box">
+      <h3>Elige los tres valores que más te importan</h3>
+      <p class="small">Toca tres tarjetas. El orden en que las elijas es tu ranking: la primera es la número 1. Puedes tocar de nuevo para quitar.</p>
+      <div class="val-grid" id="vals"></div>
+      <p class="counter" id="vcount">0 de 3 elegidos</p>
+      <button class="ghost" id="vreset">Empezar de nuevo</button>
+    </div>
+
+    <div class="box">
+      <h3>Ahora explícalo en voz alta</h3>
+      <ul class="qlist">
+        <li>¿Por qué el número 1 y no el número 2? Da un ejemplo real, no una definición.</li>
+        <li>¿Cuál de estos valores te enseñaron y cuál elegiste tú?</li>
+        <li>¿Hay alguno de la lista que te incomode ponerlo último?</li>
+      </ul>
+      <div class="callout">Un valor que nunca has tenido que defender todavía no sabes si es tuyo. Piensa en un momento en que te costó algo sostenerlo.</div>
+    </div>
+
+    <div class="foot-nav">
+      <button class="fb" disabled>← Anterior</button>
+      <button class="fb go" data-go="refranes">Siguiente: Refranes →</button>
+    </div>
+  </section>
+
+  <!-- ══ 2 ══ -->
+  <section id="p-refranes" class="panel">
+    <div class="lead">
+      <h2>Refranes: valores guardados en la lengua</h2>
+      <p class="sub">Cada cultura guarda sus creencias en frases cortas que todo el mundo repite sin pensar. Vamos a abrirlas.</p>
+      <div class="rule"></div>
+    </div>
+
+    <div class="box">
+      <h3>Une cada refrán con lo que enseña</h3>
+      <p class="small">Toca un refrán y después su significado. Si aciertas, la pareja se queda marcada. Antes de tocar, intenta adivinar por las palabras que reconoces.</p>
+      <p class="srcline">Refranes tomados del <a href="https://cvc.cervantes.es/lengua/refranero/" target="_blank" rel="noopener">Refranero multilingüe del Centro Virtual Cervantes (Instituto Cervantes)</a>, que recoge paremias españolas con su significado, contexto y equivalentes en otras lenguas.</p>
+    </div>
+
+    <div class="match-bar">
+      <span class="score" id="mscore">0 de 6 parejas</span>
+      <button class="ghost" id="mreset">Reiniciar</button>
+    </div>
+
+    <div class="match">
+      <div>
+        <p class="col-lab">Refranes</p>
+        <div id="col-ref"></div>
+      </div>
+      <div>
+        <p class="col-lab">¿Qué enseña?</p>
+        <div id="col-mean"></div>
+      </div>
+    </div>
+
+    <div class="box">
+      <h3>La trampa: dos refranes que se contradicen</h3>
+      <p>Fíjate en estos dos. Los dos son españoles. Los dos son populares. Y dicen exactamente lo contrario:</p>
+      <div style="margin:12px 0; padding-left:14px; border-left:2px solid var(--amber-mid);">
+        <p style="font-style:italic; font-weight:700; color:var(--ink); font-size:15px; line-height:1.7;">«Más vale pájaro en mano que ciento volando.»<br>«El que no arriesga, no gana.»</p>
+      </div>
+      <ul class="qlist">
+        <li>¿Cómo puede una misma cultura creer las dos cosas a la vez?</li>
+        <li>¿Cuál de los dos usarías tú? ¿En qué situación usarías el otro?</li>
+        <li>¿Conoces un dicho en cantonés o en inglés que diga algo parecido a alguno de estos?</li>
+      </ul>
+      <div class="callout">Esta contradicción es material excelente para el oral. Cuando digas «en la cultura hispanohablante se valora X», recuerda que casi siempre existe un refrán que dice lo contrario. Los matices puntúan; las generalizaciones no.</div>
+    </div>
+
+    <div class="foot-nav">
+      <button class="fb" data-go="mapa">← Tu mapa de valores</button>
+      <button class="fb go" data-go="datos">Siguiente: Datos y lectura →</button>
+    </div>
+  </section>
+
+  <!-- ══ 3 ══ -->
+  <section id="p-datos" class="panel">
+    <div class="lead">
+      <h2>Datos y lectura</h2>
+      <p class="sub">Leer un gráfico y comentarlo en español es una destreza de examen. Practiquemos con datos reales.</p>
+      <div class="rule"></div>
+    </div>
+
+    <div class="chart">
+      <h3>¿Con qué religión se identifican los latinoamericanos?</h3>
+      <p class="cap">Población adulta de 18 países de América Latina · Datos de Latinobarómetro, 2024</p>
+      <div class="bar-row">
+        <div class="bar-lab"><span>Católicos</span><span>54 %</span></div>
+        <div class="bar-track"><div class="bar-fill" style="width:54%"></div></div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-lab"><span>Evangélicos</span><span>19 %</span></div>
+        <div class="bar-track"><div class="bar-fill" style="width:19%"></div></div>
+      </div>
+      <div class="bar-row mark">
+        <div class="bar-lab"><span>Sin afiliación religiosa</span><span>19 %</span></div>
+        <div class="bar-track"><div class="bar-fill" style="width:19%"></div></div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-lab"><span>Otras</span><span>8 %</span></div>
+        <div class="bar-track"><div class="bar-fill" style="width:8%"></div></div>
+      </div>
+      <p class="srcline">Fuente: <a href="https://www.latinobarometro.org/" target="_blank" rel="noopener">Corporación Latinobarómetro</a>, estudio anual de opinión pública en América Latina. Informe completo: <a href="https://www.latinobarometro.org/documents/latinobarometro-informe-2024.pdf" target="_blank" rel="noopener">Informe Latinobarómetro 2024 (PDF)</a>.</p>
+    </div>
+
+    <div class="box">
+      <h3>Cómo se comenta un gráfico en español</h3>
+      <p class="small" style="margin-bottom:11px;">Usa estas expresiones. No leas los números en voz alta uno por uno: interpreta.</p>
+      <div class="chips">
+        <span class="chip">Según los datos de…</span>
+        <span class="chip">Más de la mitad…</span>
+        <span class="chip">Casi una quinta parte…</span>
+        <span class="chip">Mientras que…</span>
+        <span class="chip">Cabe destacar que…</span>
+        <span class="chip">Esto sugiere que…</span>
+        <span class="chip">Me llama la atención que…</span>
+        <span class="chip">A primera vista parece… pero…</span>
+      </div>
+      <div class="callout">Practica una sola frase larga: «Según los datos de Latinobarómetro, más de la mitad de los latinoamericanos se identifica como católica, mientras que casi una quinta parte ya no se identifica con ninguna religión, lo cual sugiere que…»</div>
+    </div>
+
+    <div class="read">
+      <p class="rl">Texto · Nivel B1–B2</p>
+      <p>Durante mucho tiempo, hablar de América Latina era hablar de una región católica. Los datos recientes cuentan una historia más complicada: la mayoría sigue siendo católica, pero el grupo de personas que no se identifica con ninguna religión ha crecido, sobre todo entre los jóvenes de las ciudades.</p>
+      <p>Sin embargo, dejar una religión no significa quedarse sin creencias. Muchas familias que ya no van a misa siguen celebrando el Día de Muertos, poniendo el nombre de la abuela al primer nieto o reuniéndose el domingo porque «así se hace». Las prácticas sobreviven a las convicciones.</p>
+      <p>Esto ocurre en todas partes. Alguien puede no creer en la astrología y aun así leer su horóscopo; alguien puede no ser religioso y sentirse incómodo rompiendo una tradición familiar. Las creencias heredadas no desaparecen: cambian de forma.</p>
+      <p>Por eso, la pregunta interesante no es «¿en qué crees?», sino otra más difícil: ¿qué cosas haces sin saber muy bien por qué las haces?</p>
+    </div>
+
+    <div class="box">
+      <h3>Después de leer</h3>
+      <ul class="qlist">
+        <li>Explica con tus palabras: «las prácticas sobreviven a las convicciones».</li>
+        <li>El texto dice que esto ocurre en todas partes. Da un ejemplo de tu propia familia.</li>
+        <li>¿Estás de acuerdo con que la pregunta interesante es la última? ¿Por qué?</li>
+      </ul>
+    </div>
+
+    <div class="foot-nav">
+      <button class="fb" data-go="refranes">← Refranes</button>
+      <button class="fb go" data-go="debate">Siguiente: Toma una postura →</button>
+    </div>
+  </section>
+
+  <!-- ══ 4 ══ -->
+  <section id="p-debate" class="panel">
+    <div class="lead">
+      <h2>Toma una postura</h2>
+      <p class="sub">Elige un dilema, defiéndelo — y después defiende lo contrario.</p>
+      <div class="rule"></div>
+    </div>
+
+    <div class="box">
+      <h3>Cómo funciona</h3>
+      <p>Eliges uno de los cuatro dilemas y tienes <strong>dos minutos</strong> para defender tu postura sin interrupciones. Después viene la parte difícil: cambias de bando y defiendes lo contrario durante <strong>un minuto</strong>.</p>
+      <p>El objetivo no es ganar. Es que puedas construir un argumento sólido para una idea que no es la tuya — exactamente lo que el IB llama mentalidad internacional, y lo que te van a pedir en la conversación general del oral.</p>
+    </div>
+
+    <div class="dil-grid">
+      <button class="dil"><span class="dil-n">Dilema 1</span><span class="dil-q">Un amigo copia en un examen. ¿Lo dices?</span><span class="dil-v">Honestidad · lealtad</span></button>
+      <button class="dil"><span class="dil-n">Dilema 2</span><span class="dil-q">¿Pueden los padres decidir qué carrera estudias?</span><span class="dil-v">Familia · autonomía</span></button>
+      <button class="dil"><span class="dil-n">Dilema 3</span><span class="dil-q">¿Puede una tradición dejar de practicarse porque hoy nos parece injusta?</span><span class="dil-v">Tradición · cambio</span></button>
+      <button class="dil"><span class="dil-n">Dilema 4</span><span class="dil-q">¿Tenemos derecho a juzgar las costumbres de otra cultura?</span><span class="dil-v">Respeto · límites del relativismo</span></button>
+    </div>
+
+    <div class="box">
+      <h3>Los cuatro movimientos de un buen argumento</h3>
+      <p class="small" style="margin-bottom:12px;">El movimiento 3 es el que separa una nota media de una nota alta: reconocer lo que tiene de razón el otro lado antes de responderle.</p>
+    </div>
+
+    <div class="move">
+      <div class="move-n">1</div>
+      <div><p class="move-t">Postura clara, sin rodeos</p><p class="move-d"><em>En mi opinión… / Estoy convencida de que… / Yo diría que…</em></p></div>
+    </div>
+    <div class="move">
+      <div class="move-n">2</div>
+      <div><p class="move-t">Razón + ejemplo concreto</p><p class="move-d"><em>porque… Por ejemplo, el año pasado… / Lo veo en mi propia familia:…</em></p></div>
+    </div>
+    <div class="move">
+      <div class="move-n">3</div>
+      <div><p class="move-t">Concede algo al otro lado</p><p class="move-d"><em>Aunque entienda que… / Es cierto que… / Reconozco que…</em> — ojo: <em>aunque</em> + subjuntivo cuando concedes.</p></div>
+    </div>
+    <div class="move">
+      <div class="move-n">4</div>
+      <div><p class="move-t">Vuelve a tu postura con más fuerza</p><p class="move-d"><em>Aun así… / No obstante… / Precisamente por eso…</em></p></div>
+    </div>
+
+    <div class="box" style="margin-top:1rem;">
+      <h3>Conectores para no repetir «pero» y «porque»</h3>
+      <div class="chips">
+        <span class="chip">sin embargo</span>
+        <span class="chip">no obstante</span>
+        <span class="chip">aun así</span>
+        <span class="chip">a pesar de que</span>
+        <span class="chip">dado que</span>
+        <span class="chip">puesto que</span>
+        <span class="chip">por lo tanto</span>
+        <span class="chip">en cambio</span>
+        <span class="chip">de hecho</span>
+        <span class="chip">en último término</span>
+      </div>
+    </div>
+
+    <div class="rev">
+      <div class="rev-h" tabindex="0" role="button">
+        <p class="rev-t">Modelo: un argumento con los cuatro movimientos <span style="font-weight:600;color:var(--hint);">(dilema 1)</span></p>
+        <button class="rev-b">Ver modelo</button>
+      </div>
+      <div class="rev-body">
+        <p class="lbl">Argumento modelo</p>
+        <p><mark>Yo diría que</mark> no lo denunciaría, pero sí hablaría con él. <mark>Dado que</mark> es mi amigo, tengo una responsabilidad con él que no tengo con la institución; delatarlo destruiría la confianza sin arreglar el problema de fondo. Por ejemplo, cuando una compañera copió el año pasado, lo que la hizo cambiar fue una conversación, no el castigo. <mark>Aunque reconozca que</mark> callar es una forma de participar en la trampa y que eso perjudica a quienes sí estudiaron, <mark>aun así</mark> creo que la lealtad no consiste en tapar a alguien, sino en obligarlo a mirar lo que hizo.</p>
+      </div>
+    </div>
+
+    <div class="rev">
+      <div class="rev-h" tabindex="0" role="button">
+        <p class="rev-t">Modelo: el mismo dilema, defendido al revés <span style="font-weight:600;color:var(--hint);">(cambio de bando)</span></p>
+        <button class="rev-b">Ver modelo</button>
+      </div>
+      <div class="rev-body">
+        <p class="lbl">Argumento modelo</p>
+        <p><mark>Estoy convencida de que</mark> hay que decirlo. <mark>Puesto que</mark> todos hicimos el mismo examen, permitir que alguien haga trampa significa aceptar que mi esfuerzo vale menos que el suyo. <mark>Es cierto que</mark> denunciar a un amigo se siente como una traición, y no lo haría con ligereza. <mark>No obstante</mark>, la amistad no puede exigirme que renuncie a lo que considero justo; si esa es la condición para ser su amiga, el problema no es mi decisión, es la condición.</p>
+      </div>
+    </div>
+
+    <div class="callout">Al defender lo contrario, no imites una voz falsa. Busca de verdad qué tiene de razonable esa posición. Si al terminar te cuesta un poco decidir, el ejercicio funcionó.</div>
+
+    <div class="foot-nav">
+      <button class="fb" data-go="datos">← Datos y lectura</button>
+      <button class="fb go" data-go="columna">Siguiente: Columna de opinión →</button>
+    </div>
+  </section>
+
+  <!-- ══ 5 ══ -->
+  <section id="p-columna" class="panel">
+    <div class="lead">
+      <h2>Columna de opinión</h2>
+      <p class="sub">Un tipo de texto nuevo: mismo tema, registro completamente distinto al mensaje de la sesión pasada.</p>
+      <div class="rule"></div>
+    </div>
+
+    <div class="task">
+      <p class="tl">Tarea escrita</p>
+      <h3>La revista de tu colegio prepara un número sobre tradiciones. Te piden una columna de opinión.</h3>
+      <p>Escribe el <strong>titular</strong> y el <strong>párrafo de apertura</strong> de tu columna, respondiendo a esta pregunta: ¿debemos conservar una tradición familiar aunque ya no creamos en ella? Escribe para tus compañeros, no para tu profesora.</p>
+      <div class="meta">
+        <span>80–100 palabras</span>
+        <span>Titular + apertura</span>
+        <span>Tesis explícita</span>
+        <span>Una concesión</span>
+      </div>
+    </div>
+
+    <div class="box">
+      <h3>Convenciones de una columna de opinión</h3>
+      <p class="small" style="margin-bottom:12px;">En la Prueba 1 del IB, elegir bien el tipo de texto y respetar sus convenciones se evalúa por separado de la gramática. Estas son las señales que un examinador busca:</p>
+      <ul class="qlist">
+        <li>Un titular corto y con gancho — no un título de redacción escolar.</li>
+        <li>Una primera línea que entra directa: una escena, una pregunta o una afirmación fuerte.</li>
+        <li>Primera persona visible: es una opinión, no un informe.</li>
+        <li>Tesis clara antes de terminar el párrafo. El lector debe saber qué defiendes.</li>
+        <li>Registro semiformal: cercano pero cuidado. Nada de emojis ni de «Estimado lector».</li>
+      </ul>
+      <p class="srcline">Tipos de texto y criterios de evaluación tomados de la <a href="https://ibo.org/globalassets/new-structure/university-admission/pdfs/subject-guides/language-b-guide.pdf" target="_blank" rel="noopener">Guía de Lengua B del IB (primera evaluación 2020)</a>, secciones «Textos» y «Criterio C: comprensión conceptual».</p>
+    </div>
+
+    <div class="box">
+      <h3>Antes de entregar</h3>
+      <ul class="check">
+        <li>¿Tu titular haría que alguien se detenga a leer?</li>
+        <li>¿Se entiende tu postura sin tener que adivinarla?</li>
+        <li>¿Incluiste una concesión (<em>aunque</em>, <em>es cierto que</em>, <em>a pesar de que</em>)?</li>
+        <li>¿Usaste al menos dos conectores del banco de la actividad anterior?</li>
+        <li>¿Revisaste los acentos y la concordancia?</li>
+      </ul>
+    </div>
+
+    <div class="box">
+      <h3>La próxima sesión</h3>
+      <p>Cerramos el tema de <strong>Identidades</strong> con el último subtema: <strong>subculturas</strong>. Después pasamos al tema 2, <strong>Experiencias</strong>.</p>
+    </div>
+
+    <div class="foot-nav">
+      <button class="fb" data-go="debate">← Toma una postura</button>
+      <button class="fb go" data-go="mapa">↑ Volver al inicio</button>
+    </div>
+  </section>
+
+</div>
+
+<footer class="sources">
+  <div class="sources-in">
+    <h3>De dónde sale esta clase</h3>
+    <p class="intro">Todas las sesiones se construyen sobre el currículo oficial del IB y sobre fuentes públicas que puedes consultar tú misma. Estos son los documentos detrás de la sesión de hoy.</p>
+
+    <a class="src" href="https://ibo.org/globalassets/new-structure/university-admission/pdfs/subject-guides/language-b-guide.pdf" target="_blank" rel="noopener">
+      <span class="n">Guía de Lengua B del IB · primera evaluación 2020</span>
+      <span class="d">El documento oficial. «Creencias y valores» aparece como uno de los cinco temas recomendados dentro de Identidades, cuyo principio rector es explorar la naturaleza del yo y qué significa ser humano. De aquí salen también los tipos de texto y los criterios de evaluación de la Prueba 1 y del oral individual.</span>
+      <span class="u">ibo.org · Language B guide (PDF)</span>
+    </a>
+
+    <a class="src" href="https://ibo.org/programmes/diploma-programme/curriculum/language-acquisition/language-b/" target="_blank" rel="noopener">
+      <span class="n">Página oficial de Lengua B · Bachillerato Internacional</span>
+      <span class="d">Descripción general del curso, la estructura de los cinco temas y el formato de la evaluación interna.</span>
+      <span class="u">ibo.org · Diploma Programme, Language B</span>
+    </a>
+
+    <a class="src" href="https://cvc.cervantes.es/lengua/refranero/" target="_blank" rel="noopener">
+      <span class="n">Refranero multilingüe · Centro Virtual Cervantes (Instituto Cervantes)</span>
+      <span class="d">Base de datos de refranes y frases proverbiales en español, con significado, contexto, variantes y equivalentes en más de veinte lenguas. Los seis refranes de la actividad 2 salen de aquí, y puedes buscar sus equivalentes en inglés o en chino.</span>
+      <span class="u">cvc.cervantes.es · Refranero multilingüe</span>
+    </a>
+
+    <a class="src" href="https://www.latinobarometro.org/documents/latinobarometro-informe-2024.pdf" target="_blank" rel="noopener">
+      <span class="n">Informe Latinobarómetro 2024 · Corporación Latinobarómetro</span>
+      <span class="d">Estudio anual de opinión pública en 18 países de América Latina que mide actitudes, valores y comportamientos. Los porcentajes del gráfico de la actividad 3 corresponden a la medición de 2024.</span>
+      <span class="u">latinobarometro.org · Informe 2024 (PDF)</span>
+    </a>
+  </div>
+</footer>
+
+<script>
+  /* ── 1 · VALORES ── */
+  const VALORES = ["La honestidad","La familia","La libertad","El esfuerzo","La lealtad","La justicia","La independencia","La tradición","La generosidad","La ambición","El respeto","La curiosidad"];
+  const orden = [];
+  const cont = document.getElementById('vals');
+
+  VALORES.forEach(v => {
+    const b = document.createElement('button');
+    b.className = 'val';
+    b.innerHTML = v + '<span class="rank"></span>';
+    b.addEventListener('click', () => {
+      const i = orden.indexOf(v);
+      if (i > -1) orden.splice(i, 1);
+      else if (orden.length < 3) orden.push(v);
+      pintar();
+    });
+    cont.appendChild(b);
+  });
+
+  function pintar() {
+    [...cont.children].forEach(b => {
+      const nombre = b.firstChild.textContent;
+      const i = orden.indexOf(nombre);
+      b.classList.toggle('pick', i > -1);
+      b.querySelector('.rank').textContent = i > -1 ? i + 1 : '';
+    });
+    document.getElementById('vcount').textContent = orden.length + ' de 3 elegidos';
+  }
+  document.getElementById('vreset').addEventListener('click', () => { orden.length = 0; pintar(); });
+
+  /* ── 2 · REFRANES ── */
+  const PAREJAS = [
+    { r: "Dime con quién andas y te diré quién eres.", m: "La gente con la que te rodeas revela cómo eres tú." },
+    { r: "No dejes para mañana lo que puedas hacer hoy.", m: "Valora la disciplina y no aplazar las obligaciones." },
+    { r: "Más vale pájaro en mano que ciento volando.", m: "Es preferible lo seguro antes que arriesgarlo por algo incierto." },
+    { r: "El que no arriesga, no gana.", m: "Sin asumir riesgos no se consiguen cosas importantes." },
+    { r: "En casa de herrero, cuchillo de palo.", m: "A veces no aplicamos en casa aquello en lo que somos expertos." },
+    { r: "Haz bien y no mires a quién.", m: "Ayudar a los demás sin esperar nada a cambio." }
+  ];
+
+  let sel = null, aciertos = 0;
+
+  function barajar(a) { return a.map(x => [Math.random(), x]).sort((p, q) => p[0] - q[0]).map(p => p[1]); }
+
+  function montarRefranes() {
+    const cr = document.getElementById('col-ref'), cm = document.getElementById('col-mean');
+    cr.innerHTML = ''; cm.innerHTML = ''; sel = null; aciertos = 0;
+    marcador();
+
+    barajar([...PAREJAS]).forEach(p => {
+      const b = document.createElement('button');
+      b.className = 'm-item ref'; b.dataset.id = p.r;
+      b.innerHTML = '«' + p.r + '»<span class="m-badge">✓ Emparejado</span>';
+      b.addEventListener('click', () => {
+        if (b.classList.contains('done')) return;
+        document.querySelectorAll('#col-ref .m-item').forEach(x => x.classList.remove('sel'));
+        b.classList.add('sel'); sel = b;
+      });
+      cr.appendChild(b);
+    });
+
+    barajar([...PAREJAS]).forEach(p => {
+      const b = document.createElement('button');
+      b.className = 'm-item'; b.dataset.id = p.r;
+      b.innerHTML = p.m + '<span class="m-badge">✓ Emparejado</span>';
+      b.addEventListener('click', () => {
+        if (b.classList.contains('done') || !sel) return;
+        if (b.dataset.id === sel.dataset.id) {
+          b.classList.add('done'); sel.classList.add('done'); sel.classList.remove('sel');
+          sel = null; aciertos++; marcador();
+        } else {
+          b.classList.add('miss');
+          setTimeout(() => b.classList.remove('miss'), 320);
+        }
+      });
+      cm.appendChild(b);
+    });
+  }
+
+  function marcador() {
+    const el = document.getElementById('mscore');
+    el.textContent = aciertos + ' de 6 parejas';
+    if (aciertos === 6) el.textContent = '6 de 6 · completo';
+  }
+
+  document.getElementById('mreset').addEventListener('click', montarRefranes);
+  montarRefranes();
+
+  /* ── 4 · DILEMAS ── */
+  document.querySelectorAll('.dil').forEach(d => {
+    d.addEventListener('click', () => {
+      document.querySelectorAll('.dil').forEach(x => x.classList.remove('on'));
+      d.classList.add('on');
+    });
+  });
+
+  /* ── MODELOS ── */
+  document.querySelectorAll('.rev-h').forEach(h => {
+    const t = () => {
+      const body = h.nextElementSibling, btn = h.querySelector('.rev-b');
+      btn.textContent = body.classList.toggle('open') ? 'Ocultar' : 'Ver modelo';
+    };
+    h.addEventListener('click', t);
+    h.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); t(); } });
+  });
+
+  /* ── NAVEGACIÓN ── */
+  function ir(id) {
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('on'));
+    document.querySelectorAll('.step').forEach(s => s.classList.remove('on'));
+    document.getElementById('p-' + id).classList.add('on');
+    document.querySelector('.step[data-p="' + id + '"]').classList.add('on');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+  document.querySelectorAll('.step').forEach(s => s.addEventListener('click', () => ir(s.dataset.p)));
+  document.querySelectorAll('[data-go]').forEach(b => b.addEventListener('click', () => ir(b.dataset.go)));
+</script>
+</body>
+</html>

@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>IB Español B · Salud y bienestar · Sesión 4 — Class materials</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --sage-dark:   #3A6B4A;
+    --sage-mid:    #5A9E6E;
+    --sage-light:  #EAF4ED;
+    --sage-border: #A8D8B6;
+
+    --ochre-dark:  #7A5020;
+    --ochre-mid:   #B87A3A;
+    --ochre-light: #FBF0E0;
+    --ochre-border:#E8C48A;
+
+    --plum-dark:   #5C2D6E;
+    --plum-mid:    #8E4FAE;
+    --plum-light:  #F5EDFB;
+    --plum-border: #CFA8E2;
+
+    --steel-dark:  #2A4A6A;
+    --steel-mid:   #4A7AAE;
+    --steel-light: #EAF1FA;
+    --steel-border:#A8C8E8;
+
+    --clay-dark:   #7A3A28;
+    --clay-mid:    #C05A3A;
+    --clay-light:  #FAEEE8;
+    --clay-border: #E8B0A0;
+
+    --gray-bg:     #F7F6F3;
+    --gray-border: #E0DED8;
+    --text-main:   #2C2C2A;
+    --text-muted:  #4F4E4A;
+    --text-hint:   #7A7972;
+    --font: 'Nunito', sans-serif;
+    --radius: 12px;
+    --radius-sm: 8px;
+  }
+
+  body { font-family: var(--font); background: var(--gray-bg); color: var(--text-main); min-height: 100vh; }
+
+  :focus-visible { outline: 3px solid var(--steel-mid); outline-offset: 2px; border-radius: 4px; }
+
+  /* ── HEADER ── */
+  .back-nav {
+    display: block;
+    font-size: 12px;
+    color: rgba(255,255,255,0.8);
+    text-decoration: none;
+    margin-bottom: 10px;
+  }
+  .back-nav:hover { color: #fff; text-decoration: underline; }
+
+  .site-header { background: var(--sage-dark); color: #fff; padding: 2rem 2.5rem 1.6rem; }
+  .eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.75; margin-bottom: 6px; }
+  .site-header h1 { font-size: 30px; font-weight: 700; line-height: 1.2; }
+  .site-header .subtitle { font-size: 15px; opacity: 0.85; margin-top: 7px; }
+  .meta-pills { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 15px; }
+  .pill { font-size: 12px; font-weight: 600; padding: 4px 12px; border-radius: 99px; background: rgba(255,255,255,0.15); color: #fff; border: 1px solid rgba(255,255,255,0.25); }
+
+  /* ── LAYOUT ── */
+  .main { display: flex; align-items: flex-start; }
+
+  /* ── SIDEBAR ── */
+  .sidebar { width: 232px; flex-shrink: 0; background: #fff; border-right: 1px solid var(--gray-border); padding: 1.5rem 0; position: sticky; top: 0; max-height: 100vh; overflow-y: auto; }
+  .sidebar-label { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-hint); padding: 0 1.25rem 8px; }
+  .nav-item { display: flex; align-items: center; gap: 10px; padding: 11px 1.25rem; cursor: pointer; font-size: 14px; font-weight: 600; color: var(--text-muted); border-left: 3px solid transparent; transition: background 0.15s, color 0.15s; user-select: none; }
+  .nav-item:hover { background: var(--gray-bg); color: var(--text-main); }
+  .nav-dot { width: 28px; height: 28px; border-radius: 50%; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .nav-time { font-size: 10px; color: var(--text-hint); font-weight: 400; display: block; margin-top: 1px; }
+
+  .nav-item[data-tab="repaso"] .nav-dot { background: var(--ochre-light); color: var(--ochre-dark); }
+  .nav-item[data-tab="tema"]   .nav-dot { background: var(--sage-light);  color: var(--sage-dark);  }
+  .nav-item[data-tab="vocab"]  .nav-dot { background: var(--plum-light);  color: var(--plum-dark);  }
+  .nav-item[data-tab="oral"]   .nav-dot { background: var(--steel-light); color: var(--steel-dark); }
+  .nav-item[data-tab="escrito"].nav-dot,
+  .nav-item[data-tab="escrito"] .nav-dot { background: var(--clay-light);  color: var(--clay-dark);  }
+
+  .nav-item[data-tab="repaso"].active  { color: var(--ochre-dark); border-left-color: var(--ochre-dark); background: var(--ochre-light); }
+  .nav-item[data-tab="tema"].active    { color: var(--sage-dark);  border-left-color: var(--sage-dark);  background: var(--sage-light);  }
+  .nav-item[data-tab="vocab"].active   { color: var(--plum-dark);  border-left-color: var(--plum-dark);  background: var(--plum-light);  }
+  .nav-item[data-tab="oral"].active    { color: var(--steel-dark); border-left-color: var(--steel-dark); background: var(--steel-light); }
+  .nav-item[data-tab="escrito"].active { color: var(--clay-dark);  border-left-color: var(--clay-dark);  background: var(--clay-light);  }
+
+  /* ── CONTENT ── */
+  .content { flex: 1; padding: 2rem 2.5rem 3rem; max-width: 880px; }
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; animation: fade 0.2s ease; }
+  @keyframes fade { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+
+  /* ── SECTION HEADING ── */
+  .section-heading { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 1.75rem; padding-bottom: 1.25rem; border-bottom: 2px solid; }
+  .section-num { width: 40px; height: 40px; border-radius: 50%; font-size: 16px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .section-heading h2 { font-size: 22px; font-weight: 700; line-height: 1.2; }
+  .section-heading .sub { font-size: 14px; margin-top: 4px; }
+  .time-badge { margin-left: auto; font-size: 11px; font-weight: 700; padding: 4px 12px; border-radius: 99px; white-space: nowrap; align-self: flex-start; margin-top: 2px; }
+
+  /* ── SHARED CARD ── */
+  .card { background: #fff; border: 1px solid var(--gray-border); border-radius: var(--radius); padding: 1.25rem 1.5rem; margin-bottom: 1rem; }
+  .card h3 { font-size: 15px; font-weight: 700; margin-bottom: 10px; color: var(--text-main); }
+  .card p  { font-size: 15px; line-height: 1.75; color: var(--text-muted); }
+  .card p + p { margin-top: 8px; }
+  .card ul { list-style: none; padding: 0; }
+  .card ul li { font-size: 15px; line-height: 1.7; color: var(--text-muted); padding: 6px 0 6px 22px; position: relative; }
+  .card ul li::before { content: "→"; position: absolute; left: 0; font-size: 13px; top: 8px; }
+  .note { font-size: 13.5px; color: var(--text-hint); margin-bottom: 12px; line-height: 1.6; }
+
+  .phase-tag { display: inline-block; font-size: 11px; font-weight: 700; border-radius: 99px; padding: 3px 11px; margin-bottom: 9px; }
+  .highlight { border-left: 3px solid; border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 11px 15px; font-size: 14px; font-weight: 600; margin-top: 12px; line-height: 1.6; }
+
+  /* ── REVEAL BLOCKS ── */
+  .reveal-block { background: #fff; border: 1px solid var(--gray-border); border-radius: var(--radius); margin-bottom: 10px; overflow: hidden; }
+  .reveal-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; padding: 1rem 1.25rem; cursor: pointer; user-select: none; }
+  .reveal-num { width: 26px; height: 26px; border-radius: 50%; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
+  .reveal-text { font-size: 15px; font-weight: 700; color: var(--text-main); flex: 1; line-height: 1.5; }
+  .reveal-btn { font-size: 12px; font-weight: 700; border-radius: 99px; padding: 5px 13px; cursor: pointer; white-space: nowrap; flex-shrink: 0; font-family: var(--font); border: 1px solid; transition: opacity 0.15s; }
+  .reveal-btn:hover { opacity: 0.75; }
+  .reveal-body { display: none; padding: 0 1.25rem 1.1rem 3.75rem; }
+  .reveal-body.open { display: block; }
+  .reveal-body p { font-size: 15px; color: var(--text-muted); line-height: 1.75; }
+  .answer-label { font-size: 10px; font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase; margin-bottom: 5px; }
+  .level-tag { font-size: 10px; font-weight: 700; border-radius: 99px; padding: 2px 8px; margin-left: 6px; vertical-align: middle; white-space: nowrap; }
+
+  /* ── FOOT NAV ── */
+  .foot-nav { display: flex; justify-content: space-between; margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--gray-border); gap: 10px; }
+  .foot-btn { font-family: var(--font); font-size: 13.5px; font-weight: 700; padding: 10px 20px; border-radius: 99px; border: 1px solid var(--gray-border); background: #fff; cursor: pointer; color: var(--text-muted); transition: background 0.15s, color 0.15s, opacity 0.15s; }
+  .foot-btn:hover:not(:disabled) { background: var(--gray-bg); color: var(--text-main); }
+  .foot-btn:disabled { opacity: 0.3; cursor: default; }
+  .foot-btn.primary { color: #fff; }
+  .foot-btn.primary:hover { opacity: 0.9; }
+
+  /* ══ TAB 1 — REPASO (ochre) ══ */
+  #tab-repaso .section-heading    { border-color: var(--ochre-border); }
+  #tab-repaso .section-num        { background: var(--ochre-light); color: var(--ochre-dark); }
+  #tab-repaso .section-heading h2 { color: var(--ochre-dark); }
+  #tab-repaso .section-heading .sub { color: var(--ochre-mid); }
+  #tab-repaso .time-badge         { background: var(--ochre-light); color: var(--ochre-dark); border: 1px solid var(--ochre-border); }
+  #tab-repaso .phase-tag          { background: var(--ochre-light); color: var(--ochre-dark); }
+  #tab-repaso .card ul li::before { color: var(--ochre-mid); }
+  #tab-repaso .highlight          { background: var(--ochre-light); border-color: var(--ochre-mid); color: var(--ochre-dark); }
+  #tab-repaso .foot-btn.primary   { background: var(--ochre-dark); border-color: var(--ochre-dark); }
+
+  .palabras-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(165px, 1fr)); gap: 9px; margin-bottom: 1rem; }
+  .palabra-chip { background: #fff; border: 1.5px solid var(--ochre-border); border-radius: var(--radius-sm); padding: 11px 13px; cursor: pointer; transition: border-color 0.2s, background 0.2s; }
+  .palabra-chip:hover { border-color: var(--ochre-mid); }
+  .palabra-chip.revealed { background: var(--ochre-light); border-color: var(--ochre-mid); }
+  .palabra-es { font-size: 15px; font-weight: 700; color: var(--ochre-dark); }
+  .palabra-def { font-size: 13px; color: var(--text-hint); font-style: italic; margin-top: 4px; display: none; line-height: 1.5; }
+  .palabra-chip.revealed .palabra-def { display: block; }
+  .palabra-hint { font-size: 10px; color: var(--ochre-mid); font-weight: 600; margin-top: 5px; }
+  .palabra-chip.revealed .palabra-hint { display: none; }
+
+  /* ══ TAB 2 — TEMA (sage) ══ */
+  #tab-tema .section-heading    { border-color: var(--sage-border); }
+  #tab-tema .section-num        { background: var(--sage-light); color: var(--sage-dark); }
+  #tab-tema .section-heading h2 { color: var(--sage-dark); }
+  #tab-tema .section-heading .sub { color: var(--sage-mid); }
+  #tab-tema .time-badge         { background: var(--sage-light); color: var(--sage-dark); border: 1px solid var(--sage-border); }
+  #tab-tema .phase-tag          { background: var(--sage-light); color: var(--sage-dark); }
+  #tab-tema .card ul li::before { color: var(--sage-mid); }
+  #tab-tema .highlight          { background: var(--sage-light); border-color: var(--sage-mid); color: var(--sage-dark); }
+  #tab-tema .foot-btn.primary   { background: var(--sage-dark); border-color: var(--sage-dark); }
+
+  .contraste-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 0.75rem; }
+  .contraste-card { border-radius: var(--radius); padding: 1.25rem; border: 1px solid; }
+  .contraste-card.a { background: var(--sage-light); border-color: var(--sage-border); }
+  .contraste-card.b { background: var(--ochre-light); border-color: var(--ochre-border); }
+  .contraste-card h4 { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
+  .contraste-card .ctx { font-size: 12px; font-weight: 600; margin-bottom: 10px; opacity: 0.8; }
+  .contraste-card.a h4, .contraste-card.a .ctx { color: var(--sage-dark); }
+  .contraste-card.b h4, .contraste-card.b .ctx { color: var(--ochre-dark); }
+  .contraste-card ul { list-style: none; padding: 0; }
+  .contraste-card ul li { font-size: 14px; color: var(--text-muted); padding: 4px 0 4px 16px; position: relative; line-height: 1.55; }
+  .contraste-card.a ul li::before { content: "·"; position: absolute; left: 4px; color: var(--sage-mid); font-weight: 700; }
+  .contraste-card.b ul li::before { content: "·"; position: absolute; left: 4px; color: var(--ochre-mid); font-weight: 700; }
+
+  .reading-box { background: var(--sage-light); border: 1px solid var(--sage-border); border-radius: var(--radius); padding: 1.6rem 1.75rem; margin-bottom: 1rem; }
+  .reading-label { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--sage-mid); margin-bottom: 10px; }
+  .reading-box p { font-size: 16px; color: var(--sage-dark); line-height: 1.85; }
+  .reading-box p + p { margin-top: 11px; }
+
+  /* ══ TAB 3 — VOCAB (plum) ══ */
+  #tab-vocab .section-heading    { border-color: var(--plum-border); }
+  #tab-vocab .section-num        { background: var(--plum-light); color: var(--plum-dark); }
+  #tab-vocab .section-heading h2 { color: var(--plum-dark); }
+  #tab-vocab .section-heading .sub { color: var(--plum-mid); }
+  #tab-vocab .time-badge         { background: var(--plum-light); color: var(--plum-dark); border: 1px solid var(--plum-border); }
+  #tab-vocab .phase-tag          { background: var(--plum-light); color: var(--plum-dark); }
+  #tab-vocab .card ul li::before { color: var(--plum-mid); }
+  #tab-vocab .highlight          { background: var(--plum-light); border-color: var(--plum-mid); color: var(--plum-dark); }
+  #tab-vocab .foot-btn.primary   { background: var(--plum-dark); border-color: var(--plum-dark); }
+
+  .vocab-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 10px; margin-bottom: 1rem; }
+  .vocab-card { background: #fff; border: 1px solid var(--gray-border); border-radius: var(--radius-sm); padding: 13px 15px; transition: border-color 0.15s, box-shadow 0.15s; }
+  .vocab-card:hover { border-color: var(--plum-border); box-shadow: 0 0 0 3px var(--plum-light); }
+  .vocab-es   { font-size: 16px; font-weight: 700; color: var(--plum-dark); }
+  .vocab-type { font-size: 11px; color: var(--plum-mid); font-weight: 600; margin-top: 2px; }
+  .vocab-ex   { font-size: 13px; color: var(--text-hint); font-style: italic; margin-top: 6px; line-height: 1.55; }
+
+  .phrases-box { background: var(--plum-light); border: 1px solid var(--plum-border); border-radius: var(--radius); padding: 1.35rem 1.6rem; margin-bottom: 1rem; }
+  .phrases-box h3 { font-size: 15px; font-weight: 700; color: var(--plum-dark); margin-bottom: 4px; }
+  .phrases-box .ph-note { font-size: 13px; color: var(--plum-mid); margin-bottom: 10px; }
+  .phrase-item { font-size: 15px; color: var(--plum-dark); padding: 9px 0; border-bottom: 1px solid var(--plum-border); line-height: 1.6; }
+  .phrase-item:last-child { border-bottom: none; }
+  .phrase-item strong { font-weight: 700; }
+  .phrase-item em { display: block; font-size: 13.5px; color: var(--text-hint); font-style: italic; margin-top: 2px; }
+
+  /* ══ TAB 4 — ORAL (steel) ══ */
+  #tab-oral .section-heading    { border-color: var(--steel-border); }
+  #tab-oral .section-num        { background: var(--steel-light); color: var(--steel-dark); }
+  #tab-oral .section-heading h2 { color: var(--steel-dark); }
+  #tab-oral .section-heading .sub { color: var(--steel-mid); }
+  #tab-oral .time-badge         { background: var(--steel-light); color: var(--steel-dark); border: 1px solid var(--steel-border); }
+  #tab-oral .phase-tag          { background: var(--steel-light); color: var(--steel-dark); }
+  #tab-oral .card ul li::before { color: var(--steel-mid); }
+  #tab-oral .highlight          { background: var(--steel-light); border-color: var(--steel-mid); color: var(--steel-dark); }
+  #tab-oral .reveal-num         { background: var(--steel-light); color: var(--steel-dark); }
+  #tab-oral .reveal-btn         { background: var(--steel-light); color: var(--steel-dark); border-color: var(--steel-border); }
+  #tab-oral .answer-label       { color: var(--steel-mid); }
+  #tab-oral .level-tag          { background: var(--steel-light); color: var(--steel-dark); }
+  #tab-oral .foot-btn.primary   { background: var(--steel-dark); border-color: var(--steel-dark); }
+
+  .stimulus-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 1rem; }
+  .stimulus-card { background: #fff; border: 1.5px solid var(--steel-border); border-radius: var(--radius); overflow: hidden; display: flex; flex-direction: column; transition: box-shadow 0.2s, border-color 0.2s; cursor: pointer; }
+  .stimulus-card:hover, .stimulus-card.chosen { border-color: var(--steel-mid); box-shadow: 0 0 0 3px var(--steel-light); }
+  .stimulus-card svg { width: 100%; height: auto; display: block; }
+  .stimulus-body { padding: 13px 16px 16px; }
+  .stimulus-tag { font-size: 10px; font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase; color: var(--steel-mid); }
+  .stimulus-caption { font-size: 16.5px; font-weight: 700; color: var(--steel-dark); line-height: 1.4; margin-top: 6px; }
+
+  .pasos { display: grid; gap: 9px; margin-bottom: 1rem; }
+  .paso { display: flex; gap: 13px; background: #fff; border: 1px solid var(--gray-border); border-radius: var(--radius-sm); padding: 13px 15px; }
+  .paso-num { width: 26px; height: 26px; border-radius: 50%; background: var(--steel-light); color: var(--steel-dark); font-weight: 700; font-size: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .paso-t { font-size: 15px; font-weight: 700; color: var(--text-main); }
+  .paso-d { font-size: 14px; color: var(--text-muted); line-height: 1.65; margin-top: 3px; }
+  .paso-d em { color: var(--steel-dark); font-style: italic; }
+
+  .format-chips { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 4px; }
+  .format-chip { font-size: 13px; font-weight: 600; background: #fff; color: var(--steel-dark); border: 1px solid var(--steel-border); border-radius: 99px; padding: 6px 14px; }
+
+  /* ══ TAB 5 — ESCRITO (clay) ══ */
+  #tab-escrito .section-heading    { border-color: var(--clay-border); }
+  #tab-escrito .section-num        { background: var(--clay-light); color: var(--clay-dark); }
+  #tab-escrito .section-heading h2 { color: var(--clay-dark); }
+  #tab-escrito .section-heading .sub { color: var(--clay-mid); }
+  #tab-escrito .time-badge         { background: var(--clay-light); color: var(--clay-dark); border: 1px solid var(--clay-border); }
+  #tab-escrito .card ul li::before { color: var(--clay-mid); }
+  #tab-escrito .foot-btn.primary   { background: var(--clay-dark); border-color: var(--clay-dark); }
+
+  .prompt-box { background: var(--clay-light); border: 1px solid var(--clay-border); border-radius: var(--radius); padding: 1.6rem 1.75rem; margin-bottom: 1rem; }
+  .prompt-label { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--clay-mid); margin-bottom: 9px; }
+  .prompt-msg { background: #fff; border: 1px solid var(--clay-border); border-radius: var(--radius-sm); padding: 13px 16px; font-size: 16px; color: var(--clay-dark); line-height: 1.65; font-style: italic; margin-bottom: 12px; }
+  .prompt-q { font-size: 18px; font-weight: 700; color: var(--clay-dark); line-height: 1.45; margin-bottom: 10px; }
+  .prompt-instr { font-size: 15px; color: var(--clay-dark); line-height: 1.7; }
+  .prompt-meta { display: flex; gap: 9px; margin-top: 14px; flex-wrap: wrap; }
+  .prompt-chip { font-size: 12.5px; font-weight: 700; background: #fff; color: var(--clay-dark); border: 1px solid var(--clay-border); border-radius: 99px; padding: 5px 13px; }
+
+  .criteria-list { list-style: none; padding: 0; }
+  .criteria-list li { display: flex; gap: 10px; align-items: flex-start; padding: 9px 0; border-bottom: 1px solid var(--gray-border); font-size: 15px; color: var(--text-muted); line-height: 1.65; }
+  .criteria-list li:last-child { border-bottom: none; }
+  .criteria-list li::before { content: "✓"; color: var(--clay-mid); font-weight: 700; flex-shrink: 0; }
+
+  .next-box { background: var(--sage-light); border: 1px solid var(--sage-border); border-radius: var(--radius); padding: 1.3rem 1.6rem; }
+  .next-box h3 { font-size: 15px; font-weight: 700; color: var(--sage-dark); margin-bottom: 4px; }
+  .next-box p { font-size: 13.5px; color: var(--sage-mid); margin-bottom: 12px; }
+  .subtema-grid { display: flex; gap: 9px; flex-wrap: wrap; }
+  .subtema-chip { font-size: 13.5px; font-weight: 700; background: #fff; color: var(--sage-dark); border: 1px solid var(--sage-border); border-radius: 99px; padding: 6px 15px; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .site-header { padding: 1.5rem 1.25rem 1.25rem; }
+    .site-header h1 { font-size: 24px; }
+    .main { flex-direction: column; }
+    .sidebar { width: 100%; position: static; max-height: none; display: flex; overflow-x: auto; padding: 0.6rem 0; border-right: none; border-bottom: 1px solid var(--gray-border); }
+    .sidebar-label { display: none; }
+    .nav-item { border-left: none; border-bottom: 3px solid transparent; white-space: nowrap; }
+    .nav-item.active { border-left-color: transparent !important; }
+    .content { padding: 1.5rem 1.25rem 3rem; }
+    .contraste-grid, .stimulus-grid { grid-template-columns: 1fr; }
+    .reveal-body { padding-left: 1.25rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <a class="back-nav" href="/spanish/ib-unit1-identidades/">&larr; IB Unidad 1 &middot; Identidades</a>
+  <p class="eyebrow">Español B · Nivel Medio · Tema 1: Identidades</p>
+  <h1>Salud y bienestar</h1>
+  <p class="subtitle">Sesión 4 · ¿Qué significa realmente «estar bien»?</p>
+  <div class="meta-pills">
+    <span class="pill">B1–B2</span>
+    <span class="pill">50 minutos</span>
+    <span class="pill">Práctica de oral individual</span>
+    <span class="pill">Grado 11</span>
+  </div>
+</header>
+
+<div class="main">
+  <nav class="sidebar" aria-label="Actividades de la sesión">
+    <p class="sidebar-label">Actividades</p>
+    <div class="nav-item active" data-tab="repaso" tabindex="0" role="button">
+      <div class="nav-dot">1</div>
+      <div>Calentamiento<span class="nav-time">0–8 min</span></div>
+    </div>
+    <div class="nav-item" data-tab="tema" tabindex="0" role="button">
+      <div class="nav-dot">2</div>
+      <div>El tema<span class="nav-time">8–18 min</span></div>
+    </div>
+    <div class="nav-item" data-tab="vocab" tabindex="0" role="button">
+      <div class="nav-dot">3</div>
+      <div>Palabras y estructuras<span class="nav-time">18–28 min</span></div>
+    </div>
+    <div class="nav-item" data-tab="oral" tabindex="0" role="button">
+      <div class="nav-dot">4</div>
+      <div>Oral con imagen<span class="nav-time">28–45 min</span></div>
+    </div>
+    <div class="nav-item" data-tab="escrito" tabindex="0" role="button">
+      <div class="nav-dot">5</div>
+      <div>Escritura<span class="nav-time">45–50 min</span></div>
+    </div>
+  </nav>
+
+  <main class="content">
+
+    <!-- ══ TAB 1 ══ -->
+    <div id="tab-repaso" class="tab-panel active">
+      <div class="section-heading">
+        <div class="section-num">1</div>
+        <div>
+          <h2>Calentamiento</h2>
+          <p class="sub">Recuperamos lo de la sesión pasada y abrimos el tema nuevo</p>
+        </div>
+        <span class="time-badge">0–8 min</span>
+      </div>
+
+      <div class="card">
+        <span class="phase-tag">Para empezar</span>
+        <h3>Dos preguntas rápidas</h3>
+        <ul>
+          <li>¿Cómo has dormido esta semana? Responde con detalle, no solo «bien».</li>
+          <li>Si tuvieras una hora libre hoy, sin deberes ni pantallas, ¿qué harías con ella?</li>
+        </ul>
+        <div class="highlight">Habla sin preocuparte por los errores. Esta parte es para soltar la lengua, no para hacerlo perfecto.</div>
+      </div>
+
+      <div class="card">
+        <span class="phase-tag">Repaso</span>
+        <h3>¿Recuerdas estas palabras de la sesión pasada?</h3>
+        <p class="note">Antes de tocar la tarjeta, di una frase completa usando la palabra. Después revela la definición y comprueba.</p>
+        <div class="palabras-grid" id="palabras-grid"></div>
+      </div>
+
+      <div class="card">
+        <span class="phase-tag">Puente</span>
+        <h3>De los estilos de vida a la salud</h3>
+        <p>La sesión pasada llegaste a esta conclusión: tu estilo de vida dice algo sobre lo que valoras. Hoy vamos a hacerle una pregunta más incómoda a esa idea:</p>
+        <div class="highlight">Tu ritmo de vida actual — el del IB, el de Hong Kong — ¿te está costando algo? ¿Qué exactamente?</div>
+      </div>
+
+      <div class="foot-nav">
+        <button class="foot-btn" disabled>← Anterior</button>
+        <button class="foot-btn primary" data-go="tema">Siguiente: El tema →</button>
+      </div>
+    </div>
+
+    <!-- ══ TAB 2 ══ -->
+    <div id="tab-tema" class="tab-panel">
+      <div class="section-heading">
+        <div class="section-num">2</div>
+        <div>
+          <h2>El tema</h2>
+          <p class="sub">Dos maneras de entender qué es «estar bien» + texto de lectura</p>
+        </div>
+        <span class="time-badge">8–18 min</span>
+      </div>
+
+      <div class="card">
+        <span class="phase-tag">Antes de leer</span>
+        <h3>Dos ideas distintas del bienestar</h3>
+        <p class="note">Lee las dos columnas. ¿Cuál se parece más a lo que tú viste crecer? ¿Hay algo de la otra columna que te gustaría tener?</p>
+        <div class="contraste-grid">
+          <div class="contraste-card b">
+            <h4>Estar bien = rendir</h4>
+            <p class="ctx">Contextos de alta exigencia académica</p>
+            <ul>
+              <li>El descanso se gana después del esfuerzo</li>
+              <li>Dormir poco se lee como compromiso</li>
+              <li>Cuidarse es responsabilidad de cada uno</li>
+              <li>El estrés se normaliza: «todos estamos igual»</li>
+              <li>El ocio necesita justificarse</li>
+            </ul>
+          </div>
+          <div class="contraste-card a">
+            <h4>Estar bien = estar acompañado</h4>
+            <p class="ctx">Tendencia frecuente en el mundo hispanohablante</p>
+            <ul>
+              <li>El tiempo con otros forma parte de la salud</li>
+              <li>La comida y la conversación no se apuran</li>
+              <li>Pedir ayuda no se vive como debilidad</li>
+              <li>El malestar se cuenta en voz alta</li>
+              <li>El ocio no necesita justificarse</li>
+            </ul>
+          </div>
+        </div>
+        <div class="highlight">Ojo: son tendencias, no reglas. Hay gente agotada en Madrid y hay comunidades que cuidan mucho en Hong Kong. En el oral del IB, los matices puntúan más que las generalizaciones.</div>
+      </div>
+
+      <div class="reading-box">
+        <p class="reading-label">Texto · Nivel B1–B2</p>
+        <p>La Organización Mundial de la Salud define la salud como un estado completo de bienestar físico, mental y social, y no solamente como la ausencia de enfermedad. Es una definición amplia, pero cada cultura la interpreta a su manera.</p>
+        <p>En ciudades con mucha presión académica, cuidarse suele entenderse como algo individual y, sobre todo, aplazable: dormir poco durante los exámenes y descansar «cuando termine el semestre». Aquí el descanso se gana; no se toma.</p>
+        <p>En muchos países hispanohablantes convive otra idea, igual de real: el bienestar se construye con otros. La sobremesa que se alarga, la llamada semanal a la abuela, el paseo del domingo sin plan. Estar rodeado de gente que te pregunta cómo estás se considera una forma de salud, no una pérdida de tiempo.</p>
+        <p>Ninguna de las dos miradas tiene la razón absoluta. Sin embargo, compararlas sirve para hacerse una pregunta incómoda: cuando dices «estoy bien», ¿qué estás midiendo exactamente? ¿Tus notas? ¿Tu energía? ¿La gente que tienes cerca?</p>
+        <p>Tu manera de responder también dice algo sobre quién eres.</p>
+      </div>
+
+      <div class="card">
+        <h3>Preguntas sobre el texto</h3>
+        <ul>
+          <li>Según la OMS, ¿qué le falta a la idea de que salud es «no estar enfermo»?</li>
+          <li>Explica con tus palabras: «el descanso se gana; no se toma».</li>
+          <li>El texto dice que ninguna mirada tiene la razón absoluta. ¿Estás de acuerdo? ¿Por qué?</li>
+          <li>Cuando tú dices «estoy bien», ¿qué estás midiendo en realidad?</li>
+        </ul>
+      </div>
+
+      <div class="foot-nav">
+        <button class="foot-btn" data-go="repaso">← Calentamiento</button>
+        <button class="foot-btn primary" data-go="vocab">Siguiente: Palabras y estructuras →</button>
+      </div>
+    </div>
+
+    <!-- ══ TAB 3 ══ -->
+    <div id="tab-vocab" class="tab-panel">
+      <div class="section-heading">
+        <div class="section-num">3</div>
+        <div>
+          <h2>Palabras y estructuras</h2>
+          <p class="sub">Léxico de salud y bienestar + cómo dar consejos en español</p>
+        </div>
+        <span class="time-badge">18–28 min</span>
+      </div>
+
+      <div class="card">
+        <h3>Cómo trabajar esta parte</h3>
+        <p>Lee cada palabra con su ejemplo y, antes de pasar a la siguiente, construye una frase sobre <strong>tu propia vida</strong>. Marca mentalmente las tres que más te sirvan: las vas a necesitar en el oral y en la escritura de hoy.</p>
+      </div>
+
+      <div class="vocab-grid">
+        <div class="vocab-card">
+          <div class="vocab-es">la salud mental</div>
+          <div class="vocab-type">sustantivo</div>
+          <div class="vocab-ex">«En mi colegio se habla poco de salud mental.»</div>
+        </div>
+        <div class="vocab-card">
+          <div class="vocab-es">el agotamiento</div>
+          <div class="vocab-type">sustantivo</div>
+          <div class="vocab-ex">«Después de los exámenes siento un agotamiento total.»</div>
+        </div>
+        <div class="vocab-card">
+          <div class="vocab-es">el descanso</div>
+          <div class="vocab-type">sustantivo</div>
+          <div class="vocab-ex">«El descanso no es un premio, es una necesidad.»</div>
+        </div>
+        <div class="vocab-card">
+          <div class="vocab-es">desconectar</div>
+          <div class="vocab-type">verbo</div>
+          <div class="vocab-ex">«Los domingos intento desconectar del móvil.»</div>
+        </div>
+        <div class="vocab-card">
+          <div class="vocab-es">cuidarse</div>
+          <div class="vocab-type">verbo reflexivo</div>
+          <div class="vocab-ex">«Me cuido más cuando duermo bien.»</div>
+        </div>
+        <div class="vocab-card">
+          <div class="vocab-es">la presión académica</div>
+          <div class="vocab-type">expresión</div>
+          <div class="vocab-ex">«La presión académica aumentó mucho al entrar al IB.»</div>
+        </div>
+        <div class="vocab-card">
+          <div class="vocab-es">poner límites</div>
+          <div class="vocab-type">expresión verbal</div>
+          <div class="vocab-ex">«Estoy aprendiendo a poner límites con las actividades extra.»</div>
+        </div>
+        <div class="vocab-card">
+          <div class="vocab-es">la red de apoyo</div>
+          <div class="vocab-type">expresión</div>
+          <div class="vocab-ex">«Mi red de apoyo son mi hermana y dos amigas.»</div>
+        </div>
+        <div class="vocab-card">
+          <div class="vocab-es">el autocuidado</div>
+          <div class="vocab-type">sustantivo</div>
+          <div class="vocab-ex">«El autocuidado no es egoísmo.»</div>
+        </div>
+        <div class="vocab-card">
+          <div class="vocab-es">recargar energías</div>
+          <div class="vocab-type">expresión verbal</div>
+          <div class="vocab-ex">«Salgo a caminar sin música para recargar energías.»</div>
+        </div>
+        <div class="vocab-card">
+          <div class="vocab-es">sobrecargado / sobrecargada</div>
+          <div class="vocab-type">adjetivo</div>
+          <div class="vocab-ex">«Esta semana me siento sobrecargada.»</div>
+        </div>
+        <div class="vocab-card">
+          <div class="vocab-es">aplazar</div>
+          <div class="vocab-type">verbo</div>
+          <div class="vocab-ex">«Siempre aplazo el descanso para después.»</div>
+        </div>
+      </div>
+
+      <div class="phrases-box">
+        <h3>Estructuras para dar consejos</h3>
+        <p class="ph-note">Las vas a usar en la escritura del final. Fíjate en cuáles llevan subjuntivo.</p>
+        <div class="phrase-item">
+          <strong>Te recomiendo que + subjuntivo</strong>
+          <em>Te recomiendo que duermas antes del examen, no después.</em>
+        </div>
+        <div class="phrase-item">
+          <strong>Es importante que + subjuntivo</strong>
+          <em>Es importante que hables con alguien de confianza.</em>
+        </div>
+        <div class="phrase-item">
+          <strong>Deberías + infinitivo</strong>
+          <em>Deberías desconectar al menos una tarde a la semana.</em>
+        </div>
+        <div class="phrase-item">
+          <strong>Lo que más me ayuda es + infinitivo</strong>
+          <em>Lo que más me ayuda es caminar sin auriculares.</em>
+        </div>
+        <div class="phrase-item">
+          <strong>No es que… sino que…</strong>
+          <em>No es que no quiera descansar, sino que no sé cómo hacerlo.</em>
+        </div>
+        <div class="phrase-item">
+          <strong>Si tuviera más tiempo, + condicional</strong>
+          <em>Si tuviera más tiempo, cocinaría en vez de pedir comida.</em>
+        </div>
+      </div>
+
+      <div class="highlight">Regla corta: cuando das un consejo o expresas una necesidad y aparece <strong>que</strong>, el verbo siguiente va en subjuntivo. <em>Es importante que <u>descanses</u></em> — no «descansas».</div>
+
+      <div class="foot-nav">
+        <button class="foot-btn" data-go="tema">← El tema</button>
+        <button class="foot-btn primary" data-go="oral">Siguiente: Oral con imagen →</button>
+      </div>
+    </div>
+
+    <!-- ══ TAB 4 ══ -->
+    <div id="tab-oral" class="tab-panel">
+      <div class="section-heading">
+        <div class="section-num">4</div>
+        <div>
+          <h2>Oral con imagen</h2>
+          <p class="sub">Práctica del oral individual del IB · Elige un estímulo y preséntalo</p>
+        </div>
+        <span class="time-badge">28–45 min</span>
+      </div>
+
+      <div class="card">
+        <span class="phase-tag">Cómo funciona</span>
+        <h3>El oral individual del IB, en corto</h3>
+        <ul>
+          <li>Recibes una <strong>imagen con un título</strong> relacionada con uno de los cinco temas del curso.</li>
+          <li>Tienes tiempo de preparación y puedes escribir <strong>notas breves</strong> — palabras sueltas o ideas, nunca frases completas para leer.</li>
+          <li>Presentas tú sola durante 3–4 minutos.</li>
+          <li>Después conversamos: primero sobre la imagen, luego sobre el tema en general.</li>
+        </ul>
+        <div class="highlight">Hoy hacemos una versión reducida: <strong>3 minutos de preparación + 3 de presentación</strong>. Lo importante no es llenar el tiempo, sino que la presentación tenga estructura.</div>
+      </div>
+
+      <div class="card">
+        <h3>Elige tu estímulo</h3>
+        <p class="note">Los dos son válidos. Elige el que te dé más que decir, no el que parezca más fácil.</p>
+      </div>
+
+      <div class="stimulus-grid">
+        <div class="stimulus-card" tabindex="0" role="button" aria-label="Estímulo 1: La cultura del esfuerzo">
+          <svg viewBox="0 0 480 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ilustración: una persona estudia de noche frente a una computadora, con libros, una taza y un reloj que marca las dos de la madrugada.">
+            <rect width="480" height="300" rx="10" fill="#22384F"/>
+            <rect x="36" y="34" width="128" height="104" rx="5" fill="#16283B" stroke="#3E5B78" stroke-width="3"/>
+            <line x1="100" y1="34" x2="100" y2="138" stroke="#3E5B78" stroke-width="3"/>
+            <line x1="36" y1="86" x2="164" y2="86" stroke="#3E5B78" stroke-width="3"/>
+            <path d="M141 50 a15 15 0 1 0 11 24 a12 12 0 1 1 -11 -24 z" fill="#F2E2B8"/>
+            <circle cx="66" cy="58" r="2.2" fill="#F2E2B8" opacity="0.85"/>
+            <circle cx="56" cy="112" r="1.6" fill="#F2E2B8" opacity="0.6"/>
+            <circle cx="128" cy="112" r="2" fill="#F2E2B8" opacity="0.7"/>
+            <circle cx="80" cy="120" r="1.4" fill="#F2E2B8" opacity="0.5"/>
+            <circle cx="322" cy="68" r="27" fill="#16283B" stroke="#3E5B78" stroke-width="3"/>
+            <line x1="322" y1="68" x2="322" y2="50" stroke="#E8B0A0" stroke-width="3" stroke-linecap="round"/>
+            <line x1="322" y1="68" x2="334" y2="75" stroke="#E8B0A0" stroke-width="3" stroke-linecap="round"/>
+            <rect x="392" y="194" width="48" height="7" rx="3" fill="#5C7A98"/>
+            <line x1="416" y1="194" x2="416" y2="150" stroke="#5C7A98" stroke-width="4"/>
+            <path d="M395 150 L437 150 L427 127 L405 127 Z" fill="#5C7A98"/>
+            <path d="M395 152 L437 152 L466 214 L366 214 Z" fill="#F2E2B8" opacity="0.10"/>
+            <rect x="24" y="200" width="432" height="13" rx="4" fill="#8A6A4A"/>
+            <rect x="58" y="213" width="10" height="62" fill="#6E5238"/>
+            <rect x="412" y="213" width="10" height="62" fill="#6E5238"/>
+            <rect x="58" y="188" width="80" height="10" rx="2" fill="#B87A3A"/>
+            <rect x="64" y="177" width="70" height="10" rx="2" fill="#5A9E6E"/>
+            <rect x="60" y="166" width="76" height="10" rx="2" fill="#C05A3A"/>
+            <path d="M196 200 L214 148 L306 148 L324 200 Z" fill="#3E5B78"/>
+            <rect x="212" y="94" width="96" height="54" rx="3" fill="#16283B" stroke="#5C7A98" stroke-width="2.5"/>
+            <rect x="221" y="103" width="62" height="4" rx="2" fill="#8FB8DC" opacity="0.75"/>
+            <rect x="221" y="113" width="78" height="4" rx="2" fill="#8FB8DC" opacity="0.45"/>
+            <rect x="221" y="123" width="70" height="4" rx="2" fill="#8FB8DC" opacity="0.45"/>
+            <rect x="221" y="133" width="44" height="4" rx="2" fill="#8FB8DC" opacity="0.3"/>
+            <rect x="346" y="180" width="26" height="20" rx="3" fill="#EAF1FA"/>
+            <path d="M372 185 a7 7 0 0 1 0 12" fill="none" stroke="#EAF1FA" stroke-width="3"/>
+            <circle cx="240" cy="228" r="46" fill="#1A2B3D"/>
+            <path d="M142 300 C 158 256, 198 242, 240 242 C 282 242, 322 256, 338 300 Z" fill="#2E4A66"/>
+          </svg>
+          <div class="stimulus-body">
+            <p class="stimulus-tag">Estímulo 1 · La cultura del esfuerzo</p>
+            <p class="stimulus-caption">«Mañana descanso.»</p>
+          </div>
+        </div>
+
+        <div class="stimulus-card" tabindex="0" role="button" aria-label="Estímulo 2: Estar bien con otros">
+          <svg viewBox="0 0 480 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ilustración: tres personas conversan alrededor de una mesa con platos y vasos, en un espacio luminoso con plantas.">
+            <rect width="480" height="300" rx="10" fill="#FBF0E0"/>
+            <circle cx="412" cy="52" r="30" fill="#F5D9A8"/>
+            <path d="M40 300 C 40 214, 74 186, 96 186 C 118 186, 152 214, 152 300 Z" fill="#CBE3D0" opacity="0.75"/>
+            <path d="M352 300 C 352 226, 380 200, 400 200 C 420 200, 448 226, 448 300 Z" fill="#CBE3D0" opacity="0.6"/>
+            <line x1="96" y1="300" x2="96" y2="200" stroke="#A8C8B0" stroke-width="3"/>
+            <ellipse cx="240" cy="232" rx="158" ry="54" fill="#C08B52"/>
+            <ellipse cx="240" cy="226" rx="158" ry="54" fill="#D8A56A"/>
+            <ellipse cx="168" cy="212" rx="26" ry="10" fill="#FFFDF8"/>
+            <ellipse cx="312" cy="212" rx="26" ry="10" fill="#FFFDF8"/>
+            <ellipse cx="240" cy="252" rx="28" ry="11" fill="#FFFDF8"/>
+            <ellipse cx="240" cy="216" rx="34" ry="14" fill="#E8C48A" stroke="#C08B52" stroke-width="2"/>
+            <path d="M136 196 l4 -22 h12 l4 22 z" fill="#EAF4ED" stroke="#B8D8C0" stroke-width="1.5"/>
+            <path d="M330 196 l4 -22 h12 l4 22 z" fill="#EAF4ED" stroke="#B8D8C0" stroke-width="1.5"/>
+            <path d="M126 202 C126 172, 144 158, 162 158 C 180 158, 198 172, 198 202 Z" fill="#5A9E6E"/>
+            <circle cx="162" cy="134" r="23" fill="#C98B62"/>
+            <path d="M139 132 a23 23 0 0 1 46 0 a23 12 0 0 0 -46 0 z" fill="#4A3324"/>
+            <path d="M282 200 C282 170, 300 156, 318 156 C 336 156, 354 170, 354 200 Z" fill="#8E4FAE"/>
+            <circle cx="318" cy="132" r="23" fill="#8C5E3C"/>
+            <path d="M295 130 a23 23 0 0 1 46 0 a23 14 0 0 0 -46 0 z" fill="#2E1F16"/>
+            <path d="M160 300 C 172 258, 204 244, 240 244 C 276 244, 308 258, 320 300 Z" fill="#C05A3A"/>
+            <circle cx="240" cy="240" r="38" fill="#E0A87E"/>
+            <path d="M202 240 a38 38 0 0 1 76 0 a38 26 0 0 0 -76 0 z" fill="#5C3A22"/>
+            <path d="M204 246 q-10 26 -4 40" stroke="#5C3A22" stroke-width="10" fill="none" stroke-linecap="round"/>
+            <path d="M276 246 q10 26 4 40" stroke="#5C3A22" stroke-width="10" fill="none" stroke-linecap="round"/>
+          </svg>
+          <div class="stimulus-body">
+            <p class="stimulus-tag">Estímulo 2 · Estar bien con otros</p>
+            <p class="stimulus-caption">«Quédate un rato más.»</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Estructura de tu presentación</h3>
+        <p class="note">Estos cuatro pasos son la diferencia entre «describir una foto» y hacer un buen oral de IB. Dedica poco tiempo al paso 1 y bastante a los pasos 3 y 4.</p>
+      </div>
+
+      <div class="pasos">
+        <div class="paso">
+          <div class="paso-num">1</div>
+          <div>
+            <p class="paso-t">Describe lo que ves — breve</p>
+            <p class="paso-d"><em>En la imagen se ve… En primer plano… Al fondo… La escena transmite una sensación de…</em></p>
+          </div>
+        </div>
+        <div class="paso">
+          <div class="paso-num">2</div>
+          <div>
+            <p class="paso-t">Conecta con el tema</p>
+            <p class="paso-d"><em>Esta imagen tiene que ver con la salud y el bienestar porque… El título sugiere que…</em></p>
+          </div>
+        </div>
+        <div class="paso">
+          <div class="paso-num">3</div>
+          <div>
+            <p class="paso-t">Añade la mirada cultural</p>
+            <p class="paso-d"><em>En Hong Kong esto se vive de esta manera… mientras que en muchos países hispanohablantes… A diferencia de…</em></p>
+          </div>
+        </div>
+        <div class="paso">
+          <div class="paso-num">4</div>
+          <div>
+            <p class="paso-t">Toma posición y da un ejemplo tuyo</p>
+            <p class="paso-d"><em>En mi opinión… porque… Por ejemplo, el año pasado yo…</em></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Expresiones útiles</h3>
+        <div class="format-chips">
+          <span class="format-chip">En la imagen se ve…</span>
+          <span class="format-chip">En primer plano / Al fondo…</span>
+          <span class="format-chip">Da la impresión de que…</span>
+          <span class="format-chip">Me hace pensar en…</span>
+          <span class="format-chip">Esto refleja la idea de que…</span>
+          <span class="format-chip">A diferencia de…</span>
+          <span class="format-chip">Sin embargo…</span>
+          <span class="format-chip">Por eso…</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Después de tu presentación: conversamos</h3>
+        <p class="note">Responde primero tú, con calma. Solo después abre «Ver una respuesta posible» para comparar — no para copiar.</p>
+      </div>
+
+      <div class="reveal-block">
+        <div class="reveal-header" tabindex="0" role="button">
+          <div class="reveal-num">1</div>
+          <p class="reveal-text">¿Qué significa para ti «estar bien»? ¿Esa idea ha cambiado en los últimos dos años? <span class="level-tag">Personal</span></p>
+          <button class="reveal-btn">Ver una respuesta posible</button>
+        </div>
+        <div class="reveal-body">
+          <p class="answer-label">Una respuesta posible</p>
+          <p>«Antes, estar bien significaba simplemente sacar buenas notas. Ahora creo que también tiene que ver con el descanso y con la gente que tengo cerca. Me di cuenta el año pasado: sacaba buenas notas, pero estaba sobrecargada y no disfrutaba nada. Así que mi definición cambió, aunque mi rutina todavía no.»</p>
+        </div>
+      </div>
+
+      <div class="reveal-block">
+        <div class="reveal-header" tabindex="0" role="button">
+          <div class="reveal-num">2</div>
+          <p class="reveal-text">¿Crees que la presión académica de tu ciudad es un problema de salud pública, o simplemente parte de la cultura? <span class="level-tag">Crítica</span></p>
+          <button class="reveal-btn">Ver una respuesta posible</button>
+        </div>
+        <div class="reveal-body">
+          <p class="answer-label">Una respuesta posible</p>
+          <p>«Creo que es las dos cosas a la vez, y ese es el problema. Como forma parte de la cultura, el agotamiento se normaliza y nadie lo trata como algo grave. Sin embargo, cuando muchos estudiantes duermen cinco horas durante meses, ya no es una decisión individual, sino un tema colectivo.»</p>
+        </div>
+      </div>
+
+      <div class="reveal-block">
+        <div class="reveal-header" tabindex="0" role="button">
+          <div class="reveal-num">3</div>
+          <p class="reveal-text">¿Qué consejo le darías a alguien que está agotado pero no quiere parar? <span class="level-tag">Consejo · subjuntivo</span></p>
+          <button class="reveal-btn">Ver una respuesta posible</button>
+        </div>
+        <div class="reveal-body">
+          <p class="answer-label">Una respuesta posible</p>
+          <p>«Le diría que no espere a terminar el semestre. Le recomiendo que empiece por algo pequeño, por ejemplo que deje el móvil una hora antes de dormir. También es importante que hable con alguien de su red de apoyo, porque cuando lo dices en voz alta deja de parecer normal.»</p>
+        </div>
+      </div>
+
+      <div class="reveal-block">
+        <div class="reveal-header" tabindex="0" role="button">
+          <div class="reveal-num">4</div>
+          <p class="reveal-text">Si tu colegio pudiera cambiar una sola cosa para cuidar mejor a los estudiantes, ¿cuál sería? <span class="level-tag">Especulativa</span></p>
+          <button class="reveal-btn">Ver una respuesta posible</button>
+        </div>
+        <div class="reveal-body">
+          <p class="answer-label">Una respuesta posible</p>
+          <p>«Si pudiera cambiar una cosa, quitaría las tareas de los fines de semana. No es que quiera estudiar menos, sino que necesito un espacio donde desconectar de verdad. Creo que volveríamos el lunes con más energía, y quizá el rendimiento incluso mejoraría.»</p>
+        </div>
+      </div>
+
+      <div class="foot-nav">
+        <button class="foot-btn" data-go="vocab">← Palabras y estructuras</button>
+        <button class="foot-btn primary" data-go="escrito">Siguiente: Escritura →</button>
+      </div>
+    </div>
+
+    <!-- ══ TAB 5 ══ -->
+    <div id="tab-escrito" class="tab-panel">
+      <div class="section-heading">
+        <div class="section-num">5</div>
+        <div>
+          <h2>Escritura</h2>
+          <p class="sub">Mensaje informal · 70–90 palabras · 5 minutos</p>
+        </div>
+        <span class="time-badge">45–50 min</span>
+      </div>
+
+      <div class="prompt-box">
+        <p class="prompt-label">Situación</p>
+        <p class="prompt-msg">«Llevo tres semanas durmiendo cuatro horas. Estoy bien, de verdad, es solo hasta los exámenes.»</p>
+        <p class="prompt-q">Una amiga te escribe esto. Respóndele.</p>
+        <p class="prompt-instr">Escribe un <strong>mensaje informal</strong>, como el que le mandarías de verdad a una amiga: salúdala, reacciona a lo que te cuenta, dale dos consejos concretos y cierra. Usa al menos <strong>4 palabras</strong> del vocabulario de hoy y <strong>dos estructuras de consejo con subjuntivo</strong>.</p>
+        <div class="prompt-meta">
+          <span class="prompt-chip">70–90 palabras</span>
+          <span class="prompt-chip">Tono cercano, tuteo</span>
+          <span class="prompt-chip">2 consejos con subjuntivo</span>
+          <span class="prompt-chip">4 palabras nuevas</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Antes de entregarlo, revisa</h3>
+        <ul class="criteria-list">
+          <li>¿Suena a un mensaje real a una amiga y no a un ensayo escolar?</li>
+          <li>¿Usaste al menos cuatro palabras del vocabulario de hoy?</li>
+          <li>¿Hay dos consejos con <em>que</em> + subjuntivo (<em>que duermas, que hables, que pidas</em>)?</li>
+          <li>¿Diste un ejemplo concreto de tu propia experiencia?</li>
+          <li>¿Revisaste concordancia de género y número, y los acentos?</li>
+        </ul>
+      </div>
+
+      <div class="next-box">
+        <h3>La próxima sesión</h3>
+        <p>Cerramos el tema de Identidades con los dos subtemas que quedan.</p>
+        <div class="subtema-grid">
+          <div class="subtema-chip">Creencias y valores</div>
+          <div class="subtema-chip">Subculturas</div>
+        </div>
+      </div>
+
+      <div class="foot-nav">
+        <button class="foot-btn" data-go="oral">← Oral con imagen</button>
+        <button class="foot-btn primary" data-go="repaso">↑ Volver al inicio</button>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<script>
+  /* ── TARJETAS DE REPASO (Sesión 3) ── */
+  const palabras = [
+    { es: "el estilo de vida",   def: "La forma general en que alguien vive: rutinas, hábitos y prioridades." },
+    { es: "la rutina diaria",    def: "Lo que haces cada día, casi siempre en el mismo orden." },
+    { es: "el bienestar",        def: "Sentirse bien física y emocionalmente." },
+    { es: "el equilibrio",       def: "La proporción justa entre dos cosas: estudio y descanso, por ejemplo." },
+    { es: "las prioridades",     def: "Lo que pones primero cuando no puedes hacerlo todo." },
+    { es: "el ritmo de vida",    def: "La velocidad a la que vives: acelerado, tranquilo, intenso." },
+    { es: "el rendimiento",      def: "Los resultados que produces: académicos, laborales, deportivos." },
+    { es: "sostenible",          def: "Que se puede mantener en el tiempo sin agotarse." },
+    { es: "la calidad de vida",  def: "Lo bien que se vive, más allá del dinero o los logros." },
+    { es: "reflexionar sobre",   def: "Pensar con calma y profundidad en algo." },
+  ];
+
+  const grid = document.getElementById('palabras-grid');
+  palabras.forEach(p => {
+    const chip = document.createElement('div');
+    chip.className = 'palabra-chip';
+    chip.setAttribute('tabindex', '0');
+    chip.setAttribute('role', 'button');
+    chip.innerHTML =
+      '<div class="palabra-es">' + p.es + '</div>' +
+      '<div class="palabra-hint">Toca para revelar</div>' +
+      '<div class="palabra-def">' + p.def + '</div>';
+    const toggle = () => chip.classList.toggle('revealed');
+    chip.addEventListener('click', toggle);
+    chip.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
+    });
+    grid.appendChild(chip);
+  });
+
+  /* ── NAVEGACIÓN POR PESTAÑAS ── */
+  function showTab(id) {
+    document.querySelectorAll('.tab-panel').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+    document.getElementById('tab-' + id).classList.add('active');
+    document.querySelector('.nav-item[data-tab="' + id + '"]').classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  document.querySelectorAll('.nav-item').forEach(item => {
+    const go = () => showTab(item.dataset.tab);
+    item.addEventListener('click', go);
+    item.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(); }
+    });
+  });
+
+  document.querySelectorAll('[data-go]').forEach(btn => {
+    btn.addEventListener('click', () => showTab(btn.dataset.go));
+  });
+
+  /* ── ELEGIR ESTÍMULO ── */
+  document.querySelectorAll('.stimulus-card').forEach(card => {
+    const pick = () => {
+      document.querySelectorAll('.stimulus-card').forEach(c => c.classList.remove('chosen'));
+      card.classList.add('chosen');
+    };
+    card.addEventListener('click', pick);
+    card.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pick(); }
+    });
+  });
+
+  /* ── REVELAR RESPUESTAS ── */
+  document.querySelectorAll('.reveal-header').forEach(header => {
+    const toggle = () => {
+      const body = header.nextElementSibling;
+      const btn = header.querySelector('.reveal-btn');
+      const open = body.classList.toggle('open');
+      btn.textContent = open ? 'Ocultar' : 'Ver una respuesta posible';
+    };
+    header.addEventListener('click', toggle);
+    header.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
+    });
+  });
+</script>
+</body>
+</html>
