@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Dress Code — Vocabulary Practice — Class materials</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap');
+
+  :root{
+    --navy:#1B3A5C;
+    --teal:#0E8F8F;
+    --navy-tint:#EAF0F5;
+    --teal-tint:#E4F4F4;
+    --ink:#28313A;
+  }
+
+  *{box-sizing:border-box;}
+
+  body{
+    font-family:'Nunito', sans-serif;
+    margin:0;
+    padding:32px 20px 60px;
+    background:#f7f8fa;
+    color:var(--ink);
+  }
+
+  .wrap{
+    max-width:1000px;
+    margin:0 auto;
+  }
+
+  header{
+    text-align:center;
+    margin-bottom:28px;
+  }
+
+  header h1{
+    color:var(--navy);
+    font-size:1.7rem;
+    font-weight:800;
+    margin:0 0 6px;
+  }
+
+  header p{
+    color:#5c6773;
+    font-weight:600;
+    margin:0;
+    font-size:0.95rem;
+  }
+
+  .tabs{
+    display:flex;
+    gap:10px;
+    justify-content:center;
+    margin-bottom:30px;
+    flex-wrap:wrap;
+  }
+
+  .tab-btn{
+    font-family:'Nunito', sans-serif;
+    font-weight:700;
+    font-size:0.95rem;
+    padding:12px 26px;
+    border-radius:999px;
+    border:2px solid var(--navy);
+    background:#fff;
+    color:var(--navy);
+    cursor:pointer;
+    transition:all 0.2s ease;
+  }
+
+  .tab-btn.active{
+    background:var(--navy);
+    color:#fff;
+  }
+
+  .tab-btn:hover{
+    transform:translateY(-1px);
+  }
+
+  .panel{
+    display:none;
+  }
+  .panel.active{
+    display:block;
+    animation:fade 0.35s ease;
+  }
+
+  @keyframes fade{
+    from{opacity:0; transform:translateY(6px);}
+    to{opacity:1; transform:translateY(0);}
+  }
+
+  .instructions{
+    background:var(--navy-tint);
+    border-left:5px solid var(--navy);
+    padding:14px 18px;
+    border-radius:8px;
+    margin-bottom:26px;
+    font-size:0.95rem;
+    color:var(--ink);
+  }
+
+  /* ---------- Vocabulary cards ---------- */
+  .vocab-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(230px, 1fr));
+    gap:18px;
+  }
+
+  .flip-card{
+    perspective:1000px;
+    height:200px;
+    cursor:pointer;
+  }
+
+  .flip-inner{
+    position:relative;
+    width:100%;
+    height:100%;
+    text-align:center;
+    transition:transform 0.6s;
+    transform-style:preserve-3d;
+  }
+
+  .flip-card.flipped .flip-inner{
+    transform:rotateY(180deg);
+  }
+
+  .face{
+    position:absolute;
+    inset:0;
+    backface-visibility:hidden;
+    border-radius:14px;
+    padding:18px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    box-shadow:0 3px 10px rgba(27,58,92,0.10);
+  }
+
+  .face-front{
+    background:#fff;
+    border:2px solid var(--navy-tint);
+  }
+
+  .face-front .letter-badge{
+    background:var(--navy);
+    color:#fff;
+    font-weight:800;
+    width:30px;
+    height:30px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin-bottom:10px;
+    font-size:0.9rem;
+  }
+
+  .face-front p{
+    font-size:0.92rem;
+    line-height:1.35;
+    margin:0;
+    color:var(--ink);
+  }
+
+  .face-back{
+    background:var(--teal-tint);
+    border:2px solid var(--teal);
+    transform:rotateY(180deg);
+  }
+
+  .face-back .term{
+    font-weight:800;
+    color:var(--navy);
+    font-size:1.15rem;
+    margin-bottom:4px;
+  }
+
+  .face-back .num-badge{
+    background:var(--teal);
+    color:#fff;
+    font-weight:800;
+    width:26px;
+    height:26px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:0.8rem;
+    margin-bottom:8px;
+  }
+
+  .hint{
+    font-size:0.75rem;
+    color:#8a94a1;
+    margin-top:10px;
+    font-weight:600;
+  }
+
+  /* ---------- Progress ---------- */
+  .progress-row{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    flex-wrap:wrap;
+    margin-bottom:22px;
+  }
+
+  .progress-label{
+    font-weight:700;
+    font-size:0.85rem;
+    color:var(--navy);
+    white-space:nowrap;
+  }
+
+  .progress-bar{
+    flex:1 1 180px;
+    height:9px;
+    background:var(--navy-tint);
+    border-radius:999px;
+    overflow:hidden;
+  }
+
+  .progress-bar > i{
+    display:block;
+    height:100%;
+    width:0;
+    background:var(--teal);
+    transition:width 0.35s ease;
+  }
+
+  .mini-btn{
+    font-family:'Nunito', sans-serif;
+    font-weight:700;
+    font-size:0.8rem;
+    padding:8px 18px;
+    border-radius:999px;
+    border:2px solid var(--navy-tint);
+    background:#fff;
+    color:#5c6773;
+    cursor:pointer;
+    transition:all 0.2s ease;
+  }
+
+  .mini-btn:hover{
+    border-color:var(--navy);
+    color:var(--navy);
+  }
+
+  /* ---------- Word bank ---------- */
+  .word-bank{
+    background:#fff;
+    border:2px dashed var(--teal);
+    border-radius:14px;
+    padding:16px 18px;
+    margin-bottom:24px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    align-items:center;
+  }
+
+  .word-bank .bank-label{
+    width:100%;
+    font-size:0.72rem;
+    font-weight:800;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--teal);
+    margin-bottom:2px;
+  }
+
+  .chip{
+    background:var(--teal-tint);
+    color:var(--navy);
+    font-weight:700;
+    font-size:0.85rem;
+    padding:5px 14px;
+    border-radius:999px;
+    transition:opacity 0.25s ease;
+  }
+
+  .chip.used{
+    opacity:0.35;
+    text-decoration:line-through;
+  }
+
+  /* ---------- Gap-fill cards ---------- */
+  .gap-grid{
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+  }
+
+  .gap-card{
+    background:#fff;
+    border:2px solid var(--navy-tint);
+    border-radius:14px;
+    box-shadow:0 3px 10px rgba(27,58,92,0.08);
+    padding:18px 20px;
+    display:flex;
+    gap:14px;
+    align-items:flex-start;
+    transition:border-color 0.25s ease;
+  }
+
+  .gap-card.correct{
+    border-color:var(--teal);
+    background:var(--teal-tint);
+  }
+
+  .gap-card.incorrect{
+    border-color:var(--navy);
+  }
+
+  .gap-card .num-badge2{
+    background:var(--navy);
+    color:#fff;
+    font-weight:800;
+    width:34px;
+    height:34px;
+    min-width:34px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:0.9rem;
+  }
+
+  .gap-card.correct .num-badge2{
+    background:var(--teal);
+  }
+
+  .sentence{
+    font-size:0.97rem;
+    line-height:2;
+    flex:1;
+  }
+
+  select{
+    font-family:'Nunito', sans-serif;
+    font-weight:800;
+    font-size:0.92rem;
+    color:var(--navy);
+    background:#fff;
+    border:2px solid var(--teal);
+    border-radius:8px;
+    padding:5px 10px;
+    margin:0 2px;
+    cursor:pointer;
+    max-width:190px;
+  }
+
+  select:focus-visible{
+    outline:3px solid var(--teal);
+    outline-offset:2px;
+  }
+
+  .gap-card.correct select{
+    background:var(--teal);
+    color:#fff;
+  }
+
+  .gap-card.incorrect select{
+    border-style:dotted;
+    border-color:var(--navy);
+  }
+
+  .verdict{
+    font-weight:800;
+    font-size:1rem;
+    margin-left:6px;
+  }
+
+  .verdict.correct{color:var(--teal);}
+  .verdict.incorrect{color:var(--navy);}
+
+  /* ---------- Score ---------- */
+  .score-row{
+    display:flex;
+    gap:14px;
+    align-items:center;
+    flex-wrap:wrap;
+    margin-top:26px;
+  }
+
+  .check-btn{
+    font-family:'Nunito', sans-serif;
+    font-weight:800;
+    font-size:0.95rem;
+    padding:13px 30px;
+    border-radius:999px;
+    border:2px solid var(--navy);
+    background:var(--navy);
+    color:#fff;
+    cursor:pointer;
+    transition:all 0.2s ease;
+  }
+
+  .check-btn:hover{
+    background:var(--teal);
+    border-color:var(--teal);
+    transform:translateY(-1px);
+  }
+
+  .score-box{
+    background:var(--teal-tint);
+    border-left:4px solid var(--teal);
+    border-radius:8px;
+    padding:10px 18px;
+    font-weight:800;
+    color:var(--navy);
+    font-size:0.95rem;
+    opacity:0;
+    transform:translateY(6px);
+    transition:all 0.3s ease;
+  }
+
+  .score-box.show{
+    opacity:1;
+    transform:translateY(0);
+  }
+
+  footer{
+    text-align:center;
+    margin-top:30px;
+    color:#9aa3ad;
+    font-size:0.8rem;
+    font-weight:600;
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    *{animation:none !important; transition-duration:0.01ms !important;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <h1>Dress Code</h1>
+    <p>Focus on vocabulary &middot; B2</p>
+  </header>
+
+  <div class="tabs">
+    <button class="tab-btn active" data-tab="vocab">🔤 Part A — Match</button>
+    <button class="tab-btn" data-tab="gaps">✏️ Part B — Complete</button>
+  </div>
+
+  <!-- ================= TAB 1: VOCABULARY ================= -->
+  <section class="panel active" id="vocab">
+    <div class="instructions">
+      Tap a card to reveal the vocabulary word that matches the definition.
+    </div>
+
+    <div class="progress-row">
+      <span class="progress-label" id="cardCount">0 of 8 revealed</span>
+      <span class="progress-bar"><i id="cardBar"></i></span>
+      <button class="mini-btn" id="resetCards" type="button">Turn all back</button>
+    </div>
+
+    <div class="vocab-grid" id="vocabGrid"></div>
+  </section>
+
+  <!-- ================= TAB 2: GAP FILL ================= -->
+  <section class="panel" id="gaps">
+    <div class="instructions">
+      Complete each sentence with vocabulary from Part A. Each word is used once.
+    </div>
+
+    <div class="word-bank" id="wordBank">
+      <span class="bank-label">Word bank</span>
+    </div>
+
+    <div class="gap-grid" id="gapGrid"></div>
+
+    <div class="score-row">
+      <button class="check-btn" id="checkBtn" type="button">Show my score</button>
+      <button class="mini-btn" id="resetGaps" type="button">Start again</button>
+      <span class="score-box" id="scoreBox"></span>
+    </div>
+  </section>
+
+  <footer>Topic: dress code &middot; vocabulary practice</footer>
+</div>
+
+<script>
+  // ---------- Tabs ----------
+  document.querySelectorAll('.tab-btn').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+      document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById(btn.dataset.tab).classList.add('active');
+    });
+  });
+
+  // ---------- Vocabulary data (matched pairs) ----------
+  const vocab = [
+    {letter:'a', def:'having holes or tears in and appearing old and worn', term:'ragged (adj)', num:4},
+    {letter:'b', def:'a loose, thin dress worn by women to sleep in', term:'nightie (n)', num:7},
+    {letter:'c', def:'clothing which is worn in order to make people notice you', term:'fashion statement (n)', num:5},
+    {letter:'d', def:'clothing which is like a sock without the foot section, worn stretching from the ankle to the knee', term:'leg warmer (n)', num:1},
+    {letter:'e', def:'regarding a very thin material which does not hide the body beneath', term:'see-through (adj)', num:2},
+    {letter:'f', def:'regarding jackets, shirts, sweaters, etc. which do not cover the arms', term:'sleeveless (adj)', num:3},
+    {letter:'g', def:'a kind of sandal, usually plastic or rubber, with a strap held in place by a piece which goes between the big toe and second toe', term:'flip flops (n)', num:6},
+    {letter:'h', def:'fitting in a way that hugs the body', term:'skintight (adj)', num:8},
+  ];
+
+  const vocabGrid = document.getElementById('vocabGrid');
+  vocab.forEach(v=>{
+    const card = document.createElement('div');
+    card.className = 'flip-card';
+    card.innerHTML = `
+      <div class="flip-inner">
+        <div class="face face-front">
+          <div class="letter-badge">${v.letter}</div>
+          <p>${v.def}</p>
+          <span class="hint">tap to reveal</span>
+        </div>
+        <div class="face face-back">
+          <div class="num-badge">${v.num}</div>
+          <div class="term">${v.term}</div>
+        </div>
+      </div>
+    `;
+    card.addEventListener('click', ()=>{
+      card.classList.toggle('flipped');
+      updateCardProgress();
+    });
+    vocabGrid.appendChild(card);
+  });
+
+  function updateCardProgress(){
+    const n = document.querySelectorAll('.flip-card.flipped').length;
+    document.getElementById('cardCount').textContent = n + ' of 8 revealed';
+    document.getElementById('cardBar').style.width = (n/8*100) + '%';
+  }
+
+  document.getElementById('resetCards').addEventListener('click', ()=>{
+    document.querySelectorAll('.flip-card').forEach(c=>c.classList.remove('flipped'));
+    updateCardProgress();
+  });
+
+  // ---------- Gap-fill data ----------
+  const words = ['fashion statement','flip flops','leg warmers','nightie','ragged','see-through','skintight','sleeveless'];
+
+  const items = [
+    {before:'She was wearing this big fur coat even though it wasn\u2019t really cold at all. I think it was meant to be more of a ', after:' than a practical choice.', answer:'fashion statement'},
+    {before:'I just went to the gym for the first time in ages and all the men were wearing these ', after:' T-shirts so you can see how big their muscles are. It was embarrassing.', answer:'sleeveless'},
+    {before:'It was really strange. He was wearing a jacket and shirt which were really smart, but then his jeans were all ', after:' around the knees and legs so you could see his tattoos.', answer:'ragged'},
+    {before:'She was dressed really formally from the waist up. But when she got up from the desk, she was wearing ', after:' leggings which left very little to the imagination!', answer:'skintight'},
+    {before:'I got caught in the rain at lunchtime and it was so embarrassing as it made my shirt completely ', after:'.', answer:'see-through'},
+    {before:'My sister\u2019s manager came around to drop off some files first thing in the morning and she felt really awkward because he was earlier than she expected and she was still in her ', after:'.', answer:'nightie'},
+    {before:'When I came out of the sea, I couldn\u2019t find my ', after:' on the beach anywhere and I had to walk back to the hotel barefoot. The pavement was so hot!', answer:'flip flops'},
+    {before:'My girlfriend loves her yoga class but complains about getting cold. So I bought her some ', after:' so at least her ankles are warm.', answer:'leg warmers'},
+  ];
+
+  // Word bank chips
+  const wordBank = document.getElementById('wordBank');
+  words.forEach(w=>{
+    const chip = document.createElement('span');
+    chip.className = 'chip';
+    chip.dataset.word = w;
+    chip.textContent = w;
+    wordBank.appendChild(chip);
+  });
+
+  const gapGrid = document.getElementById('gapGrid');
+  items.forEach((item, i)=>{
+    const card = document.createElement('div');
+    card.className = 'gap-card';
+
+    const badge = document.createElement('div');
+    badge.className = 'num-badge2';
+    badge.textContent = i+1;
+
+    const sentence = document.createElement('div');
+    sentence.className = 'sentence';
+
+    const select = document.createElement('select');
+    select.setAttribute('aria-label', 'Sentence ' + (i+1) + ', choose a word');
+    select.innerHTML = '<option value="">choose…</option>' +
+      words.map(w=>`<option value="${w}">${w}</option>`).join('');
+
+    const verdict = document.createElement('span');
+    verdict.className = 'verdict';
+
+    select.addEventListener('change', ()=>{
+      card.classList.remove('correct','incorrect');
+      verdict.className = 'verdict';
+      verdict.textContent = '';
+      if(select.value){
+        const ok = select.value === item.answer;
+        card.classList.add(ok ? 'correct' : 'incorrect');
+        verdict.classList.add(ok ? 'correct' : 'incorrect');
+        verdict.textContent = ok ? '✓' : '✗';
+      }
+      refreshBank();
+      document.getElementById('scoreBox').classList.remove('show');
+    });
+
+    sentence.append(document.createTextNode(item.before));
+    sentence.appendChild(select);
+    sentence.appendChild(verdict);
+    sentence.append(document.createTextNode(item.after));
+
+    card.appendChild(badge);
+    card.appendChild(sentence);
+    gapGrid.appendChild(card);
+  });
+
+  function refreshBank(){
+    const chosen = [...gapGrid.querySelectorAll('select')].map(s=>s.value);
+    wordBank.querySelectorAll('.chip').forEach(chip=>{
+      chip.classList.toggle('used', chosen.includes(chip.dataset.word));
+    });
+  }
+
+  document.getElementById('checkBtn').addEventListener('click', ()=>{
+    let right = 0;
+    [...gapGrid.querySelectorAll('select')].forEach((s,i)=>{
+      if(s.value === items[i].answer) right++;
+    });
+    const box = document.getElementById('scoreBox');
+    box.textContent = right + ' / 8 correct' + (right===8 ? ' — perfect!' : '');
+    box.classList.add('show');
+  });
+
+  document.getElementById('resetGaps').addEventListener('click', ()=>{
+    gapGrid.querySelectorAll('select').forEach(s=>s.value='');
+    gapGrid.querySelectorAll('.gap-card').forEach(c=>c.classList.remove('correct','incorrect'));
+    gapGrid.querySelectorAll('.verdict').forEach(v=>{v.className='verdict'; v.textContent='';});
+    refreshBank();
+    document.getElementById('scoreBox').classList.remove('show');
+  });
+</script>
+</body>
+</html>
