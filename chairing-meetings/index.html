@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Chairing meetings — Class materials</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink:        #16203F;
+    --indigo:     #2E3F73;
+    --indigo-mid: #5A6CA4;
+    --indigo-soft:#ECEFF9;
+    --indigo-line:#C2CAE6;
+
+    --amber:      #B57A17;
+    --amber-mid:  #DFA53A;
+    --amber-soft: #FCF4E3;
+    --amber-line: #EBD199;
+
+    --paper:      #FAF9F6;
+    --line:       #E3E1DA;
+    --text:       #22242E;
+    --muted:      #4C4F5D;
+    --hint:       #7B7F8D;
+
+    --good:       #2E7D4F;
+    --good-soft:  #E9F5EE;
+    --bad:        #B23B3B;
+    --bad-soft:   #FBEAEA;
+
+    --font: 'Nunito', sans-serif;
+    --r:  14px;
+    --rs: 9px;
+  }
+
+  body { font-family: var(--font); background: var(--paper); color: var(--text); }
+  :focus-visible { outline: 3px solid var(--amber-mid); outline-offset: 2px; border-radius: 4px; }
+
+  .head { background: var(--ink); color: #fff; padding: 2.2rem 2rem 2rem; }
+  .head-in { max-width: 900px; margin: 0 auto; }
+  .kicker { font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--amber-mid); margin-bottom: 8px; }
+  .head h1 { font-size: 32px; font-weight: 800; line-height: 1.15; letter-spacing: -0.01em; }
+  .head .q { font-size: 16px; margin-top: 10px; color: #C6CDE4; line-height: 1.5; }
+  .tags { display: flex; gap: 7px; flex-wrap: wrap; margin-top: 16px; }
+  .tag { font-size: 12px; font-weight: 700; padding: 4px 12px; border-radius: 99px; border: 1px solid rgba(255,255,255,0.22); color: #DDE2F2; }
+  .tag.hl { background: var(--amber-mid); border-color: var(--amber-mid); color: var(--ink); }
+
+  .rail-wrap { background: #fff; border-bottom: 1px solid var(--line); position: sticky; top: 0; z-index: 50; }
+  .rail { max-width: 900px; margin: 0 auto; display: flex; padding: 0 2rem; overflow-x: auto; scrollbar-width: none; }
+  .rail::-webkit-scrollbar { display: none; }
+  .step { flex: 1; min-width: 150px; background: none; border: none; font-family: var(--font); cursor: pointer; padding: 14px 6px 12px; text-align: left; border-bottom: 3px solid transparent; transition: border-color .15s, color .15s; }
+  .step-n { display: inline-flex; align-items: center; justify-content: center; width: 22px; height: 22px; border-radius: 50%; font-size: 11px; font-weight: 800; background: var(--indigo-soft); color: var(--indigo); margin-bottom: 5px; }
+  .step-t { display: block; font-size: 13px; font-weight: 700; color: var(--hint); line-height: 1.3; }
+  .step-m { display: block; font-size: 10.5px; font-weight: 600; color: var(--hint); opacity: .75; margin-top: 2px; }
+  .step:hover .step-t { color: var(--indigo); }
+  .step.on { border-bottom-color: var(--amber-mid); }
+  .step.on .step-n { background: var(--amber-mid); color: var(--ink); }
+  .step.on .step-t { color: var(--ink); }
+
+  .wrap { max-width: 900px; margin: 0 auto; padding: 2rem 2rem 3rem; }
+  .panel { display: none; }
+  .panel.on { display: block; animation: in .22s ease; }
+  @keyframes in { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: none; } }
+
+  .lead { margin-bottom: 1.6rem; }
+  .lead h2 { font-size: 25px; font-weight: 800; color: var(--ink); line-height: 1.2; }
+  .lead .sub { font-size: 15px; color: var(--muted); margin-top: 6px; line-height: 1.6; }
+  .rule { height: 3px; width: 52px; background: var(--amber-mid); border-radius: 2px; margin-top: 14px; }
+
+  .box { background: #fff; border: 1px solid var(--line); border-radius: var(--r); padding: 1.3rem 1.5rem; margin-bottom: 1rem; }
+  .box h3 { font-size: 16px; font-weight: 800; color: var(--ink); margin-bottom: 9px; }
+  .box p { font-size: 15px; line-height: 1.75; color: var(--muted); }
+  .box p + p { margin-top: 9px; }
+  .small { font-size: 13.5px; color: var(--hint); line-height: 1.6; }
+
+  .ghost { font-family: var(--font); font-size: 12.5px; font-weight: 700; background: none; border: 1px solid var(--line); color: var(--hint); border-radius: 99px; padding: 6px 14px; cursor: pointer; }
+  .ghost:hover { border-color: var(--indigo-line); color: var(--indigo); }
+
+  /* ── shared match bar ── */
+  .match-bar { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 1rem; }
+  .score { font-size: 13.5px; font-weight: 700; color: var(--indigo); }
+
+  /* ── 1 · OPPOSITES ── */
+  .match { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 1rem 0 .5rem; }
+  .col-lab { font-size: 10.5px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--hint); margin-bottom: 8px; }
+  .m-item { display: block; width: 100%; text-align: left; font-family: var(--font); background: #fff; border: 1.5px solid var(--line); border-radius: var(--rs); padding: 12px 14px; margin-bottom: 8px; cursor: pointer; font-size: 14.5px; font-weight: 700; line-height: 1.5; color: var(--muted); transition: border-color .15s, background .15s; }
+  .m-item:hover:not(.done) { border-color: var(--indigo-line); }
+  .m-item.sel { border-color: var(--indigo); background: var(--indigo-soft); }
+  .m-item.done { background: var(--good-soft); border-color: var(--good); color: #1E5636; cursor: default; }
+  .m-item.miss { animation: shake .3s; border-color: var(--bad); }
+  @keyframes shake { 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
+
+  /* ── 2 · DO OR DON'T ── */
+  .pool { display: flex; flex-wrap: wrap; gap: 9px; padding: 1rem 0 .2rem; min-height: 46px; }
+  .chip { font-family: var(--font); font-size: 14px; font-weight: 700; line-height: 1.4; text-align: left; background: var(--amber-soft); border: 1.5px solid var(--amber-line); color: #6E4A0C; border-radius: var(--rs); padding: 10px 14px; cursor: pointer; max-width: 100%; transition: border-color .15s, box-shadow .15s, transform .1s; }
+  .chip:hover { border-color: var(--amber-mid); }
+  .chip.pick { border-color: var(--indigo); box-shadow: 0 0 0 3px var(--indigo-soft); transform: translateY(-1px); }
+  .zones { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 1rem; }
+  .zone { background: #fff; border: 2px dashed var(--line); border-radius: var(--r); padding: 1rem 1.1rem; min-height: 120px; transition: border-color .15s, background .15s; cursor: pointer; }
+  .zone:hover { border-color: var(--indigo-line); }
+  .zone.hit { animation: pulse-good .35s; }
+  .zone.miss { animation: shake .3s; border-color: var(--bad); }
+  @keyframes pulse-good { 50% { background: var(--good-soft); border-color: var(--good); } }
+  .zone-h { font-size: 13px; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; margin-bottom: 10px; }
+  .zone.do .zone-h { color: var(--good); }
+  .zone.dont .zone-h { color: var(--bad); }
+  .zone-item { font-size: 13.5px; font-weight: 700; line-height: 1.5; background: var(--good-soft); color: #1E5636; border: 1px solid var(--good); border-radius: var(--rs); padding: 8px 11px; margin-bottom: 7px; }
+  .zone.dont .zone-item { background: var(--bad-soft); color: #7A2424; border-color: var(--bad); }
+  .empty-hint { font-size: 12.5px; color: var(--hint); font-style: italic; }
+
+  /* ── 3 · MATCH THE ADJECTIVE ── */
+  .srow { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; padding: 11px 0; border-bottom: 1px solid var(--line); }
+  .srow:last-child { border-bottom: none; }
+  .stext { flex: 1 1 260px; font-size: 14.5px; line-height: 1.55; color: var(--text); }
+  .sright { display: flex; align-items: center; gap: 8px; }
+  select.sselect { font-family: var(--font); font-size: 13.5px; font-weight: 700; color: var(--muted); background: #fff; border: 1.5px solid var(--line); border-radius: var(--rs); padding: 7px 10px; cursor: pointer; }
+  select.sselect:focus { border-color: var(--indigo); }
+  .sicon { width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800; flex-shrink: 0; visibility: hidden; }
+  .srow.correct .sicon { visibility: visible; background: var(--good-soft); color: var(--good); }
+  .srow.incorrect .sicon { visibility: visible; background: var(--bad-soft); color: var(--bad); }
+  .srow.correct select.sselect { border-color: var(--good); color: #1E5636; }
+  .srow.incorrect select.sselect { border-color: var(--bad); }
+  .sextra { flex-basis: 100%; font-size: 12px; color: var(--hint); margin-top: 2px; }
+  .gtitle { font-size: 10.5px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--indigo); margin: 1.2rem 0 4px; }
+  .gtitle:first-child { margin-top: 0; }
+
+  .callout { background: var(--amber-soft); border-left: 3px solid var(--amber-mid); border-radius: 0 var(--rs) var(--rs) 0; padding: 12px 16px; font-size: 14.5px; font-weight: 600; color: #6E4A0C; line-height: 1.65; margin-top: 12px; }
+
+  .foot-nav { display: flex; justify-content: space-between; gap: 10px; margin-top: 1.8rem; padding-top: 1.4rem; border-top: 1px solid var(--line); }
+  .fb { font-family: var(--font); font-size: 13.5px; font-weight: 800; padding: 10px 20px; border-radius: 99px; border: 1px solid var(--line); background: #fff; color: var(--muted); cursor: pointer; }
+  .fb:hover:not(:disabled) { border-color: var(--indigo-line); color: var(--indigo); }
+  .fb:disabled { opacity: .3; cursor: default; }
+  .fb.go { background: var(--indigo); border-color: var(--indigo); color: #fff; }
+  .fb.go:hover { background: var(--ink); border-color: var(--ink); color: #fff; }
+
+  @media (max-width: 820px) {
+    .head { padding: 1.6rem 1.2rem; }
+    .head h1 { font-size: 25px; }
+    .rail { padding: 0 1.2rem; }
+    .wrap { padding: 1.5rem 1.2rem 1rem; }
+    .match, .zones { grid-template-columns: 1fr; }
+    .lead h2 { font-size: 22px; }
+    .stext { flex-basis: 100%; }
+  }
+  @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
+</style>
+</head>
+<body>
+
+<header class="head">
+  <div class="head-in">
+    <p class="kicker">ESL · Meetings &amp; workplace English</p>
+    <h1>Chairing meetings</h1>
+    <p class="q">What separates a chairperson who runs a good meeting from one who ruins it?</p>
+    <div class="tags">
+      <span class="tag hl">B2</span>
+      <span class="tag">~40 minutes</span>
+      <span class="tag">Adjectives of character</span>
+      <span class="tag">Self-check activities</span>
+    </div>
+  </div>
+</header>
+
+<div class="rail-wrap">
+  <nav class="rail" aria-label="Parts of the lesson">
+    <button class="step on" data-p="opposites"><span class="step-n">1</span><span class="step-t">Opposites</span><span class="step-m">0–12 min</span></button>
+    <button class="step" data-p="dodont"><span class="step-n">2</span><span class="step-t">Do or don't</span><span class="step-m">12–25 min</span></button>
+    <button class="step" data-p="matchadj"><span class="step-n">3</span><span class="step-t">Match the adjective</span><span class="step-m">25–40 min</span></button>
+  </nav>
+</div>
+
+<div class="wrap">
+
+  <!-- ══ 1 · OPPOSITES ══ -->
+  <section id="p-opposites" class="panel on">
+    <div class="lead">
+      <h2>Adjectives for a chairperson — and their opposites</h2>
+      <p class="sub">Every quality has a shadow version. Match each adjective on the left with the word that means the opposite on the right.</p>
+      <div class="rule"></div>
+    </div>
+
+    <div class="box">
+      <h3>How it works</h3>
+      <p class="small">Tap an adjective, then tap the word on the right that means the opposite. A correct pair turns green and locks in place.</p>
+    </div>
+
+    <div class="match-bar">
+      <span class="score" id="oscore">0 of 8 pairs</span>
+      <button class="ghost" id="oreset">Start over</button>
+    </div>
+
+    <div class="match">
+      <div>
+        <p class="col-lab">Adjective</p>
+        <div id="col-adj"></div>
+      </div>
+      <div>
+        <p class="col-lab">Opposite</p>
+        <div id="col-opp"></div>
+      </div>
+    </div>
+
+    <div class="foot-nav">
+      <button class="fb" disabled>← Previous</button>
+      <button class="fb go" data-go="dodont">Next: Do or don't →</button>
+    </div>
+  </section>
+
+  <!-- ══ 2 · DO OR DON'T ══ -->
+  <section id="p-dodont" class="panel">
+    <div class="lead">
+      <h2>Sort the chairperson's behaviours</h2>
+      <p class="sub">Eleven things a chairperson might do during a meeting. Some help the meeting; some ruin it.</p>
+      <div class="rule"></div>
+    </div>
+
+    <div class="box">
+      <h3>How it works</h3>
+      <p class="small">Tap a statement below to pick it up, then tap the <strong>Do</strong> or <strong>Don't</strong> column to place it there. A correct placement stays; a wrong one bounces back so you can try the other column.</p>
+    </div>
+
+    <div class="match-bar">
+      <span class="score" id="dscore">0 of 11 placed</span>
+      <button class="ghost" id="dreset">Start over</button>
+    </div>
+
+    <div class="pool" id="pool"></div>
+
+    <div class="zones">
+      <div class="zone do" id="zone-do" data-cat="do" tabindex="0" role="button" aria-label="Place in Do column">
+        <p class="zone-h">Do</p>
+        <div id="zone-do-items"></div>
+        <p class="empty-hint" id="do-hint">Nothing here yet</p>
+      </div>
+      <div class="zone dont" id="zone-dont" data-cat="dont" tabindex="0" role="button" aria-label="Place in Don't column">
+        <p class="zone-h">Don't</p>
+        <div id="zone-dont-items"></div>
+        <p class="empty-hint" id="dont-hint">Nothing here yet</p>
+      </div>
+    </div>
+
+    <div class="foot-nav">
+      <button class="fb" data-go="opposites">← Opposites</button>
+      <button class="fb go" data-go="matchadj">Next: Match the adjective →</button>
+    </div>
+  </section>
+
+  <!-- ══ 3 · MATCH THE ADJECTIVE ══ -->
+  <section id="p-matchadj" class="panel">
+    <div class="lead">
+      <h2>Match each sentence to a suitable adjective</h2>
+      <p class="sub">Choose the adjective that best describes someone who does this. A few sentences accept more than one good answer.</p>
+      <div class="rule"></div>
+    </div>
+
+    <div class="match-bar">
+      <span class="score" id="sscore">0 of 11 correct</span>
+      <button class="ghost" id="sreset">Start over</button>
+    </div>
+
+    <div class="box">
+      <p class="gtitle">Group 1</p>
+      <div id="group1"></div>
+    </div>
+
+    <div class="box">
+      <p class="gtitle">Group 2</p>
+      <div id="group2"></div>
+    </div>
+
+    <div class="callout">A trait can show up in more than one behaviour — that's why "domineering" fits both talking the most <em>and</em> making every decision alone.</div>
+
+    <div class="foot-nav">
+      <button class="fb" data-go="dodont">← Do or don't</button>
+      <button class="fb go" data-go="opposites">↑ Back to start</button>
+    </div>
+  </section>
+
+</div>
+
+<script>
+  /* ── 1 · OPPOSITES ── */
+  const OPPOSITES = [
+    { a: "calm", b: "temperamental" },
+    { a: "impartial", b: "biased" },
+    { a: "open-minded", b: "intolerant" },
+    { a: "well-organized", b: "disorganized" },
+    { a: "attentive", b: "forgetful" },
+    { a: "encouraging", b: "discouraging" },
+    { a: "self-disciplined", b: "uncontrolled" },
+    { a: "domineering", b: "passive" }
+  ];
+  let oSel = null, oCorrect = 0;
+
+  function shuffle(a) { return a.map(x => [Math.random(), x]).sort((p, q) => p[0] - q[0]).map(p => p[1]); }
+
+  function buildOpposites() {
+    const ca = document.getElementById('col-adj'), co = document.getElementById('col-opp');
+    ca.innerHTML = ''; co.innerHTML = ''; oSel = null; oCorrect = 0;
+    oScore();
+
+    shuffle([...OPPOSITES]).forEach(p => {
+      const b = document.createElement('button');
+      b.className = 'm-item'; b.dataset.id = p.a; b.textContent = p.a;
+      b.addEventListener('click', () => {
+        if (b.classList.contains('done')) return;
+        document.querySelectorAll('#col-adj .m-item').forEach(x => x.classList.remove('sel'));
+        b.classList.add('sel'); oSel = b;
+      });
+      ca.appendChild(b);
+    });
+
+    shuffle([...OPPOSITES]).forEach(p => {
+      const b = document.createElement('button');
+      b.className = 'm-item'; b.dataset.id = p.a; b.textContent = p.b;
+      b.addEventListener('click', () => {
+        if (b.classList.contains('done') || !oSel) return;
+        if (b.dataset.id === oSel.dataset.id) {
+          b.classList.add('done'); oSel.classList.add('done'); oSel.classList.remove('sel');
+          oSel = null; oCorrect++; oScore();
+        } else {
+          b.classList.add('miss');
+          setTimeout(() => b.classList.remove('miss'), 320);
+        }
+      });
+      co.appendChild(b);
+    });
+  }
+
+  function oScore() {
+    const el = document.getElementById('oscore');
+    el.textContent = oCorrect + ' of 8 pairs';
+    if (oCorrect === 8) el.textContent = '8 of 8 · complete';
+  }
+  document.getElementById('oreset').addEventListener('click', buildOpposites);
+  buildOpposites();
+
+  /* ── 2 · DO OR DON'T ── */
+  const DODONT = [
+    { text: "Strive for consensus.", cat: "do" },
+    { text: "Encourage people to contribute to the discussions.", cat: "do" },
+    { text: "Keep calm.", cat: "do" },
+    { text: "Try to allow everyone to make a contribution.", cat: "do" },
+    { text: "Talk the most at the meeting.", cat: "dont" },
+    { text: "Allow one or two people to dominate the meeting.", cat: "dont" },
+    { text: "Force people to contribute to the discussions.", cat: "dont" },
+    { text: "Lose your temper.", cat: "dont" },
+    { text: "Forget what was said earlier.", cat: "dont" },
+    { text: "Make all the decisions.", cat: "dont" },
+    { text: "Cut people out of discussions if you don't agree with their opinions.", cat: "dont" }
+  ];
+  let dPicked = null, dPlaced = 0;
+
+  function buildDoDont() {
+    const pool = document.getElementById('pool');
+    pool.innerHTML = ''; dPicked = null; dPlaced = 0;
+    document.getElementById('zone-do-items').innerHTML = '';
+    document.getElementById('zone-dont-items').innerHTML = '';
+    dHint();
+    dScore();
+
+    shuffle([...DODONT]).forEach((item, idx) => {
+      const b = document.createElement('button');
+      b.className = 'chip'; b.dataset.cat = item.cat; b.dataset.text = item.text;
+      b.textContent = item.text;
+      b.addEventListener('click', () => {
+        document.querySelectorAll('.chip').forEach(c => c.classList.remove('pick'));
+        if (dPicked === b) { dPicked = null; return; }
+        b.classList.add('pick'); dPicked = b;
+      });
+      pool.appendChild(b);
+    });
+  }
+
+  function place(zone) {
+    if (!dPicked) return;
+    const cat = zone.dataset.cat;
+    if (dPicked.dataset.cat === cat) {
+      const item = document.createElement('div');
+      item.className = 'zone-item';
+      item.textContent = dPicked.dataset.text;
+      document.getElementById(zone.id + '-items').appendChild(item);
+      dPicked.remove();
+      dPicked = null;
+      dPlaced++;
+      dScore();
+      dHint();
+      zone.classList.add('hit');
+      setTimeout(() => zone.classList.remove('hit'), 350);
+    } else {
+      zone.classList.add('miss');
+      setTimeout(() => zone.classList.remove('miss'), 300);
+    }
+  }
+  document.getElementById('zone-do').addEventListener('click', function () { place(this); });
+  document.getElementById('zone-dont').addEventListener('click', function () { place(this); });
+  document.querySelectorAll('.zone').forEach(z => {
+    z.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); place(z); } });
+  });
+
+  function dHint() {
+    document.getElementById('do-hint').style.display = document.getElementById('zone-do-items').children.length ? 'none' : 'block';
+    document.getElementById('dont-hint').style.display = document.getElementById('zone-dont-items').children.length ? 'none' : 'block';
+  }
+  function dScore() {
+    const el = document.getElementById('dscore');
+    el.textContent = dPlaced + ' of 11 placed';
+    if (dPlaced === 11) el.textContent = '11 of 11 · complete';
+  }
+  document.getElementById('dreset').addEventListener('click', buildDoDont);
+  buildDoDont();
+
+  /* ── 3 · MATCH THE ADJECTIVE ── */
+  const ADJ_BANK = ["attentive","biased","calm","discouraging","disorganized","domineering","encouraging","forgetful","impartial","intolerant","open-minded","passive","self-disciplined","temperamental","uncontrolled","well-organized"];
+
+  const GROUP1 = [
+    { text: "Talk the most at the meeting.", accepted: ["uncontrolled"] },
+    { text: "Strive for consensus.", accepted: ["impartial"] },
+    { text: "Allow one or two people to dominate the meeting.", accepted: ["uncontrolled", "disorganized", "passive"] },
+    { text: "Encourage people to contribute to the discussions.", accepted: ["encouraging", "open-minded"] },
+    { text: "Force people to contribute to the discussions.", accepted: ["domineering"] },
+    { text: "Keep calm.", accepted: ["calm"] }
+  ];
+  const GROUP2 = [
+    { text: "Lose your temper.", accepted: ["temperamental"] },
+    { text: "Forget what was said earlier.", accepted: ["forgetful"] },
+    { text: "Make all the decisions.", accepted: ["domineering", "biased"] },
+    { text: "Try to allow everyone to make a contribution.", accepted: ["encouraging", "open-minded", "well-organized", "impartial"] },
+    { text: "Cut people out of discussions if you don't agree with their opinions.", accepted: ["temperamental", "biased", "intolerant", "domineering"] }
+  ];
+
+  let sCorrectCount = 0;
+  const sSolved = new Set();
+
+  function buildGroup(containerId, items, offset) {
+    const c = document.getElementById(containerId);
+    items.forEach((item, i) => {
+      const rowId = containerId + '-' + i;
+      const row = document.createElement('div');
+      row.className = 'srow';
+      row.innerHTML =
+        '<span class="stext">' + item.text + '</span>' +
+        '<span class="sright">' +
+          '<select class="sselect"><option value="">Choose an adjective…</option>' +
+          ADJ_BANK.map(a => '<option value="' + a + '">' + a + '</option>').join('') +
+          '</select>' +
+          '<span class="sicon">✓</span>' +
+        '</span>' +
+        '<span class="sextra"></span>';
+      const select = row.querySelector('select');
+      const icon = row.querySelector('.sicon');
+      const extra = row.querySelector('.sextra');
+
+      select.addEventListener('change', () => {
+        const val = select.value;
+        if (!val) { row.classList.remove('correct', 'incorrect'); icon.textContent = ''; extra.textContent = ''; return; }
+        if (item.accepted.includes(val)) {
+          row.classList.remove('incorrect'); row.classList.add('correct');
+          icon.textContent = '✓';
+          if (!sSolved.has(rowId)) { sSolved.add(rowId); sCorrectCount++; sScore(); }
+          const others = item.accepted.filter(x => x !== val);
+          extra.textContent = others.length ? 'Also acceptable: ' + others.join(', ') : '';
+        } else {
+          row.classList.remove('correct'); row.classList.add('incorrect');
+          icon.textContent = '✕';
+          extra.textContent = '';
+          if (sSolved.has(rowId)) { sSolved.delete(rowId); sCorrectCount--; sScore(); }
+        }
+      });
+
+      c.appendChild(row);
+    });
+  }
+
+  function sScore() {
+    const el = document.getElementById('sscore');
+    el.textContent = sCorrectCount + ' of 11 correct';
+    if (sCorrectCount === 11) el.textContent = '11 of 11 · complete';
+  }
+
+  function buildMatchAdj() {
+    document.getElementById('group1').innerHTML = '';
+    document.getElementById('group2').innerHTML = '';
+    sCorrectCount = 0; sSolved.clear(); sScore();
+    buildGroup('group1', GROUP1);
+    buildGroup('group2', GROUP2);
+  }
+  document.getElementById('sreset').addEventListener('click', buildMatchAdj);
+  buildMatchAdj();
+
+  /* ── NAVIGATION ── */
+  function go(id) {
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('on'));
+    document.querySelectorAll('.step').forEach(s => s.classList.remove('on'));
+    document.getElementById('p-' + id).classList.add('on');
+    document.querySelector('.step[data-p="' + id + '"]').classList.add('on');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+  document.querySelectorAll('.step').forEach(s => s.addEventListener('click', () => go(s.dataset.p)));
+  document.querySelectorAll('[data-go]').forEach(b => b.addEventListener('click', () => go(b.dataset.go)));
+</script>
+</body>
+</html>
