@@ -4,3 +4,6 @@
 
 # macOS
 .DS_Store
+
+# Imagen original a tamano completo (se versiona solo la optimizada para web)
+_concepts/img/patio.jpg

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>C — Bloque de color</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;1,9..144,500;1,9..144,600&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="base.css">
+<style>
+  .logo-name .dot { color: var(--mustard); }
+  .hero { display: grid; grid-template-columns: 0.92fr 1.08fr; gap: 2.2rem; align-items: center; margin-top: 2rem; }
+  .hero .collage { order: -1; }
+  .collage::before { background: var(--mustard); opacity: 0.45; transform: rotate(2.5deg); }
+  .bio { margin-top: 3rem; background: var(--coral); border-radius: 18px; padding: 2.1rem 2rem; color: #fff; position: relative; overflow: hidden; }
+  .bio::after { content: ""; position: absolute; right: -40px; bottom: -60px; width: 190px; height: 190px; border-radius: 50%; border: 14px solid rgba(255,255,255,0.16); }
+  .bio-role { color: rgba(255,255,255,0.8); }
+  .bio-name { color: #fff; }
+  .bio-text { color: rgba(255,255,255,0.94); position: relative; z-index: 1; max-width: 46ch; }
+  .tags .tag { background: rgba(255,255,255,0.16); border-color: rgba(255,255,255,0.34); color: #fff; }
+  .bio .regions { border-top-color: rgba(255,255,255,0.32); }
+  .bio .regions-label { color: rgba(255,255,255,0.78); }
+  .bio .regions-list { color: #fff; position: relative; z-index: 1; }
+  .section-label { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--hint); margin: 3rem 0 1.2rem; }
+  @media (max-width: 620px) { .hero { grid-template-columns: 1fr; } .collage { max-width: 300px; margin: 0 auto 1.6rem; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <span class="logo"><span class="logo-name">Diana<span class="dot">.</span></span><span class="logo-sub">teaches</span></span>
+
+  <div class="hero">
+    <div class="collage"><div class="collage-frame">
+      <img class="photo" src="img/patio-web.jpg" alt="Patio con silla, mesa y planta">
+      <img class="ill" src="img/ilustracion.png" alt="Ilustración de una persona caminando con una oveja">
+    </div></div>
+    <div>
+      <p class="kicker"><b>Materiales de clase</b> · Class materials</p>
+      <h1>Todo en un solo lugar.<em>Everything, in one place.</em></h1>
+      <p class="standfirst">Elige tu idioma abajo. Cada unidad tiene su propia página.<span class="sep">·</span>Choose your language below. Each unit has its own page.</p>
+    </div>
+  </div>
+
+  <div class="bio">
+    <p class="bio-role">Sobre mí · About</p>
+    <p class="bio-name">Diana Mateus</p>
+    <p class="bio-text">Profesora de idiomas e intérprete. Enseño español e inglés a adultos y a estudiantes de programas internacionales, y trabajo como intérprete simultánea y traductora para organizaciones enfocadas en salud y justicia social.</p>
+    <p class="bio-text">Language teacher and interpreter. I teach Spanish and English to adults and international-programme students, and work as a simultaneous interpreter and translator for organisations working in health and social justice.</p>
+    <div class="tags">
+      <span class="tag">Español ⇄ English</span>
+      <span class="tag">Maestría en Educación Bilingüe</span>
+      <span class="tag">IB · IGCSE · PYP · MYP · IBDP</span>
+    </div>
+      <div class="regions">
+        <span class="regions-label">Regiones &middot; Regions</span>
+        <span class="regions-list">Am&eacute;rica Latina &middot; Norteam&eacute;rica (EE.&nbsp;UU. y Canad&aacute;) &middot; &Aacute;frica</span>
+      </div>
+  </div>
+
+  <p class="section-label">Recursos de clase · Class resources</p>
+  <div class="langs">
+    <div class="lang-card es">
+      <span class="lang-tab">3 unidades</span>
+      <p class="lang-head">Español</p>
+      <p class="lang-gloss">IB, identidades, gramática y vocabulario con práctica.</p>
+      <a class="lang-enter" href="#">Entrar →</a>
+    </div>
+    <div class="lang-card en">
+      <span class="lang-tab">2 units</span>
+      <p class="lang-head">English</p>
+      <p class="lang-gloss">Vocabulary, grammar and practice for every unit.</p>
+      <a class="lang-enter" href="#">Enter →</a>
+    </div>
+  </div>
+
+
+  <footer>Materiales de clase · Class materials — diana-teaches.com</footer>
+</div>
+</body>
+</html>

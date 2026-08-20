@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Concepto 2 — Vivid serif</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;1,9..144,500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FFFFFF;
+    --ink: #2E0E33;
+    --ink-soft: #6B5470;
+    --hint: #A99BAD;
+    --rule: #EDE3EE;
+    --coral: #FF3D57;
+    --coral-ink: #A8081E;
+    --gold: #FFB800;
+    --gold-ink: #8A5E00;
+    --font: 'Fraunces', serif;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--font); }
+  .wrap { max-width: 46rem; margin: 0 auto; padding: 3rem 1.5rem 4rem; }
+
+  .logo { display: inline-flex; align-items: baseline; gap: 0.15rem; font-weight: 800; font-style: italic; font-size: 1.5rem; color: var(--ink); }
+  .logo .dot { color: var(--coral); font-style: normal; }
+
+  .kicker { margin: 2.4rem 0 0; font-family: system-ui, sans-serif; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--hint); }
+  .kicker b { color: var(--ink-soft); }
+
+  h1 { margin: 0.7rem 0 0; font-weight: 800; font-size: clamp(2.6rem, 6.4vw, 4.1rem); line-height: 1.02; letter-spacing: -0.01em; }
+  h1 em { display: block; font-style: italic; font-weight: 500; color: var(--coral); font-size: 0.6em; margin-top: 0.3rem; }
+
+  .standfirst { margin: 1.5rem 0 0; font-family: system-ui, sans-serif; font-size: 1.05rem; line-height: 1.6; color: var(--ink-soft); max-width: 34rem; }
+  .standfirst .sep { color: var(--hint); margin: 0 0.4em; }
+
+  .rule-full { height: 1px; background: var(--rule); margin: 2.8rem 0 2rem; }
+
+  .langs { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .lang-card { position: relative; background: var(--bg); border: 2px solid var(--rule); border-radius: 6px; padding: 1.6rem 1.5rem 1.5rem; }
+  .lang-card.es { border-color: var(--coral); }
+  .lang-card.en { border-color: var(--gold); }
+  .lang-count { font-family: system-ui, sans-serif; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; }
+  .lang-card.es .lang-count { color: var(--coral-ink); }
+  .lang-card.en .lang-count { color: var(--gold-ink); }
+  .lang-head { font-style: italic; font-weight: 600; font-size: 2.1rem; margin: 0.35rem 0 0.5rem; }
+  .lang-gloss { font-family: system-ui, sans-serif; font-size: 0.92rem; line-height: 1.55; color: var(--ink-soft); margin: 0 0 1.3rem; }
+  .lang-enter { display: inline-flex; align-items: center; gap: 0.4rem; font-family: system-ui, sans-serif; font-size: 0.78rem; font-weight: 600; text-decoration: none; color: var(--ink); border-bottom: 2px solid var(--ink); padding-bottom: 2px; }
+
+  .note { margin-top: 2.8rem; padding: 1.1rem 1.3rem; border-left: 3px solid var(--gold); font-family: system-ui, sans-serif; font-size: 0.88rem; line-height: 1.6; color: var(--ink-soft); }
+  .note b { color: var(--ink); font-weight: 700; }
+
+  footer { margin-top: 3rem; padding-top: 1.4rem; border-top: 1px solid var(--rule); font-family: system-ui, sans-serif; font-size: 0.75rem; color: var(--hint); }
+
+  @media (max-width: 560px) { .langs { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <span class="logo">diana<span class="dot">.</span></span>
+
+  <p class="kicker"><b>Materiales de clase</b> · Class materials</p>
+  <h1>Todo en un solo lugar.<em>Everything, in one place.</em></h1>
+
+  <p class="standfirst">
+    Elige tu idioma abajo. Cada unidad tiene su propia página.
+    <span class="sep">·</span>
+    Choose your language below. Each unit has its own page.
+  </p>
+
+  <div class="rule-full"></div>
+
+  <div class="langs">
+    <div class="lang-card es">
+      <p class="lang-count">3 unidades</p>
+      <p class="lang-head">Español</p>
+      <p class="lang-gloss">IB, identidades, gramática y vocabulario con práctica.</p>
+      <a class="lang-enter" href="#">Entrar →</a>
+    </div>
+    <div class="lang-card en">
+      <p class="lang-count">2 units</p>
+      <p class="lang-head">English</p>
+      <p class="lang-gloss">Vocabulary, grammar and practice for every unit.</p>
+      <a class="lang-enter" href="#">Enter →</a>
+    </div>
+  </div>
+
+  <div class="note">
+    <b>¿Perdida? · Lost?</b><br>
+    Cada dirección sigue la misma forma: idioma, luego unidad, luego lección.
+    <span class="sep">·</span>
+    Every address follows the same shape: language, then unit, then lesson.
+  </div>
+
+  <footer>Materiales de clase · Class materials — diana-teaches.com</footer>
+
+</div>
+</body>
+</html>

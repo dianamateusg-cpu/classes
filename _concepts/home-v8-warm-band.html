@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Concepto 6 — Warm band</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;1,9..144,500&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FFFDF8;
+    --ink: #241B18;
+    --ink-soft: #6B5F58;
+    --hint: #B4A79D;
+    --rule: #ECE1D3;
+    --band: #FF7A4D;
+    --band-ink: #7A2708;
+    --gold: #F0AA1F;
+    --gold-ink: #7A5406;
+    --teal: #1E8E7E;
+    --font-display: 'Fraunces', serif;
+    --font-body: 'Instrument Sans', sans-serif;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--font-body); }
+
+  .hero { position: relative; background: var(--band); overflow: hidden; padding: 2.6rem 1.5rem 3.4rem; }
+  .hero-in { max-width: 46rem; margin: 0 auto; position: relative; z-index: 1; }
+  .doodle { position: absolute; stroke: rgba(255,255,255,0.35); fill: none; stroke-width: 5; stroke-linecap: round; }
+  .doodle.d1 { top: -20px; right: 6%; width: 140px; }
+  .doodle.d2 { bottom: -30px; right: 26%; width: 90px; }
+
+  .logo { display: inline-flex; align-items: baseline; font-family: var(--font-display); font-weight: 800; font-style: italic; font-size: 1.55rem; color: #fff; }
+  .logo .dot { color: var(--gold); font-style: normal; }
+
+  .kicker { margin: 2.4rem 0 0; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(255,255,255,0.75); }
+  .kicker b { color: #fff; }
+
+  h1 { margin: 0.7rem 0 0; font-family: var(--font-display); font-weight: 800; font-size: clamp(2.6rem, 6.4vw, 4.1rem); line-height: 1.03; letter-spacing: -0.01em; color: #fff; max-width: 24rem; }
+  h1 em { display: block; font-style: italic; font-weight: 500; color: #FFE3BF; font-size: 0.58em; margin-top: 0.3rem; }
+
+  .standfirst { margin: 1.5rem 0 0; font-size: 1.05rem; line-height: 1.6; color: rgba(255,255,255,0.88); max-width: 30rem; }
+  .standfirst .sep { color: rgba(255,255,255,0.5); margin: 0 0.4em; }
+
+  .wrap { max-width: 46rem; margin: 0 auto; padding: 0 1.5rem 4rem; }
+
+  .langs { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: -2.2rem; position: relative; z-index: 1; }
+  .lang-card { position: relative; background: #fff; border-radius: 12px; padding: 1.7rem 1.5rem 1.5rem; box-shadow: 0 1px 0 var(--rule); border: 1px solid var(--rule); }
+  .lang-count { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; }
+  .lang-card.es .lang-count { color: var(--band-ink); }
+  .lang-card.en .lang-count { color: var(--gold-ink); }
+  .lang-head { font-family: var(--font-display); font-style: italic; font-weight: 600; font-size: 2rem; margin: 0.35rem 0 0.5rem; }
+  .lang-gloss { font-size: 0.92rem; line-height: 1.55; color: var(--ink-soft); margin: 0 0 1.3rem; }
+  .lang-enter { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.78rem; font-weight: 600; text-decoration: none; color: var(--ink); border-bottom: 2px solid var(--ink); padding-bottom: 2px; }
+  .lang-card.es { border-top: 3px solid var(--band); }
+  .lang-card.en { border-top: 3px solid var(--gold); }
+
+  .note { margin-top: 2.6rem; padding: 1.1rem 1.3rem; border-left: 3px solid var(--teal); font-size: 0.88rem; line-height: 1.6; color: var(--ink-soft); }
+  .note b { color: var(--ink); font-weight: 700; }
+
+  footer { margin-top: 3rem; padding-top: 1.4rem; border-top: 1px solid var(--rule); font-size: 0.75rem; color: var(--hint); }
+
+  @media (max-width: 560px) { .langs { grid-template-columns: 1fr; margin-top: -1.6rem; } .doodle { display: none; } }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <svg class="doodle d1" viewBox="0 0 140 110"><path d="M10 100 C 10 50, 40 10, 70 10 C 100 10, 130 50, 130 100"/></svg>
+  <svg class="doodle d2" viewBox="0 0 90 70"><circle cx="45" cy="35" r="28"/></svg>
+  <div class="hero-in">
+    <span class="logo">Diana<span class="dot">.</span></span>
+    <p class="kicker"><b>Materiales de clase</b> · Class materials</p>
+    <h1>Todo en un solo lugar.<em>Everything, in one place.</em></h1>
+    <p class="standfirst">
+      Elige tu idioma abajo. Cada unidad tiene su propia página.
+      <span class="sep">·</span>
+      Choose your language below. Each unit has its own page.
+    </p>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="langs">
+    <div class="lang-card es">
+      <p class="lang-count">3 unidades</p>
+      <p class="lang-head">Español</p>
+      <p class="lang-gloss">IB, identidades, gramática y vocabulario con práctica.</p>
+      <a class="lang-enter" href="#">Entrar →</a>
+    </div>
+    <div class="lang-card en">
+      <p class="lang-count">2 units</p>
+      <p class="lang-head">English</p>
+      <p class="lang-gloss">Vocabulary, grammar and practice for every unit.</p>
+      <a class="lang-enter" href="#">Enter →</a>
+    </div>
+  </div>
+
+  <div class="note">
+    <b>¿Perdida? · Lost?</b><br>
+    Cada dirección sigue la misma forma: idioma, luego unidad, luego lección.
+    <span class="sep">·</span>
+    Every address follows the same shape: language, then unit, then lesson.
+  </div>
+
+  <footer>Materiales de clase · Class materials — diana-teaches.com</footer>
+</div>
+
+</body>
+</html>
